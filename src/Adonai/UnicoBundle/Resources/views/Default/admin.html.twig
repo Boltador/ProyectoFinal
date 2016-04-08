@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-toggle"></span>
+      </button>
+
+      <a style="color: white;" class="navbar-brand" href="#">Sistema de Gestión Académica - ADONAI</a>
+    </div>
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a style="color: white;"  class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <i class="glyphicon glyphicon-user"></i>  {% if app.user %}{{ app.user.username }}{% endif %}
+            <span class="caret"></span></a>
+            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+              <li><a href="#">Ir al Inicio</a></li>
+              <li><a href="{{ path('logout') }}"><i class="glyphicon glyphicon-lock"></i>Desconectarse</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- /container -->
+  </div>
+  <!-- /Header -->
+
+  <!-- Main -->
+  <div class="container">
+
+    <!-- upper section -->
+    <div class="row">
+      <div class="col-sm-3">
+        <!-- left -->
+        <h3><i class="glyphicon glyphicon-briefcase"></i>    Menú</h3>
+        <hr>
+
+        <ul class="nav nav-stacked">
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-list-alt"></i>   Ver Planeadores</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-th-list"></i>   Ver Boletines Académicos</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-pencil"></i>   Ver Observadores</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-tasks"></i>   Ver Asignaciones</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-user"></i>   Usuarios</a></li>
+          <li><a href="http://www.bootply.com/85861" target="ext"><i class="glyphicon glyphicon-download"></i>   Exportar Reportes</a></li>
+          <hr>
+
+        </div><!-- /span-3 -->
+        <div class="col-sm-9">
+
+          <!-- column 2 --> 
+          <h3></i>Bienvenido al Panel de Gestión Coordinador(a): {{ coordinador.nomCor }} </h3>  
+
+          <hr>
+
+          <div class="row">
+            <!-- center left--> 
+            <div class="col-md-7">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h4>Información General</h4></div>
+                <div class="panel-body">
+
+                  <h4 id="subtitulo">Año Lectivo Actual: </h4><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
+
+                  <h4 id="subtitulo">Periodo Actual: </h4><medium>{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }} -- </medium><medium style="font-weight: bold;">Número: </medium><medium>{{ periodo_actual.numero }}</medium>
+
+
+                </div><!--/panel-body-->
+
+                <div class="panel-heading"><h4>Estadisticas: </h4></div>
+                <div class="panel-body">
+                  <medium><strong>Número de Grupos: </strong>{{ lista_grupos|length }}</medium><br/>
+                  <medium><strong>Total de Estudiantes Matriculados: </strong>{{ total_est }}</medium>
+                </div><!--/panel-body-->
+              </div><!--/panel-->                     
+
+            </div><!--/col-->
+
+            <!--center-right-->
+            <div class="col-md-5">
+              <img style="margin: 0 auto;" class="img-responsive" src="{{ asset('public/img/logo2.png') }}">
+
+              <hr>
+              <p class="text-justify">
+                Bienvenido al panel del coordinador, aqui puedes realizar las acciones de consultar los planeadores académicos de los grupos, consultar los observadores de clase y las notas de todos los estudiantes de la institución.</p> 
+                <p class="text-justify">Tambien puedes generar los reportes en pdf de planeadores, boletines académicos o registro de incidentes.</p>
+                <p class="text-justify">De igual manera, puede crear y administrar los usuarios de cada docente para habilitarles el ingreso a la plataforma.</p>
+
+              </div><!--/col-span-6-->
+
+              <hr>
+
+            </div><!--/row-->
+          </div><!--/col-span-9-->
+
+        </div><!--/row-->
+        <!-- /upper section -->
+
+        <!-- lower section -->
+        <hr>    
+        <div class="row">
+          <div class="col-md-7">
+            <strong><i class="glyphicon glyphicon-list-alt"></i>Lista de Grupos</strong>  
+            <hr>
+            <table style="border-right: 1px solid #ccc;" class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>ID Grupo</th>
+                  <th>Grupo</th>
+                  <th>Director de Grupo</th>
+                  <th>Año Lectivo</th>
+                  <th>Lista Estudiantes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for grupo in lista_grupos %}
+                <tr id="grupo_activo_{{ grupo.idGrupo }}" class="active">
+                  <td>{{ grupo.idGrupo }}</td>
+                  <td>{{ grupo.grado }} - {{ grupo.nomenclatura }}</td>
+                  <td>{{ grupo.docente.nomDoc }}</td>
+                  <td>{{ grupo.aLectivo.fechaInicio|date("d/m/Y") }} - {{ grupo.aLectivo.fechaFinal|date("d/m/Y") }}</td>
+                  <td>
+                    <button id="grupo{{ grupo.idGrupo }}" onclick="verListaMats({{ grupo.idGrupo }})" type="button" class="btn btn-info">Ver Lista</button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>  
+            <div class="alert alert-info">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              Recuerda <a href="#">Cerrar Sesión</a> cuando termines tu trabajo.
+            </div>   
+          </div>
+          <div class="col-md-5  table-responsive">
+            <strong><i class="glyphicon glyphicon-list-alt"></i>Lista de Estudiantes</strong>  
+            <hr> 
+            <div id="listaEst" class="col-md-12">
+              <table id="tabla_mats" class="table">
+                <thead>
+                  <tr>
+                    <th>ID Matricula</th>
+                    <th>Nombre Estudiante</th>
+                    <th>Grupo</th>
+                  </tr>
+                </thead>
+                <tbody id="body_tabla_mats">
+                </tbody>
+              </table>
+            </div>  
+          </div>
+        </div> <!-- /Row -->
+
+      </div><!--/container-->
+      <!-- /Main -->
+
+
+      <footer class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>
+
+      <!-- script references -->
+      {% block javascripts %}
+      <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+      <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+      <script>
+      function verListaMats(id_grupo){
+        $.ajax({
+          url: "{{ path('buscarListaMats') }}",
+          data: ({'id': id_grupo }),
+          method: 'POST',
+          dataType: "json",
+          success: function (data) {
+            if (data == null) {
+              alert("No se ha encontrado Datos");
+            } else {
+              $('#body_tabla_mats').empty();
+              $('#body_tabla_mats').append(rowEntity(data));
+
+              {% for grupo in lista_grupos %}
+              if($('#grupo_activo_{{ grupo.idGrupo }}').hasClass("info")){
+                $('#grupo_activo_{{ grupo.idGrupo }}').removeClass("info");
+              }
+              {% endfor %}
+              $('#grupo_activo_'+id_grupo).addClass("info");
+            }
+          }
+        });
+
+      }
+
+      function rowEntity(data) {
+        var matriculasProcesar = new Array();
+
+    //obviamente esto se hace luego de realizar la busqueda en la bd, en este caso $encontrada representa el usuario encontrado
+    for(i = 0; i < data.length; i++){
+      fila = "<tr>" +
+      "<td>" + data[i]["id"] + "</td>" +
+      "<td>" + data[i]["nombre"] + "</td>" +
+      "<td>" + data[i]["grado"] +' - '+ data[i]["grupo"] + "</td>" +
+      "</tr>";
+      matriculasProcesar.push(fila);
+    }
+    return matriculasProcesar;
+  }
+  </script>
+  {% endblock %}
+  {% endblock %}

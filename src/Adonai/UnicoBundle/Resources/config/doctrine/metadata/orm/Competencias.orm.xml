@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Competencias" table="competencias">
+    <indexes>
+      <index name="fk_comp_asignatura" columns="id_asig"/>
+      <index name="fk_comp_grado" columns="id_grado"/>
+    </indexes>
+    <id name="idComp" type="integer" column="id_comp">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="contenido" type="string" column="contenido" length="200" nullable="false"/>
+    <many-to-one field="idGrado" target-entity="Grados">
+      <join-columns>
+        <join-column name="id_grado" referenced-column-name="id_grado"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAsig" target-entity="Asignaturas">
+      <join-columns>
+        <join-column name="id_asig" referenced-column-name="id_asig"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

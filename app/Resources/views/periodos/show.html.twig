@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Periodos</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idperiodo</th>
+                <td>{{ periodo.idPeriodo }}</td>
+            </tr>
+            <tr>
+                <th>Fechainper</th>
+                <td>{% if periodo.fechaInPer %}{{ periodo.fechaInPer|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechafinper</th>
+                <td>{% if periodo.fechaFinPer %}{{ periodo.fechaFinPer|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ periodo.numero }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('periodos_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('periodos_edit', { 'id': periodo.idPeriodo }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

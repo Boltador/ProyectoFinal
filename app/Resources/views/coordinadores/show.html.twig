@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Coordinadores</h1>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Idcor</th>
+            <td>{{ coordinador.idCor }}</td>
+        </tr>
+        <tr>
+            <th>Nuip</th>
+            <td>{{ coordinador.nuip }}</td>
+        </tr>
+        <tr>
+            <th>Nomcor</th>
+            <td>{{ coordinador.nomCor }}</td>
+        </tr>
+        <tr>
+            <th>Dir</th>
+            <td>{{ coordinador.dir }}</td>
+        </tr>
+        <tr>
+            <th>Tel</th>
+            <td>{{ coordinador.tel }}</td>
+        </tr>
+        <tr>
+            <th>Movil</th>
+            <td>{{ coordinador.movil }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ coordinador.email }}</td>
+        </tr>
+        <tr>
+            <th>Usuario</th>
+            <td>{{ coordinador.usuario.id }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('coordinadores_index') }}">Back to the list</a>
+    </li>
+    <li>
+        <a href="{{ path('coordinadores_edit', { 'id': coordinador.idCor }) }}">Edit</a>
+    </li>
+    <li>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Asignaciones" table="asignaciones">
+    <indexes>
+      <index name="fk_asig_doc" columns="id_doc"/>
+      <index name="fk_asig_asignacion" columns="id_asig"/>
+      <index name="fk_asig_grupo" columns="id_grupo"/>
+      <index name="fk_asig_alectivo" columns="id_a_lectivo"/>
+    </indexes>
+    <id name="idAsignacion" type="integer" column="id_asignacion">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idGrupo" target-entity="Grupos">
+      <join-columns>
+        <join-column name="id_grupo" referenced-column-name="id_grupo"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idDoc" target-entity="Docentes">
+      <join-columns>
+        <join-column name="id_doc" referenced-column-name="id_doc"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAsig" target-entity="Asignaturas">
+      <join-columns>
+        <join-column name="id_asig" referenced-column-name="id_asig"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idALectivo" target-entity="ALectivos">
+      <join-columns>
+        <join-column name="id_a_lectivo" referenced-column-name="id_a_lectivo"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Competencias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcomp</th>
+                <th>Contenido</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for competencia in competencias %}
+            <tr>
+                <td><a href="{{ path('competencias_show', { 'id': competencia.idComp }) }}">{{ competencia.idComp }}</a></td>
+                <td>{{ competencia.contenido }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('competencias_show', { 'id': competencia.idComp }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('competencias_edit', { 'id': competencia.idComp }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('competencias_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

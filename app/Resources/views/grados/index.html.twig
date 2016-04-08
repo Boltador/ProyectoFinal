@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grados list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idgrado</th>
+                <th>Grado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grado in grados %}
+            <tr>
+                <td><a href="{{ path('grados_show', { 'id': grado.idGrado }) }}">{{ grado.idGrado }}</a></td>
+                <td>{{ grado.grado }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('grados_show', { 'id': grado.idGrado }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('grados_edit', { 'id': grado.idGrado }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('grados_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

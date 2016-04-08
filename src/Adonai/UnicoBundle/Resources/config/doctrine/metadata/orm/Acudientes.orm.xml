@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acudientes" table="acudientes">
+    <unique-constraints>
+      <unique-constraint name="nuip" columns="nuip"/>
+    </unique-constraints>
+    <id name="idAcu" type="integer" column="id_acu">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nuip" type="integer" column="nuip" nullable="false"/>
+    <field name="nomAcu" type="string" column="nom_acu" length="60" nullable="false"/>
+    <field name="email" type="string" column="email" length="70" nullable="false"/>
+  </entity>
+</doctrine-mapping>

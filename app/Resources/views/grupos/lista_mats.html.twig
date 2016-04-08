@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nuip</th>
+                <th>Nombre</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for matricula in lista_mats %}
+            <tr>
+                <td>{{ matricula.estudiante.nuip }}</td>
+                <td>{{ matricula.estudiante.nomEst }}</td>
+                <td>{{ matricula.grupo.grado.grado }}-{{ matricula.grupo.nomenclatura }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

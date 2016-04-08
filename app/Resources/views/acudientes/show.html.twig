@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Acudientes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idacu</th>
+                <td>{{ acudiente.idAcu }}</td>
+            </tr>
+            <tr>
+                <th>Nuip</th>
+                <td>{{ acudiente.nuip }}</td>
+            </tr>
+            <tr>
+                <th>Nomacu</th>
+                <td>{{ acudiente.nomAcu }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ acudiente.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('acudientes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('acudientes_edit', { 'id': acudiente.idAcu }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

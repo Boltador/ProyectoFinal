@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Estudiantes" table="estudiantes">
+    <indexes>
+      <index name="fk_acudiente" columns="id_acu"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="nuip" columns="nuip"/>
+    </unique-constraints>
+    <id name="idEst" type="integer" column="id_est">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nuip" type="integer" column="nuip" nullable="false"/>
+    <field name="nomEst" type="string" column="nom_est" length="60" nullable="false"/>
+    <field name="fechaNac" type="date" column="fecha_nac" nullable="false"/>
+    <field name="tel" type="string" column="tel" length="20" nullable="false"/>
+    <field name="dir" type="string" column="dir" length="20" nullable="false"/>
+    <many-to-one field="idAcu" target-entity="Acudientes">
+      <join-columns>
+        <join-column name="id_acu" referenced-column-name="id_acu"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

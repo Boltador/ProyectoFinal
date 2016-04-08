@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Incidentes" table="incidentes">
+    <indexes>
+      <index name="fk_incidente_mat" columns="id_mat"/>
+      <index name="fk_incidente_per" columns="id_periodo"/>
+      <index name="fk_incidente_asignacion" columns="id_asignacion"/>
+    </indexes>
+    <id name="idIncidente" type="integer" column="id_incidente">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaIncidente" type="date" column="fecha_incidente" nullable="false"/>
+    <field name="observacion" type="string" column="observacion" length="140" nullable="false"/>
+    <many-to-one field="idPeriodo" target-entity="Periodos">
+      <join-columns>
+        <join-column name="id_periodo" referenced-column-name="id_periodo"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idMat" target-entity="Matriculas">
+      <join-columns>
+        <join-column name="id_mat" referenced-column-name="id_mat"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAsignacion" target-entity="Asignaciones">
+      <join-columns>
+        <join-column name="id_asignacion" referenced-column-name="id_asignacion"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

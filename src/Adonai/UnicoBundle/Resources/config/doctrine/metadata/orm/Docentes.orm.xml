@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Docentes" table="docentes">
+    <unique-constraints>
+      <unique-constraint name="nuip" columns="nuip"/>
+      <unique-constraint name="id_usuario" columns="id_usuario"/>
+    </unique-constraints>
+    <id name="idDoc" type="integer" column="id_doc">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nuip" type="integer" column="nuip" nullable="false"/>
+    <field name="nomDoc" type="string" column="nom_doc" length="60" nullable="false"/>
+    <field name="dir" type="string" column="dir" length="20" nullable="false"/>
+    <field name="tel" type="string" column="tel" length="20" nullable="true"/>
+    <field name="movil" type="string" column="movil" length="20" nullable="false"/>
+    <field name="email" type="string" column="email" length="80" nullable="true"/>
+    <many-to-one field="idUsuario" target-entity="Usuarios">
+      <join-columns>
+        <join-column name="id_usuario" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

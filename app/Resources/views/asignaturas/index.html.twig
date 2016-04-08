@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Asignaturas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idasig</th>
+                <th>Nomasig</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for asignatura in asignaturas %}
+            <tr>
+                <td><a href="{{ path('asignaturas_show', { 'id': asignatura.idAsig }) }}">{{ asignatura.idAsig }}</a></td>
+                <td>{{ asignatura.nomAsig }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('asignaturas_show', { 'id': asignatura.idAsig }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('asignaturas_edit', { 'id': asignatura.idAsig }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('asignaturas_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

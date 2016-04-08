@@ -1,0 +1,72 @@
+<?php
+
+namespace Adonai\UnicoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Notas
+ *
+ * @ORM\Table(name="notas", indexes={@ORM\Index(name="fk_nota_mat", columns={"id_mat"}), @ORM\Index(name="fk_nota_per", columns={"id_periodo"}), @ORM\Index(name="fk_nota_asignacion", columns={"id_asignacion"}), @ORM\Index(name="fk_nota_competencia", columns={"id_comp"})})
+ * @ORM\Entity
+ */
+class Notas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_nota", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idNota;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nota", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $nota;
+
+    /**
+     * @var \Asignaciones
+     *
+     * @ORM\ManyToOne(targetEntity="Asignaciones")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_asignacion", referencedColumnName="id_asignacion")
+     * })
+     */
+    private $asignacion;
+
+    /**
+     * @var \Competencias
+     *
+     * @ORM\ManyToOne(targetEntity="Competencias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_comp", referencedColumnName="id_comp")
+     * })
+     */
+    private $competencia;
+
+    /**
+     * @var \Matriculas
+     *
+     * @ORM\ManyToOne(targetEntity="Matriculas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_mat", referencedColumnName="id_mat")
+     * })
+     */
+    private $matricula;
+
+    /**
+     * @var \Periodos
+     *
+     * @ORM\ManyToOne(targetEntity="Periodos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_periodo", referencedColumnName="id_periodo")
+     * })
+     */
+    private $periodo;
+
+
+}

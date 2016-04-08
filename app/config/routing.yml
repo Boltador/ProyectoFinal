@@ -1,0 +1,35 @@
+adonai_unico:
+    resource: "@AdonaiUnicoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+AdonaiUsuarios_admin:
+    path:  /admin_panel
+    defaults: { _controller: AdonaiUnicoBundle:Default:admin }
+
+AdonaiUsuarios_docente:
+    path:  /docente_panel
+    defaults: { _controller: AdonaiUnicoBundle:Default:docente }
+
+AdonaiUsuarios_docente_notas:
+    path:  /docente_notas
+    defaults: { _controller: AdonaiUnicoBundle:Default:notasDocente }
+
+AdonaiUsuarios_inicio:
+    path:  /index
+    defaults: { _controller: AdonaiUnicoBundle:Default:index }
+
+login:
+    path: /login
+    defaults: { _controller: AdonaiUnicoBundle:Security:login }
+
+login_check:
+    path: /login_check
+    defaults: { _controller: AdonaiUnicoBundle:Default:admin }
+
+logout:
+    path: /logout

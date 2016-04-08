@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Docentes list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Iddoc</th>
+                <th>Nuip</th>
+                <th>Nomdoc</th>
+                <th>Dir</th>
+                <th>Tel</th>
+                <th>Movil</th>
+                <th>Email</th>
+                <th>Usuario</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for docente in docentes %}
+            <tr>
+                <td><a href="{{ path('docentes_show', { 'id': docente.idDoc }) }}">{{ docente.idDoc }}</a></td>
+                <td>{{ docente.nuip }}</td>
+                <td>{{ docente.nomDoc }}</td>
+                <td>{{ docente.dir }}</td>
+                <td>{{ docente.tel }}</td>
+                <td>{{ docente.movil }}</td>
+                <td>{{ docente.email }}</td>
+                {% if docente.usuario %}
+                <td>{{ docente.usuario.id }}</td>
+                {% endif %}
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('docentes_show', { 'id': docente.idDoc }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('docentes_edit', { 'id': docente.idDoc }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('docentes_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

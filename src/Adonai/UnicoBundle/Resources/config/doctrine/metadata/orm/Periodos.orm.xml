@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Periodos" table="periodos">
+    <indexes>
+      <index name="fk_periodos_lec" columns="id_a_lectivo"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="fecha_in_per" columns="fecha_in_per"/>
+    </unique-constraints>
+    <id name="idPeriodo" type="integer" column="id_periodo">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaInPer" type="date" column="fecha_in_per" nullable="false"/>
+    <field name="fechaFinPer" type="date" column="fecha_fin_per" nullable="false"/>
+    <field name="numero" type="integer" column="numero" nullable="false"/>
+    <many-to-one field="idALectivo" target-entity="ALectivos">
+      <join-columns>
+        <join-column name="id_a_lectivo" referenced-column-name="id_a_lectivo"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,39 @@
+<html>
+<head>
+    {% block stylesheets %}
+    <link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet" />
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Bienvenido
+                    {% if is_granted('ROLE_ADMIN') %}
+                    Administrador(a) {{ usuario_login.nomCor }}
+                    {% elseif is_granted('ROLE_DOCENTE') %}
+                    Docente {{ usuario_login.nomDoc }}
+                    {% else %}
+                    Anonimo
+                    {% endif %}
+                </h1>
+
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_DOCENTE') %}
+                <a href="{{ path('logout') }}"><button type="button" class="btn btn-danger">Cerrar Sesión</button></a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('AdonaiUsuarios_admin') }}"><button type="button" class="btn btn-success">Ir al Panel</button></a>
+                {% elseif is_granted('ROLE_DOCENTE') %}
+                <a href="{{ path('AdonaiUsuarios_docente') }}"><button type="button" class="btn btn-success">Ir al Panel</button></a>
+                {% endif %}
+                {% else %}
+                <a href="{{ path('login') }}"><button type="button" class="btn btn-primary">Iniciar Sesión</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+    <script src="{{ asset('public/js/bootstrap.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

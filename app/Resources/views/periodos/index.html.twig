@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Periodos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idperiodo</th>
+                <th>Fechainper</th>
+                <th>Fechafinper</th>
+                <th>Numero</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for periodo in periodos %}
+            <tr>
+                <td><a href="{{ path('periodos_show', { 'id': periodo.idPeriodo }) }}">{{ periodo.idPeriodo }}</a></td>
+                <td>{% if periodo.fechaInPer %}{{ periodo.fechaInPer|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if periodo.fechaFinPer %}{{ periodo.fechaFinPer|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ periodo.numero }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('periodos_show', { 'id': periodo.idPeriodo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('periodos_edit', { 'id': periodo.idPeriodo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('periodos_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

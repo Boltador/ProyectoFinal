@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ALectivos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idalectivo</th>
+                <th>Fechainicio</th>
+                <th>Fechafinal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aLectivo in aLectivos %}
+            <tr>
+                <td><a href="{{ path('alectivos_show', { 'id': aLectivo.idALectivo }) }}">{{ aLectivo.idALectivo }}</a></td>
+                <td>{% if aLectivo.fechaInicio %}{{ aLectivo.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if aLectivo.fechaFinal %}{{ aLectivo.fechaFinal|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('alectivos_show', { 'id': aLectivo.idALectivo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('alectivos_edit', { 'id': aLectivo.idALectivo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alectivos_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

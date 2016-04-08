@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ALectivos</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idalectivo</th>
+                <td>{{ aLectivo.idALectivo }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{% if aLectivo.fechaInicio %}{{ aLectivo.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechafinal</th>
+                <td>{% if aLectivo.fechaFinal %}{{ aLectivo.fechaFinal|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alectivos_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('alectivos_edit', { 'id': aLectivo.idALectivo }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

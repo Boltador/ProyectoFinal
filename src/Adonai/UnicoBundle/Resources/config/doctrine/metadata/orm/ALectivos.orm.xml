@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ALectivos" table="a_lectivos">
+    <unique-constraints>
+      <unique-constraint name="fecha_inicio" columns="fecha_inicio"/>
+    </unique-constraints>
+    <id name="idALectivo" type="integer" column="id_a_lectivo">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaInicio" type="date" column="fecha_inicio" nullable="false"/>
+    <field name="fechaFinal" type="date" column="fecha_final" nullable="false"/>
+  </entity>
+</doctrine-mapping>

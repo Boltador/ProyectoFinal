@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Asignaturas</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idasig</th>
+                <td>{{ asignatura.idAsig }}</td>
+            </tr>
+            <tr>
+                <th>Nomasig</th>
+                <td>{{ asignatura.nomAsig }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('asignaturas_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('asignaturas_edit', { 'id': asignatura.idAsig }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

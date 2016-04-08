@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Estudiantes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idest</th>
+                <td>{{ estudiante.idEst }}</td>
+            </tr>
+            <tr>
+                <th>Nuip</th>
+                <td>{{ estudiante.nuip }}</td>
+            </tr>
+            <tr>
+                <th>Nomest</th>
+                <td>{{ estudiante.nomEst }}</td>
+            </tr>
+            <tr>
+                <th>Fechanac</th>
+                <td>{% if estudiante.fechaNac %}{{ estudiante.fechaNac|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ estudiante.tel }}</td>
+            </tr>
+            <tr>
+                <th>Dir</th>
+                <td>{{ estudiante.dir }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estudiantes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('estudiantes_edit', { 'id': estudiante.idEst }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

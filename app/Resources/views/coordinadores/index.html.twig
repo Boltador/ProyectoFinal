@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Coordinadores list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcor</th>
+                <th>Nuip</th>
+                <th>Nomcor</th>
+                <th>Dir</th>
+                <th>Tel</th>
+                <th>Movil</th>
+                <th>Email</th>
+                <th>Usuario</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coordinador in coordinadores %}
+            <tr>
+                <td><a href="{{ path('coordinadores_show', { 'id': coordinador.idCor }) }}">{{ coordinador.idCor }}</a></td>
+                <td>{{ coordinador.nuip }}</td>
+                <td>{{ coordinador.nomCor }}</td>
+                <td>{{ coordinador.dir }}</td>
+                <td>{{ coordinador.tel }}</td>
+                <td>{{ coordinador.movil }}</td>
+                <td>{{ coordinador.email }}</td>
+                <td>{{ coordinador.usuario.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('coordinadores_show', { 'id': coordinador.idCor }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('coordinadores_edit', { 'id': coordinador.idCor }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('coordinadores_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

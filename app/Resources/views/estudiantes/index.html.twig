@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Estudiantes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idest</th>
+                <th>Nuip</th>
+                <th>Nomest</th>
+                <th>Fechanac</th>
+                <th>Tel</th>
+                <th>Dir</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estudiante in estudiantes %}
+            <tr>
+                <td><a href="{{ path('estudiantes_show', { 'id': estudiante.idEst }) }}">{{ estudiante.idEst }}</a></td>
+                <td>{{ estudiante.nuip }}</td>
+                <td>{{ estudiante.nomEst }}</td>
+                <td>{% if estudiante.fechaNac %}{{ estudiante.fechaNac|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ estudiante.tel }}</td>
+                <td>{{ estudiante.dir }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('estudiantes_show', { 'id': estudiante.idEst }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('estudiantes_edit', { 'id': estudiante.idEst }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estudiantes_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
