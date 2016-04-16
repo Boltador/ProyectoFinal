@@ -128,4 +128,27 @@ class Competencias
     {
         return $this->grado;
     }
+
+    public function __toString()
+    {
+        return $this->getIdComp().' - '.$this->getContenido();
+    }
+
+    public function getCompetenciasGradoAsig($asignatura, $grado, $em){
+        $query = $em->createQuery("SELECT comp FROM AdonaiUnicoBundle:Competencias comp WHERE comp.grado = :grado AND comp.asignatura = :asignatura");
+        $query->setParameter('grado', $grado);
+        $query->setParameter('asignatura', $asignatura);
+        $lista_comp = $query->getResult();
+
+        //$lista_comp = array();
+
+        /*foreach($resultados as $competencia){
+            $comp = array("id" => $competencia->getIdComp(), 
+                "asignatura" => $competencia->getAsignatura()->getNomAsig(),
+                "grado" => $competencia->getGrado()->getGrado(), 
+                "contenido" => (string) $competencia->getContenido());
+            $lista_comp[] = $comp;
+        }*/
+        return $lista_comp;
+    }
 }

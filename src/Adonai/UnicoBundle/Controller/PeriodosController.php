@@ -3,6 +3,7 @@
 namespace Adonai\UnicoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -136,5 +137,22 @@ class PeriodosController extends Controller
         ->setMethod('DELETE')
         ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/periodo_actual", name="select_periodo_actual")
+     */
+     public function periodoActualAction(Request $request)
+     {
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE :fecha >= p.fechaInPer AND :fecha <= p.fechaFinPer");
+        $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
+        $periodo = $query->getSingleResult();
+
+        $response = new Response(\json_encode($periodo));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

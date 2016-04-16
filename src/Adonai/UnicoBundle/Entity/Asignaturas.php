@@ -62,4 +62,9 @@ class Asignaturas
     {
         return $this->nomAsig;
     }
+
+    public function __toString()
+    {
+        return $this->getNomAsig();
+    }
 }

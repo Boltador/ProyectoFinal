@@ -138,10 +138,19 @@ class ALectivosController extends Controller
         ;
     }
 
-    private function getAñoLectivoActual(){
+    /**
+     * Obtener año lectivo actual
+     *
+     * @Route("/alectivo_actual", name="alectivo_actual")
+     * 
+     */
+    public function getPeriodoActual(){
         $em = $this->getDoctrine()->getManager();
-        $dql = "select al from AdonaiUnicoBundle:ALectivos al";
-        $query = $em->createQuery($dql);
-        $año_lectivo = $query->getSingleResult();
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE :fecha >= p.fechaInPer AND :fecha <= p.fechaFinPer");
+        $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
+        $periodo = $query->getSingleResult();
+        $response = new Response(\json_encode($periodo));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

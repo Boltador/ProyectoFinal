@@ -1,4 +1,27 @@
+parameters:
+    adonai.manager.base.class: Adonai\UnicoBundle\Doctrine\BaseManager
+    adonai.asignaciones.manager.class: Adonai\UnicoBundle\Doctrine\AsignacionesManager
+
 services:
 #    adonai_unico.example:
 #        class: Adonai\UnicoBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+
+    adonai.manager.base:
+        abstract: true
+        class: %adonai.manager.base.class%
+        arguments: [ "@doctrine.orm.entity_manager", "@event_dispatcher" ]
+        calls:
+            - [setContainer, ["@service_container"]]
+        tags:
+            - { name: adonai.manager }
+
+    adonai.asignaciones.manager:
+        class:  %adonai.asignaciones.manager.class%
+        parent: adonai.manager.base
+        calls:
+            - [setClass, ["AdonaiUnicoBundle:Asignaciones"]]
+        tags:
+            - { name: adonai.manager, alias: asignaciones_manager }
+
+

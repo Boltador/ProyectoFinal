@@ -6,7 +6,9 @@ use Adonai\UnicoBundle\Entity\Asignaciones;
 use Adonai\UnicoBundle\Entity\ALectivos;
 use Adonai\UnicoBundle\Entity\Periodos;
 use Adonai\UnicoBundle\Entity\Grupos;
+use Adonai\UnicoBundle\Entity\Notas;
 use Adonai\UnicoBundle\Entity\Matriculas;
+use Adonai\UnicoBundle\Form\NotasType;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -70,12 +72,14 @@ class DefaultController extends Controller
         $periodo_actual = $periodo_actual->getPeriodoActual($em);
         $grupo_dir = new Grupos();
         $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente, $em);
+
         
         return $this->render('AdonaiUnicoBundle:Default:docente.html.twig', array('docente' => $docente,
             'lista_asignaciones' => $lista_asignaciones,
             'al_actual' => $al_actual, 'periodo_actual' => $periodo_actual,
             'grupo_dir' => $grupo_dir));
     }
+
 
     public function notasDocenteAction(){
         $em = $this->getDoctrine()->getManager();
@@ -93,13 +97,24 @@ class DefaultController extends Controller
         $periodo_actual = $periodo_actual->getPeriodoActual($em);
         $grupo_dir = new Grupos();
         $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente, $em);
-        
+
+        $nota = new Notas();
+        $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($nota);
+            $em->flush();
+        }
+
         return $this->render('AdonaiUnicoBundle:Default:notas_docente.html.twig', array('docente' => $docente,
             'lista_asignaciones' => $lista_asignaciones,
             'al_actual' => $al_actual, 'periodo_actual' => $periodo_actual,
-            'grupo_dir' => $grupo_dir));
+            'grupo_dir' => $grupo_dir,
+            'nota' => $nota,
+            'form' => $form->createView()));
     }
-    
+
 
     public function comprobarUsuarioAction()
     {

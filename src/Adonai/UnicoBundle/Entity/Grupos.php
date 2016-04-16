@@ -189,6 +189,6 @@ class Grupos
 
 
     public function __toString() {
-        return $this->grupo."-".$this->nomenclatura;
+        return $this->getGrado()->getGrado()."-".$this->nomenclatura;
     }
 }

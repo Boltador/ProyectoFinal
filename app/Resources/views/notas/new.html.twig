@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Notas creation</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="{{ path('notas_new') }}" method="POST" novalidate role="form">
+            {{ form_label(form.periodo) }}
+            {{ form_widget(form.periodo, {'attr': {'class':'form-control'}})}}
+            
+            {{ form_label(form.asignacion) }}
+            {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
+
+            {{ form_label(form.matricula) }}
+            {{ form_widget(form.matricula, {'attr': {'class':'form-control'}})}}
+
+            {{ form_rest(form) }}
+            <br/>
+            <button type="submit" class="btn btn-success">
+                Guardar
+            </button>
+        </form>
+    </div>
+</div>
+
+{% block javascripts %}
+<script src="{{ asset('public/js/jquery.min.js') }}"></script>
+<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script>
+$(function(){
+    selectMatricula()
+    selectCompetencia();
+    $("#nota_asignacion").change(function(){
+        var data = {
+            asignacion_id: $(this).val()
+        };
+        if (data["asignacion_id"] === "") {
+          selectMatricula();
+          selectCompetencia();
+      } else {
+        $.ajax({
+            type: 'post',
+            url: '{{ path("select_matriculas") }}',
+            data: data,
+            success: function(data) {
+                var $matricula_selector = $('#nota_matricula');
+                $matricula_selector.removeAttr("disabled");
+                $matricula_selector.html('<option>-- Seleccionar un Estudiante --</option>');
+
+                for (var i = 0, total = data.length; i < total; i++) {
+                    $matricula_selector.append('<option value="' + data[i]["id"]  + '">'+ data[i]["id"]  +' - '+ data[i]["nombre"] +'</option>');
+                }
+            }
+        });
+        $.ajax({
+            type: 'post',
+            url: '{{ path("select_competencias") }}',
+            data: data,
+            success: function(data) {
+                var $competencia_selector = $('#nota_competencia');
+                $competencia_selector.removeAttr("disabled");
+                $competencia_selector.html('<option>-- Seleccionar una Competencia --</option>');
+
+                for (var i = 0, total = data.length; i < total; i++) {
+                    $competencia_selector.append('<option value="' + data[i]["id"]  + '">'+ data[i]["id"]  +' - '+ data[i]["contenido"] +'</option>');
+                }
+            }
+        });
+    }
+});
+
+});
+
+function selectMatricula(){
+    $("#nota_matricula").attr('disabled', 'disabled');
+    $('#nota_matricula').html('<option>-- Seleccione una Asignacion --</option>');
+}
+
+function selectCompetencia(){
+    $("#nota_competencia").attr('disabled', 'disabled');
+    $('#nota_competencia').html('<option>-- Seleccione una Asignacion --</option>');
+}
+
+</script>
+{% endblock %}
+<ul>
+    <li>
+        <a href="{{ path('notas_index') }}">Back to the list</a>
+    </li>
+</ul>
+{% endblock %}

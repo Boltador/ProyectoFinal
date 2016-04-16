@@ -149,4 +149,9 @@ class Matriculas
         }
         return $numero;
     }
+
+    public function __toString()
+    {
+        return $this->getEstudiante()->getNomEst();
+    }
 }

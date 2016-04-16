@@ -180,26 +180,8 @@ class Asignaciones
         return $lista_asignaciones;
     }
 
-
-
-// En estudio..
-    public function getListaAsignacionesPrueba($docente, $em)
+    public function __toString()
     {
-        $grupo = new Grupos();
-        $lista_grupos = $grupo->getListaGruposActual($em);
-        $lista_asignaciones = array();
-
-        for ($i = 0; $i < count($lista_grupos); $i++) {
-            $gr = $lista_grupos[$i];
-            $query = $em->createQuery("SELECT asig FROM AdonaiUnicoBundle:Asignaciones asig WHERE asig.docente = :docente AND asig.grupo = :gr");
-            $query->setParameter('docente', $docente);
-            $query->setParameter('gr', $gr);
-            $asignacion = $query->getResult();
-
-            if ($asignacion != null) {
-                $lista_asignaciones[] = $asignacion;
-            }
-        }
-        return $lista_asignaciones;
+        return $this->getAsignatura()->getNomAsig()." / ".$this->getGrupo()->getGrado()->getGrado()."-".$this->getGrupo()->getNomenclatura();
     }
 }

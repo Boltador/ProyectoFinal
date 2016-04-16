@@ -3,6 +3,7 @@
 namespace Adonai\UnicoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -150,6 +151,34 @@ class MatriculasController extends Controller
         $query = $em->createQuery("SELECT gr FROM AdonaiUnicoBundle:Grupos gr WHERE gr.idGrupo = :id_grupo");
         $query->setParameter('id_grupo', $request->get("id"));
         $grupo = $query->getSingleResult();
+
+        $query_otra = $em->createQuery("SELECT mt FROM AdonaiUnicoBundle:Matriculas mt WHERE mt.grupo = :grupo");
+        $query_otra->setParameter('grupo', $grupo);
+        $resultados = $query_otra->getResult();
+
+        $lista_mats_response = array();
+
+        foreach($resultados as $matricula){
+            $matricula_response = array("id" => $matricula->getIdMat(), "nombre" => (string) $matricula->getEstudiante()->getNomEst(),
+                "grado" => $matricula->getGrupo()->getGrado()->getGrado(), "grupo" => $matricula->getGrupo()->getNomenclatura());
+            $lista_mats_response[] = $matricula_response;
+        }
+
+        $response = new Response(\json_encode($lista_mats_response));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+     /**
+     * @Route("/matriculas_select", name="select_matriculas")
+     */
+     public function matriculasSelectAction(Request $request)
+     {
+        $em = $this->getDoctrine()->getManager();
+
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($request->get("asignacion_id"));
+        $grupo = $asignacion->getGrupo();
 
         $query_otra = $em->createQuery("SELECT mt FROM AdonaiUnicoBundle:Matriculas mt WHERE mt.grupo = :grupo");
         $query_otra->setParameter('grupo', $grupo);

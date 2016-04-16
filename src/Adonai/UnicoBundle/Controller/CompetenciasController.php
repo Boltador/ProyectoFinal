@@ -3,6 +3,7 @@
 namespace Adonai\UnicoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -50,7 +51,7 @@ class CompetenciasController extends Controller
             $em->persist($competencia);
             $em->flush();
 
-            return $this->redirectToRoute('competencias_show', array('id' => $competencia->getId()));
+            return $this->redirectToRoute('competencias_show', array('id' => $competencia->getIdComp()));
         }
 
         return $this->render('competencias/new.html.twig', array(
@@ -92,7 +93,7 @@ class CompetenciasController extends Controller
             $em->persist($competencia);
             $em->flush();
 
-            return $this->redirectToRoute('competencias_edit', array('id' => $competencia->getId()));
+            return $this->redirectToRoute('competencias_edit', array('id' => $competencia->getIdComp()));
         }
 
         return $this->render('competencias/edit.html.twig', array(
@@ -132,9 +133,41 @@ class CompetenciasController extends Controller
     private function createDeleteForm(Competencias $competencia)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('competencias_delete', array('id' => $competencia->getId())))
+            ->setAction($this->generateUrl('competencias_delete', array('id' => $competencia->getIdComp())))
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/competencias_select", name="select_competencias")
+     */
+     public function competenciasSelectAction(Request $request)
+     {
+        $em = $this->getDoctrine()->getManager();
+
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($request->get("asignacion_id"));
+        $grado = $asignacion->getGrupo()->getGrado();
+        $asignatura = $asignacion->getAsignatura();
+
+        $query = $em->createQuery("SELECT comp FROM AdonaiUnicoBundle:Competencias comp WHERE comp.grado = :grado AND comp.asignatura = :asignatura");
+        $query->setParameter('grado', $grado);
+        $query->setParameter('asignatura', $asignatura);
+        $resultados = $query->getResult();
+
+        $lista_comp_response = array();
+
+        foreach($resultados as $competencia){
+            $competencia_response = array("id" => $competencia->getIdComp(), 
+                "asignatura" => $competencia->getAsignatura()->getNomAsig(),
+                "grado" => $competencia->getGrado()->getGrado(), 
+                "contenido" => (string) $competencia->getContenido());
+            $lista_comp_response[] = $competencia_response;
+        }
+
+        $response = new Response(\json_encode($lista_comp_response));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

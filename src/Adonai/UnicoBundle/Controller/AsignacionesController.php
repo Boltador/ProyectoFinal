@@ -10,7 +10,7 @@ use Adonai\UnicoBundle\Entity\Asignaciones;
 use Adonai\UnicoBundle\Form\AsignacionesType;
 
 /**
- * Asignaciones controller.
+ * Acudientes controller.
  *
  * @Route("/asignaciones")
  */
@@ -30,7 +30,7 @@ class AsignacionesController extends Controller
 
         return $this->render('asignaciones/index.html.twig', array(
             'asignaciones' => $asignaciones,
-        ));
+            ));
     }
 
     /**
@@ -56,7 +56,7 @@ class AsignacionesController extends Controller
         return $this->render('asignaciones/new.html.twig', array(
             'asignacion' => $asignacion,
             'form' => $form->createView(),
-        ));
+            ));
     }
 
     /**
@@ -72,7 +72,7 @@ class AsignacionesController extends Controller
         return $this->render('asignaciones/show.html.twig', array(
             'asignacion' => $asignacion,
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -99,7 +99,7 @@ class AsignacionesController extends Controller
             'asignacion' => $asignacion,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -132,9 +132,22 @@ class AsignacionesController extends Controller
     private function createDeleteForm(Asignaciones $asignacion)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('asignaciones_delete', array('id' => $asignacion->getIdAsignacion())))
-            ->setMethod('DELETE')
-            ->getForm()
+        ->setAction($this->generateUrl('asignaciones_delete', array('id' => $asignacion->getIdAsignacion())))
+        ->setMethod('DELETE')
+        ->getForm()
         ;
+    }
+
+
+    /**
+     * Buscar
+     *
+     * @Route("/buscar_asignacion", name="buscar_asignacion")
+     * 
+     */
+    public function buscarAsignacion($id){
+        $em = $this->getDoctrine()->getManager();
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($id);
+        return $asignacion;
     }
 }

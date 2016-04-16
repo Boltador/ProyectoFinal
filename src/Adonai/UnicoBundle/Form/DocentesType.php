@@ -5,6 +5,7 @@ namespace Adonai\UnicoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DocentesType extends AbstractType
 {
@@ -21,7 +22,7 @@ class DocentesType extends AbstractType
         ->add('tel')
         ->add('movil')
         ->add('email')
-        ->add('usuario', 'entity', array( //provare a mettere una querybuiler
+        ->add('usuario', EntityType::class, array( //provare a mettere una querybuiler
             'class'       => 'AdonaiUnicoBundle:Usuarios',
             'property'    => 'username',
             'empty_value' => 'Seleccione un ID',

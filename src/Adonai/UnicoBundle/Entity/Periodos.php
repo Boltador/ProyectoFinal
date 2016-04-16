@@ -51,7 +51,7 @@ class Periodos
      *   @ORM\JoinColumn(name="id_a_lectivo", referencedColumnName="id_a_lectivo")
      * })
      */
-    private $año_lectivo;
+    private $a_lectivo;
 
 
 
@@ -163,26 +163,26 @@ class Periodos
     }
 
     /**
-     * Set año_lectivo
+     * Set a_lectivo
      *
-     * @param \Adonai\UnicoBundle\Entity\ALectivos $añoLectivo
+     * @param \Adonai\UnicoBundle\Entity\ALectivos $aLectivo
      * @return Periodos
      */
-    public function setAñoLectivo(\Adonai\UnicoBundle\Entity\ALectivos $añoLectivo = null)
+    public function setAñoLectivo(\Adonai\UnicoBundle\Entity\ALectivos $aLectivo = null)
     {
-        $this->año_lectivo = $añoLectivo;
+        $this->a_lectivo = $aLectivo;
 
         return $this;
     }
 
     /**
-     * Get año_lectivo
+     * Get a_lectivo
      *
      * @return \Adonai\UnicoBundle\Entity\ALectivos 
      */
     public function getAñoLectivo()
     {
-        return $this->año_lectivo;
+        return $this->a_lectivo;
     }
 
     public function getPeriodoActual($em){
