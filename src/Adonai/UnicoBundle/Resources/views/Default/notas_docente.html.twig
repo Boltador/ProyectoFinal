@@ -51,15 +51,15 @@
             </div><!-- /span-3 -->
             <div class="col-sm-9">
 
-                <!-- column 2 --> 
-                <h3></i>Panel de Calificaciones Estudiantiles</h3>  
+                <!-- column 2 -->
+                <h3></i>Panel de Calificaciones Estudiantiles</h3>
 
                 <hr>
 
                 <div id="fila_general" class="row">
-                    <!-- center left--> 
+                    <!-- center left-->
                     <div class="col-md-12">
-                        <div class="panel panel-primary">
+                        <div id="panel_asignaciones" class="panel panel-primary">
                             <div class="panel-heading"><h4><i class="glyphicon glyphicon-sort"></i>  Gestionar Notas de Estudiantes</h4></div>
                             <div class="panel-body">
                                 <div class="col-md-4">
@@ -100,7 +100,7 @@
                             <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
                             <div class="panel-body">
                                 <div id="div_registrar_espera">
-                                </div> 
+                                </div>
                                 {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
 
                                 {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
@@ -117,7 +117,7 @@
                                 </form>
                             </div><!--/panel-body-->
                         </div><!-- Panel-Primary -->
-                    </div><!--/crud-notas-->                     
+                    </div><!--/crud-notas-->
 
                 </div><!--/row segunda-->
             </div><!--/col-sm-9 -->
@@ -147,10 +147,12 @@
                     $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
                     //Evento cuando cambia de asignacion
                     $("#nota_asignacion").change(function () {
+                        $("#nota_asignacion").attr('disabled', 'disabled');
                         var data = {
                             asignacion_id: $(this).val()
                         };
                         if (data["asignacion_id"] === "") {
+                            $("#nota_asignacion").prop("disabled", false);
                             resetearFormulario();
                         } else {
                             $.ajax({
@@ -158,15 +160,15 @@
                                 url: '{{ path("select_matriculas") }}',
                                 data: data,
                                 success: function (data) {
+                                    if ($("#confirmacion")) {
+                                        $("#confirmacion").remove();
+                                    }
                                     $('#enviar_form').hide();
                                     $('#div_lista_espera').empty();
                                     $('#panel_competencias').empty();
                                     espera(1);
                                     setearMatriculas(data);
                                     $('#enviar_form').hide().fadeIn(2000);
-                                    if ($("#confirmacion")) {
-                                        $("#confirmacion").remove();
-                                    }
                                 }
                             });
                             $.ajax({
@@ -174,7 +176,9 @@
                                 url: '{{ path("select_competencias") }}',
                                 data: data,
                                 success: function (data) {
+                                    eliminarInputsNota();
                                     setearCompetencias(data);
+                                    $("#nota_asignacion").prop("disabled", false);
                                 }
                             });
                         }
@@ -183,7 +187,7 @@
 
 //Enviar formulario por AJAX
                 $('#form_notas').submit(function (e) {
-                    setearInputs();
+                    setearInputsNota();
                     $('#div_registrar_espera').empty();
                     espera(2);
                     $.ajax({
@@ -200,11 +204,13 @@
                     return false;
                 });
 
+//Reinicia el combo asignaciones
                 function selectMatricula() {
                     $("#nota_matricula").attr('disabled', 'disabled');
                     $('#nota_matricula').html('<option>-- Seleccione una Asignacion --</option>');
                 }
 
+//Muestra el mensaje de las notas registradas
                 function notificacionRegistrar() {
                     confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
                             "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
@@ -219,10 +225,12 @@
                     });
                 }
 
+//Limpia el formulario
                 function resetearFormulario() {
                     $('#form_notas')[0].reset();
-                    $("#enviar_form").hide();
+                    limpiarInputsNota();
                     selectMatricula();
+                    $("#enviar_form").hide();
                     $('#body_tabla_mats').empty();
                     $('#panel_competencias').empty();
                     $('#body_tabla_mats').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
@@ -242,9 +250,10 @@
                         filas[i].style.background = (filas[i].style.background === '') ? '#FFFFFF' : '';
                     }
                     filas[id_tabla].style.backgroundColor = "#D9EDF7";
+                    limpiarInputsNota();
                 }
 
-//Muestra mensaje de espera
+//Muestra mensaje de espera en la ubicacion indicada
                 function espera(ubicacion) {
                     if (ubicacion === 1) {
                         $('#div_lista_espera').append("<h4>" + "<span id='tag_espera_1' class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
@@ -322,18 +331,38 @@
                                 "</div>";
                         competencia = $(competencia).hide().fadeIn(1000);
                         $('#panel_competencias').append(competencia);
-                        var $fieldset = $('<fieldset>');
-                        $("<input id='input_hide_" + i + "' class='hidden' type='text' name='notas[]' placeholder='Escriba la nota'>").appendTo($fieldset);
-                        $fieldset.appendTo($('#form_notas'));
+                        $("<input id='input_hide_" + i + "' class='hidden' type='text' name='notas[]' placeholder='Escriba la nota'>").appendTo($('#form_notas'));
                     }
                 }
 
-// Notas: Setear inputs de la vista en los inputs ocultos del formulario
-                function setearInputs() {
-                    $("#input_hide_0").val($("#input_nota_0").val());
-                    $("#input_hide_1").val($("#input_nota_1").val());
-                    $("#input_hide_2").val($("#input_nota_2").val());
+// Notas: Setear inputs visibles en los inputs ocultos del formulario
+                function setearInputsNota() {
+                    $("#panel_competencias input").each(function (index)
+                    {
+                        $('#input_hide_' + index).val($(this).val());
+                    });
                 }
+
+
+// Notas: Limpia los Inputs de las notas visibles y ocultos
+                function limpiarInputsNota() {
+                    $("#panel_competencias input").each(function (index)
+                    {
+                        $(this).val("");
+                        $('#input_hide_' + index).val("");
+                    });
+                }
+
+// Notas: Eliminar los Inputs Ocultos de las notas
+                function eliminarInputsNota() {
+                    $("#panel_asignaciones input").each(function (index)
+                    {
+                        if ($(this).attr('id') === ("input_hide_" + index)) {
+                            $(this).remove();
+                        }
+                    });
+                }
+
         </script>
 
     {% endblock %}
