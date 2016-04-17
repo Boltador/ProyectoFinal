@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- Header -->
-    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-toggle"></span>
-                </button>
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-toggle"></span>
+            </button>
 
-                <a style="color: white;" class="navbar-brand" href="#">Sistema de Gestión Académica - ADONAI</a>
-            </div>
+            <a style="color: white;" class="navbar-brand" href="#">Sistema de Gestión Académica - ADONAI</a>
+        </div>
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a style="color: white;"  class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                            <i class="glyphicon glyphicon-user"></i>  {% if app.user %}{{ app.user.username }}{% endif %}
-                            <span class="caret"></span></a>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a style="color: white;"  class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                        <i class="glyphicon glyphicon-user"></i>  {% if app.user %}{{ app.user.username }}{% endif %}
+                        <span class="caret"></span></a>
                         <ul id="g-account-menu" class="dropdown-menu" role="menu">
                             <li><a href="#"><i class="glyphicon glyphicon-home"></i>  Ir al Inicio</a></li>
                             <li><a href="{{ path('logout') }}"><i class="glyphicon glyphicon-lock"></i> Desconectarse</a></li>
@@ -40,11 +40,11 @@
                 <hr>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-education"></i>   Competencias</a></li>
-                    <li><a href="http://www.bootply.com/85861"><i class="glyphicon glyphicon-th-list"></i>   Planeadores</a></li>
-                    <li><a href="{{ path('AdonaiUsuarios_docente_notas') }}"><i class="glyphicon glyphicon-pencil"></i>   Notas Estudiantes</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-folder-open"></i>     Observador Grupo</a></li>
+                    <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>
+                    <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-education"></i>   Competencias</a></li>
+                    <li class="nav-item"><a href="http://www.bootply.com/85861"><i class="glyphicon glyphicon-th-list"></i>   Planeadores</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('AdonaiUsuarios_docente_notas') }}"><i class="glyphicon glyphicon-pencil"></i>   Notas Estudiantes</a></li>
+                    <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-folder-open"></i>     Observador Grupo</a></li>
                 </ul>
                 <hr>
 
@@ -65,55 +65,55 @@
                                 <div class="col-md-4">
                                     <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
                                         <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
-                                </div>
-                                <div class="col-md-4">
-                                    <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="glyphicon glyphicon-list-alt"></i>
-                                    {{ form_label(form.asignacion) }}
-                                    {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
-                                </div>
-                                <hr>
-                                <div class="col-md-12">
-                                    <h4><i class="glyphicon glyphicon-user"></i>  Escoger Estudiante</h4>
-                                    <hr>
-                                    <div id="div_lista_espera">
                                     </div>
-                                    <table id="tabla_mats" class="table">
-                                        <thead id="head_tabla_mats" class="hidden">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nombre Estudiante</th>
-                                                <th>Seleccionar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="body_tabla_mats">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><!--/panel-body-->
+                                    <div class="col-md-4">
+                                        <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                        {{ form_label(form.asignacion) }}
+                                        {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <h4><i class="glyphicon glyphicon-user"></i>  Escoger Estudiante</h4>
+                                        <hr>
+                                        <div id="div_lista_espera">
+                                        </div>
+                                        <table id="tabla_mats" class="table">
+                                            <thead id="head_tabla_mats" class="hidden">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nombre Estudiante</th>
+                                                    <th>Seleccionar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="body_tabla_mats">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><!--/panel-body-->
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12" id="crud-notas">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
-                            <div class="panel-body">
-                                <div id="div_registrar_espera">
-                                </div>
-                                {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
+                        <div class="col-md-12" id="crud-notas">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
+                                <div class="panel-body">
+                                    <div id="div_registrar_espera">
+                                    </div>
+                                    {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
 
-                                {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
+                                    {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
 
-                                {{ form_rest(form) }}
+                                    {{ form_rest(form) }}
 
-                                <div id="panel_competencias" class="col-md-12">
-                                </div> <!-- Fin Panel_Competencias -->
-                                <br/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button id="enviar_form" type="submit" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
-                                </button>
+                                    <div id="panel_competencias" class="col-md-12">
+                                    </div> <!-- Fin Panel_Competencias -->
+                                    <br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button id="enviar_form" type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
+                                    </button>
                                 </form>
                             </div><!--/panel-body-->
                         </div><!-- Panel-Primary -->
@@ -130,21 +130,19 @@
 
     <!-- script references -->
     {% block javascripts %}
-        <script src="{{ asset('public/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('public/js/jquery.form-validator.min.js') }}"></script>
-        <script>
-            {{ parent() }}
+    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
+    <script>
+    {{ parent() }}
+
 //Obtener los datos solicitados
-                $(function () {
-                    $('#enviar_form').hide();
-                    selectMatricula();
-                    $('#nota_nota').attr('disabled', true);
-                    var data = {
-                        asignacion_id: $(this).val()
-                    };
-                    $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
-                    $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
+$(function () {
+    $('#enviar_form').hide();
+    selectMatricula();
+    $('#nota_nota').attr('disabled', true);
+    $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
+    $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
                     //Evento cuando cambia de asignacion
                     $("#nota_asignacion").change(function () {
                         $("#nota_asignacion").attr('disabled', 'disabled');
@@ -183,187 +181,239 @@
                             });
                         }
                     });
-                });
+});
+
 
 //Enviar formulario por AJAX
-                $('#form_notas').submit(function (e) {
-                    setearInputsNota();
-                    $('#div_registrar_espera').empty();
-                    espera(2);
-                    $.ajax({
-                        type: "POST",
-                        url: $(this).attr('action'),
-                        data: $(this).serialize(),
-                        success: function (data) {
-                            if ($("#confirmacion")) {
-                                $("#confirmacion").remove();
-                            }
-                            notificacionRegistrar();
-                        }
-                    });
-                    return false;
-                });
+$('#form_notas').submit(function (e) {
+    e.preventDefault();
+    setearInputsNota();
+    $('#div_registrar_espera').empty();
+    if(validarMatricula() == false){ return false; }
+    if(validarCompetencias() == 1){ return false; }
+    espera(2);
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        success: function (data) {
+            if ($("#confirmacion")) {
+                $("#confirmacion").remove();
+            }
+            notificacionRegistrar();
+        }
+    });
+    return false;
+});
 
 //Reinicia el combo asignaciones
-                function selectMatricula() {
-                    $("#nota_matricula").attr('disabled', 'disabled');
-                    $('#nota_matricula').html('<option>-- Seleccione una Asignacion --</option>');
-                }
+function selectMatricula() {
+    $("#nota_matricula").attr('disabled', 'disabled');
+    $('#nota_matricula').html('<option>-- Seleccione una Asignacion --</option>');
+}
 
 //Muestra el mensaje de las notas registradas
-                function notificacionRegistrar() {
-                    confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
-                            "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
-                            'Notas Registradas con Éxito.' +
-                            "</div>";
-                    $('#div_registrar_espera').empty();
-                    $('#div_registrar_espera').append(confirmacion);
-                    $(document).ready(function () {
-                        setTimeout(function () {
-                            $("#confirmacion").fadeOut(2000);
-                        }, 3000);
-                    });
-                }
+function notificacionRegistrar() {
+    confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
+    "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
+    'Notas Registradas con Éxito.' +
+    "</div>";
+    $('#div_registrar_espera').empty();
+    $('#div_registrar_espera').append(confirmacion);
+    $(document).ready(function () {
+        setTimeout(function () {
+            $("#confirmacion").fadeOut(2000);
+        }, 3000);
+    });
+}
 
 //Limpia el formulario
-                function resetearFormulario() {
-                    $('#form_notas')[0].reset();
-                    limpiarInputsNota();
-                    selectMatricula();
-                    $("#enviar_form").hide();
-                    $('#body_tabla_mats').empty();
-                    $('#panel_competencias').empty();
-                    $('#body_tabla_mats').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
-                    $('#panel_competencias').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
-                    $('#head_tabla_mats').addClass("hidden");
-                    $('#nota_nota').attr('disabled', 'disabled');
-                }
+function resetearFormulario() {
+    $('#form_notas')[0].reset();
+    limpiarInputsNota();
+    selectMatricula();
+    $("#enviar_form").hide();
+    $('#body_tabla_mats').empty();
+    $("#error_matricula").remove();
+    $('#panel_competencias').empty();
+    $('#body_tabla_mats').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
+    $('#panel_competencias').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
+    $('#head_tabla_mats').addClass("hidden");
+    $('#nota_nota').attr('disabled', 'disabled');
+}
 
 //Setear el elemento seleccionado de la tabla en el Combo Estudiantes
-                function matriculaActiva(id_matricula, id_tabla) {
-                    $('#nota_matricula').val("" + id_matricula + "");
-                    if ($("#confirmacion")) {
-                        $("#confirmacion").remove();
-                    }
-                    filas = $('#body_tabla_mats').children();
-                    for (i = 0; i < filas.length; i++) {
-                        filas[i].style.background = (filas[i].style.background === '') ? '#FFFFFF' : '';
-                    }
-                    filas[id_tabla].style.backgroundColor = "#D9EDF7";
-                    limpiarInputsNota();
-                }
+function matriculaActiva(id_matricula, id_tabla) {
+    $("#error_matricula").remove();
+    $('#nota_matricula').val("" + id_matricula + "");
+    if ($("#confirmacion")) {
+        $("#confirmacion").remove();
+    }
+    filas = $('#body_tabla_mats').children();
+    for (i = 0; i < filas.length; i++) {
+        filas[i].style.background = (filas[i].style.background === '') ? '#FFFFFF' : '';
+    }
+    filas[id_tabla].style.backgroundColor = "#D9EDF7";
+    restaurarPanelesCompetencias();
+    //limpiarInputsNota();
+    $("#input_nota_0").focus();
+}
 
 //Muestra mensaje de espera en la ubicacion indicada
-                function espera(ubicacion) {
-                    if (ubicacion === 1) {
-                        $('#div_lista_espera').append("<h4>" + "<span id='tag_espera_1' class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
-                        $(document).ready(function () {
-                            setTimeout(function () {
-                                $("#tag_espera_1").fadeOut(350);
-                            }, 950);
-                        });
-                    }
-                    if (ubicacion === 2) {
-                        $('#div_registrar_espera').append("<h4>" + "<span id='tag_espera_2' class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
-                        $(document).ready(function () {
-                            setTimeout(function () {
-                                $("#tag_espera_2").fadeOut(350);
-                            }, 950);
-                        });
-                    }
-                }
+function espera(ubicacion) {
+    if (ubicacion === 1) {
+        $('#div_lista_espera').append("<h4>" + "<span id='tag_espera_1' class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#tag_espera_1").fadeOut(350);
+            }, 950);
+        });
+    }
+    if (ubicacion === 2) {
+        $('#div_registrar_espera').append("<h4>" + "<span id='tag_espera_2' class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#tag_espera_2").fadeOut(350);
+            }, 950);
+        });
+    }
+}
 
 // Devolver las Matriculas para Setearlas en la Tabla
-                function crearTablaMatriculas(data) {
-                    var matriculasProcesar = new Array();
-                    for (i = 0; i < data.length; i++) {
-                        fila = "<tr id='matricula_sele_" + data[i]["id"] + "'>" +
-                                "<td>" + data[i]["id"] + "</td>" +
-                                "<td>" + data[i]["nombre"] + "</td>" +
-                                "<td>" + "<button id='" + data[i]["id"] + "' type='button' class='btn btn-info' onclick='matriculaActiva(this.id," + i + ")'>" + "<i class='glyphicon glyphicon-hand-up'>" + "</i>" + "</button>" + "</td>" +
-                                "</tr>";
-                        matriculasProcesar.push(fila);
-                    }
-                    return matriculasProcesar;
-                }
+function crearTablaMatriculas(data) {
+    var matriculasProcesar = new Array();
+    for (i = 0; i < data.length; i++) {
+        fila = "<tr id='matricula_sele_" + data[i]["id"] + "'>" +
+        "<td>" + data[i]["id"] + "</td>" +
+        "<td>" + data[i]["nombre"] + "</td>" +
+        "<td>" + "<button id='" + data[i]["id"] + "' type='button' class='btn btn-info' onclick='matriculaActiva(this.id," + i + ")'>" + "<i class='glyphicon glyphicon-hand-up'>" + "</i>" + "</button>" + "</td>" +
+        "</tr>";
+        matriculasProcesar.push(fila);
+    }
+    return matriculasProcesar;
+}
 
 //Instancia las matriculas en el combo y en la lista
-                function setearMatriculas(data) {
-                    var $matricula_selector = $('#nota_matricula');
-                    $('#head_tabla_mats').addClass("hidden");
-                    $matricula_selector.removeAttr("disabled");
-                    $matricula_selector.html('<option>-- Seleccionar un Estudiante --</option>');
-                    $('#body_tabla_mats').empty();
-                    $('#nota_nota').val("");
-                    setTimeout(function () {
-                        $('#head_tabla_mats').removeClass("hidden").fadeIn(300);
-                        $('#body_tabla_mats').append(crearTablaMatriculas(data)).hide().fadeIn(300);
-                    }, 950);
-                    for (var i = 0, total = data.length; i < total; i++) {
-                        $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');
-                    }
-                }
+function setearMatriculas(data) {
+    var $matricula_selector = $('#nota_matricula');
+    $('#head_tabla_mats').addClass("hidden");
+    $matricula_selector.removeAttr("disabled");
+    $matricula_selector.html('<option>-- Seleccionar un Estudiante --</option>');
+    $('#body_tabla_mats').empty();
+    $('#nota_nota').val("");
+    setTimeout(function () {
+        $('#head_tabla_mats').removeClass("hidden").fadeIn(300);
+        $('#body_tabla_mats').append(crearTablaMatriculas(data)).hide().fadeIn(300);
+    }, 950);
+    for (var i = 0, total = data.length; i < total; i++) {
+        $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');
+    }
+}
 
 // Crear las competencias de la asignatura y sus campos de notas correspondientes
-                function setearCompetencias(data) {
-                    var $competencia_selector = $('#nota_competencia');
-                    $competencia_selector.removeAttr("disabled");
-                    $('#nota_nota').removeAttr("disabled");
-                    $competencia_selector.html('<option>-- Seleccionar una Competencia --</option>');
-                    for (var i = 0, total = data.length; i < total; i++) {
-                        $competencia_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["contenido"] + '</option>');
-                        competencia = "<div class='col-xs-4'>" +
-                                "<div class='panel panel-info'>" +
-                                "<div class='panel-heading'>" +
-                                "<h3 class='panel-title'>" + "Competencia " + (i + 1) + "</h3>" +
-                                "</div>" +
-                                "<div class='panel-body' style='word-wrap: break-word;'>" +
-                                data[i]['id'] + " - " + data[i]['contenido'] + "<br/>" +
-                                "<div class='form-group'>" +
-                                "<br/>" +
-                                "<label for='lbl_nota_" + i + "'>" + "Nota: " + "</label>" +
-                                "<div id='div_nota_" + i + "'>" +
-                                "<input type='text' id='input_nota_" + i + "' class='form-control' placeholder='Escriba la nota' />" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>";
-                        competencia = $(competencia).hide().fadeIn(1000);
-                        $('#panel_competencias').append(competencia);
-                        $("<input id='input_hide_" + i + "' class='hidden' type='text' name='notas[]' placeholder='Escriba la nota'>").appendTo($('#form_notas'));
-                    }
-                }
+function setearCompetencias(data) {
+    var $competencia_selector = $('#nota_competencia');
+    $competencia_selector.removeAttr("disabled");
+    $('#nota_nota').removeAttr("disabled");
+    $competencia_selector.html('<option>-- Seleccionar una Competencia --</option>');
+    for (var i = 0, total = data.length; i < total; i++) {
+        $competencia_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["contenido"] + '</option>');
+        competencia = "<div class='col-xs-4'>" +
+        "<div id='panel_comp_" + i + "' class='panel panel-info'>" +
+        "<div class='panel-heading'>" +
+        "<h3 class='panel-title'>" + "Competencia " + (i + 1) + "</h3>" +
+        "</div>" +
+        "<div class='panel-body' style='word-wrap: break-word;'>" +
+        data[i]['id'] + " - " + data[i]['contenido'] + "<br/>" +
+        "<div class='form-group'>" +
+        "<br/>" +
+        "<label for='lbl_nota_" + i + "'>" + "Nota: " + "</label>" +
+        "<div id='div_nota_" + i + "'>" +
+        "<input type='number' id='input_nota_" + i + "' class='form-control' placeholder='Escriba la nota' />" +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        "</div>";
+        competencia = $(competencia).hide().fadeIn(1000);
+        $('#panel_competencias').append(competencia);
+        $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' placeholder='Escriba la nota'>").appendTo($('#form_notas'));
+    }
+}
 
 // Notas: Setear inputs visibles en los inputs ocultos del formulario
-                function setearInputsNota() {
-                    $("#panel_competencias input").each(function (index)
-                    {
-                        $('#input_hide_' + index).val($(this).val());
-                    });
-                }
+function setearInputsNota() {
+    $("#panel_competencias input").each(function (index)
+    {
+        $('#input_hide_' + index).val($(this).val());
+    });
+}
 
 
 // Notas: Limpia los Inputs de las notas visibles y ocultos
-                function limpiarInputsNota() {
-                    $("#panel_competencias input").each(function (index)
-                    {
-                        $(this).val("");
-                        $('#input_hide_' + index).val("");
-                    });
-                }
+function limpiarInputsNota() {
+    $("#panel_competencias input").each(function (index)
+    {
+        $(this).val("");
+        $('#input_hide_' + index).val("");
+    });
+}
 
 // Notas: Eliminar los Inputs Ocultos de las notas
-                function eliminarInputsNota() {
-                    $("#panel_asignaciones input").each(function (index)
-                    {
-                        if ($(this).attr('id') === ("input_hide_" + index)) {
-                            $(this).remove();
-                        }
-                    });
-                }
+function eliminarInputsNota() {
+    $("#panel_asignaciones input").each(function (index)
+    {
+        if ($(this).attr('id') === ("input_hide_" + index)) {
+            $(this).remove();
+        }
+    });
+}
 
-        </script>
+// Cajas Competencias: Restaura el estilo por defecto
+function restaurarPanelesCompetencias(){
+    $("#panel_competencias input").each(function (index)
+    {
+        if($('#panel_comp_' + index).hasClass("panel-danger")){
+            $('#panel_comp_' + index).removeClass("panel-danger");
+            $('#panel_comp_' + index).addClass("panel-info");
+        }  
+    });
+}
 
-    {% endblock %}
+/*  ---  Funciones de Validación --- */
+
+/* Validar Matricula */
+
+function validarMatricula(){
+    var data = {
+        matricula_id: $("#nota_matricula").val()
+    };
+    if(!parseInt($("#nota_matricula").val())){
+        $('#div_lista_espera').append("<h4>" + "<span id='error_matricula' class='label label-danger'>" + "Debes seleccionar un estudiante para continuar" + "</span>" + "</h4>");
+        return false;
+    }
+}
+
+/* Validar Competencias */
+
+function validarCompetencias(){
+    confirmar = 0;
+    $("#panel_competencias input").each(function (index)
+    {
+        if($(this).val() == ""){
+            $('#panel_comp_' + index).addClass("panel panel-danger");
+            confirmar = 1;
+        } else {
+            $('#panel_comp_' + index).removeClass("panel-danger");
+            $('#panel_comp_' + index).addClass("panel-info");
+        }
+
+    });
+    return confirmar;
+}
+
+
+</script>
+
+{% endblock %}
 {% endblock %}

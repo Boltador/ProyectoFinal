@@ -33,7 +33,6 @@ class AddMatriculaFieldSubscriber implements EventSubscriberInterface
     {
         $form->add($this->factory->createNamed('matricula',EntityType::class, null, array(
             'class'         => 'AdonaiUnicoBundle:Matriculas',
-            'placeholder'   => '-- Seleccione un Estudiante --',
             'auto_initialize' => false,
             'query_builder' => function (EntityRepository $repository) use ($grupo) {
                 $qb = $repository->createQueryBuilder('matricula')
@@ -44,6 +43,7 @@ class AddMatriculaFieldSubscriber implements EventSubscriberInterface
                 }
                 return $qb;
             }, 
+            'placeholder'   => '-- Seleccione un Estudiante --',
             'required'    => true,
             'label'       => 'Estudiante: '
             )));
