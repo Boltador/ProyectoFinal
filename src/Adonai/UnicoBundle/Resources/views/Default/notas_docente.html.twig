@@ -111,7 +111,7 @@
                                     </div> <!-- Fin Panel_Competencias -->
                                     <br/>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button id="enviar_form" type="submit" class="btn btn-success">
+                                    <button id="enviar_form" type="submit" class="btn btn-success hidden">
                                         <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
                                     </button>
                                 </form>
@@ -130,15 +130,14 @@
 
     <!-- script references -->
     {% block javascripts %}
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/jquery.js') }}"></script>
+    <script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
     <script>
     {{ parent() }}
 
 //Obtener los datos solicitados
 $(function () {
-    $('#enviar_form').hide();
     selectMatricula();
     $('#nota_nota').attr('disabled', true);
     $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
@@ -161,7 +160,7 @@ $(function () {
                                     if ($("#confirmacion")) {
                                         $("#confirmacion").remove();
                                     }
-                                    $('#enviar_form').hide();
+                                    $('#enviar_form').removeClass("hidden");
                                     $('#div_lista_espera').empty();
                                     $('#panel_competencias').empty();
                                     espera(1);
@@ -179,6 +178,7 @@ $(function () {
                                     $("#nota_asignacion").prop("disabled", false);
                                 }
                             });
+                            comprobarCompetencias();
                         }
                     });
 });
@@ -190,21 +190,26 @@ $('#form_notas').submit(function (e) {
     setearInputsNota();
     $('#div_registrar_espera').empty();
     if(validarMatricula() == false){ return false; }
-    if(validarCompetencias() == 1){ return false; }
-    espera(2);
-    $.ajax({
+    if(validarCompetencias() == 1){  espera(3);
+     return false; }
+     espera(2);
+     $.ajax({
         type: "POST",
         url: $(this).attr('action'),
         data: $(this).serialize(),
         success: function (data) {
-            if ($("#confirmacion")) {
-                $("#confirmacion").remove();
+            if(data == true){
+                notificacionRegistrar(1);
+            } else {
+                if ($("#confirmacion")) {
+                    $("#confirmacion").remove();
+                }
+                notificacionRegistrar(2);
             }
-            notificacionRegistrar();
         }
     });
-    return false;
-});
+     return false;
+ });
 
 //Reinicia el combo asignaciones
 function selectMatricula() {
@@ -213,18 +218,33 @@ function selectMatricula() {
 }
 
 //Muestra el mensaje de las notas registradas
-function notificacionRegistrar() {
-    confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
-    "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
-    'Notas Registradas con Éxito.' +
-    "</div>";
-    $('#div_registrar_espera').empty();
-    $('#div_registrar_espera').append(confirmacion);
-    $(document).ready(function () {
-        setTimeout(function () {
-            $("#confirmacion").fadeOut(2000);
-        }, 3000);
-    });
+function notificacionRegistrar(ubicacion) {
+    if(ubicacion == 1){
+        confirmacion = "<div id='confirmacion' class='alert alert-danger'>" +
+        "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
+        'Al estudiante seleccionado ya se le han asignado notas para esta asignatura en este periodo.' +
+        "</div>";
+        $('#div_registrar_espera').empty();
+        $('#div_registrar_espera').append(confirmacion);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#confirmacion").fadeOut(2000);
+            }, 3500);
+        });
+    }
+    if(ubicacion == 2){
+        confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
+        "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
+        'Notas Registradas con Éxito.' +
+        "</div>";
+        $('#div_registrar_espera').empty();
+        $('#div_registrar_espera').append(confirmacion);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#confirmacion").fadeOut(2000);
+            }, 3000);
+        });
+    }
 }
 
 //Limpia el formulario
@@ -232,7 +252,7 @@ function resetearFormulario() {
     $('#form_notas')[0].reset();
     limpiarInputsNota();
     selectMatricula();
-    $("#enviar_form").hide();
+    $("#enviar_form").addClass("hidden");
     $('#body_tabla_mats').empty();
     $("#error_matricula").remove();
     $('#panel_competencias').empty();
@@ -262,20 +282,35 @@ function matriculaActiva(id_matricula, id_tabla) {
 //Muestra mensaje de espera en la ubicacion indicada
 function espera(ubicacion) {
     if (ubicacion === 1) {
-        $('#div_lista_espera').append("<h4>" + "<span id='tag_espera_1' class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
+        $('#div_lista_espera').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
         $(document).ready(function () {
             setTimeout(function () {
                 $("#tag_espera_1").fadeOut(350);
             }, 950);
         });
+        return true;
     }
     if (ubicacion === 2) {
-        $('#div_registrar_espera').append("<h4>" + "<span id='tag_espera_2' class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
+        $('#div_registrar_espera').append("<h4 id='tag_espera_2'>" + "<span class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
         $(document).ready(function () {
             setTimeout(function () {
                 $("#tag_espera_2").fadeOut(350);
             }, 950);
         });
+        return true;
+    }
+    if (ubicacion === 3) {
+        $('#div_registrar_espera').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+            "<h4 id='error_comp'>" + 
+            "<span class='label label-danger'>" + 
+            "Debes llenar la nota para cada competencia" + 
+            "</span>" + "</h4>" + "<br/>");
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#error_comp").fadeOut(350);
+            }, 2500);
+        });
+        return true;
     }
 }
 
@@ -329,7 +364,7 @@ function setearCompetencias(data) {
         "<br/>" +
         "<label for='lbl_nota_" + i + "'>" + "Nota: " + "</label>" +
         "<div id='div_nota_" + i + "'>" +
-        "<input type='number' id='input_nota_" + i + "' class='form-control' placeholder='Escriba la nota' />" +
+        "<input type='text' id='input_nota_" + i + "' class='form-control' onkeypress='numeros(event)' placeholder='Escriba la nota Ej: 5.0' />" +
         "</div>" +
         "</div>" +
         "</div>" +
@@ -337,7 +372,10 @@ function setearCompetencias(data) {
         "</div>";
         competencia = $(competencia).hide().fadeIn(1000);
         $('#panel_competencias').append(competencia);
-        $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' placeholder='Escriba la nota'>").appendTo($('#form_notas'));
+        $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' />").appendTo($('#form_notas'));
+        $('#input_hide_' + i).mask("9.9");
+        $.mask.definitions['#']='[12345]';
+        $('#input_nota_' + i).mask("#.9");
     }
 }
 
@@ -380,6 +418,23 @@ function restaurarPanelesCompetencias(){
     });
 }
 
+/* Comprobar Competencias */
+// Verifica en tiempo real
+
+function comprobarCompetencias(){
+    $("#panel_competencias")
+    .focusout(function() {
+        $("#panel_competencias input").each(function (index)
+        {
+            if(!$.isNumeric($(this).val())){
+                $('#panel_comp_' + index).addClass("panel-danger");
+            } else {
+                $('#panel_comp_' + index).removeClass("panel-danger");
+            }  
+        });
+    });
+}
+
 /*  ---  Funciones de Validación --- */
 
 /* Validar Matricula */
@@ -389,29 +444,28 @@ function validarMatricula(){
         matricula_id: $("#nota_matricula").val()
     };
     if(!parseInt($("#nota_matricula").val())){
-        $('#div_lista_espera').append("<h4>" + "<span id='error_matricula' class='label label-danger'>" + "Debes seleccionar un estudiante para continuar" + "</span>" + "</h4>");
+        $('#div_lista_espera').append("<h4 id='error_matricula'>" + "<span class='label label-danger'>" + "Debes seleccionar un estudiante para continuar" + "</span>" + "</h4>");
         return false;
     }
 }
 
 /* Validar Competencias */
+// Verifica al enviar
 
 function validarCompetencias(){
     confirmar = 0;
     $("#panel_competencias input").each(function (index)
     {
         if($(this).val() == ""){
-            $('#panel_comp_' + index).addClass("panel panel-danger");
+            $('#panel_comp_' + index).addClass("panel-danger");
             confirmar = 1;
         } else {
             $('#panel_comp_' + index).removeClass("panel-danger");
-            $('#panel_comp_' + index).addClass("panel-info");
         }
 
     });
     return confirmar;
 }
-
 
 </script>
 

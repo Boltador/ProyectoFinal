@@ -11,6 +11,7 @@ use Adonai\UnicoBundle\Entity\Notas;
 use Adonai\UnicoBundle\Form\NotasType;
 use Adonai\UnicoBundle\Entity\Periodos;
 use Adonai\UnicoBundle\Entity\Competencias;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Notas controller.
@@ -30,8 +31,8 @@ class NotasController extends Controller {
         $notas = $em->getRepository('AdonaiUnicoBundle:Notas')->findAll();
 
         return $this->render('notas/index.html.twig', array(
-                    'notas' => $notas,
-        ));
+            'notas' => $notas,
+            ));
     }
 
     /**
@@ -49,7 +50,6 @@ class NotasController extends Controller {
         $periodo_actual = $periodo_actual->getPeriodoActual($em);
         $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $form->handleRequest($request);
-        //throw new \Exception($notas[$i]." - ".$lista[$i]->getContenido());
         if ($form->isSubmitted() && $form->isValid()) {
             $c = new Competencias();
             $lista = $c->getCompetenciasGradoAsig($nota->getAsignacion()->getAsignatura(), $nota->getAsignacion()->getGrupo()->getGrado(), $em);
@@ -60,16 +60,26 @@ class NotasController extends Controller {
                 $nota_persist->setMatricula($nota->getMatricula());
                 $nota_persist->setPeriodo($nota->getPeriodo());
                 $nota_persist->setNota($notas[$i]);
-                $em->persist($nota_persist);
+                if($this->notasRepetidas($nota)){
+                    $check = true;
+                    $response = new Response(\json_encode($check));
+                    $response->headers->set('Content-Type', 'application/json');
+                    return $response;
+                    // No las registra si se repite, solo falta mostrar el mensaje
+
+                    //throw new \Exception('Ojo que esta repetido');
+                } else {
+                    $em->persist($nota_persist);
+                }
             }
             $em->flush();
             //return $this->redirectToRoute('notas_show', array('id' => $nota->getIdNota()));
         }
 
         return $this->render('notas/new.html.twig', array(
-                    'nota' => $nota,
-                    'form' => $form->createView(),
-        ));
+            'nota' => $nota,
+            'form' => $form->createView(),
+            ));
     }
 
     /**
@@ -82,9 +92,9 @@ class NotasController extends Controller {
         $deleteForm = $this->createDeleteForm($nota);
 
         return $this->render('notas/show.html.twig', array(
-                    'nota' => $nota,
-                    'delete_form' => $deleteForm->createView(),
-        ));
+            'nota' => $nota,
+            'delete_form' => $deleteForm->createView(),
+            ));
     }
 
     /**
@@ -107,10 +117,10 @@ class NotasController extends Controller {
         }
 
         return $this->render('notas/edit.html.twig', array(
-                    'nota' => $nota,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
-        ));
+            'nota' => $nota,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+            ));
     }
 
     /**
@@ -141,9 +151,9 @@ class NotasController extends Controller {
      */
     private function createDeleteForm(Notas $nota) {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('notas_delete', array('id' => $nota->getIdNota())))
-                        ->setMethod('DELETE')
-                        ->getForm()
+        ->setAction($this->generateUrl('notas_delete', array('id' => $nota->getIdNota())))
+        ->setMethod('DELETE')
+        ->getForm()
         ;
     }
 
@@ -155,15 +165,25 @@ class NotasController extends Controller {
 
         if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $coordinador = $em->getRepository('AdonaiUnicoBundle:Coordinadores')
-                    ->findOneByUsuario($usuario);
+            ->findOneByUsuario($usuario);
         } elseif (true === $this->get('security.authorization_checker')->isGranted('ROLE_DOCENTE')) {
             $docente = $em->getRepository('AdonaiUnicoBundle:Docentes')
-                    ->findOneByUsuario($usuario);
+            ->findOneByUsuario($usuario);
         }
         if (!$coordinador) {
             return $docente;
         } else {
             return $coordinador;
+        }
+    }
+
+    public function notasRepetidas(Notas $nota) {
+        $em = $this->getDoctrine()->getManager();
+        $nota = $em->getRepository('AdonaiUnicoBundle:Notas')->findByIdNota($nota->getIdNota());
+        if($nota != null){
+            return false;
+        } else {
+            return true;
         }
     }
 
