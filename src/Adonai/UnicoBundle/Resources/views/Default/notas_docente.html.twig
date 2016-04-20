@@ -47,6 +47,15 @@
                     <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-folder-open"></i>     Observador Grupo</a></li>
                 </ul>
                 <hr>
+                <hr>
+                <h3><i class="glyphicon glyphicon-wrench"></i>    Opciones</h3>
+                <hr>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>
+                </ul>
+                <hr>
 
             </div><!-- /span-3 -->
             <div class="col-sm-9">
@@ -189,16 +198,16 @@ $('#form_notas').submit(function (e) {
     e.preventDefault();
     setearInputsNota();
     $('#div_registrar_espera').empty();
+    $('#div_lista_espera').empty();
     if(validarMatricula() == false){ return false; }
-    if(validarCompetencias() == 1){  espera(3);
-     return false; }
-     espera(2);
-     $.ajax({
+    if(validarCompetencias() == 1){  espera(3); return false; }
+    espera(2);
+    $.ajax({
         type: "POST",
         url: $(this).attr('action'),
         data: $(this).serialize(),
         success: function (data) {
-            if(data == true){
+            if(data === true){
                 notificacionRegistrar(1);
             } else {
                 if ($("#confirmacion")) {
@@ -208,8 +217,8 @@ $('#form_notas').submit(function (e) {
             }
         }
     });
-     return false;
- });
+    return false;
+});
 
 //Reinicia el combo asignaciones
 function selectMatricula() {
@@ -219,11 +228,12 @@ function selectMatricula() {
 
 //Muestra el mensaje de las notas registradas
 function notificacionRegistrar(ubicacion) {
-    if(ubicacion == 1){
+    if(ubicacion === 1){
         confirmacion = "<div id='confirmacion' class='alert alert-danger'>" +
         "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
-        'Al estudiante seleccionado ya se le han asignado notas para esta asignatura en este periodo.' +
+        'Al estudiante seleccionado ya se le han registrado notas para esta asignatura en este periodo.' +
         "</div>";
+        $('#confirmacion').hide().fadeIn(300);
         $('#div_registrar_espera').empty();
         $('#div_registrar_espera').append(confirmacion);
         $(document).ready(function () {
@@ -232,11 +242,12 @@ function notificacionRegistrar(ubicacion) {
             }, 3500);
         });
     }
-    if(ubicacion == 2){
+    if(ubicacion === 2){
         confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
         "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
         'Notas Registradas con Éxito.' +
         "</div>";
+        $('#confirmacion').hide().fadeIn(300);
         $('#div_registrar_espera').empty();
         $('#div_registrar_espera').append(confirmacion);
         $(document).ready(function () {
@@ -275,7 +286,6 @@ function matriculaActiva(id_matricula, id_tabla) {
     }
     filas[id_tabla].style.backgroundColor = "#D9EDF7";
     restaurarPanelesCompetencias();
-    //limpiarInputsNota();
     $("#input_nota_0").focus();
 }
 
@@ -283,6 +293,7 @@ function matriculaActiva(id_matricula, id_tabla) {
 function espera(ubicacion) {
     if (ubicacion === 1) {
         $('#div_lista_espera').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
+        $('#tag_espera_1').hide().fadeIn(200);
         $(document).ready(function () {
             setTimeout(function () {
                 $("#tag_espera_1").fadeOut(350);
@@ -292,6 +303,7 @@ function espera(ubicacion) {
     }
     if (ubicacion === 2) {
         $('#div_registrar_espera').append("<h4 id='tag_espera_2'>" + "<span class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
+        $('#tag_espera_2').hide().fadeIn(200);
         $(document).ready(function () {
             setTimeout(function () {
                 $("#tag_espera_2").fadeOut(350);
@@ -303,12 +315,13 @@ function espera(ubicacion) {
         $('#div_registrar_espera').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
             "<h4 id='error_comp'>" + 
             "<span class='label label-danger'>" + 
-            "Debes llenar la nota para cada competencia" + 
+            "Debes llenar la nota para cada competencia y que la nota ingresada no sea mayor a 5." + 
             "</span>" + "</h4>" + "<br/>");
+        $('#error_comp').hide().fadeIn(500);
         $(document).ready(function () {
             setTimeout(function () {
                 $("#error_comp").fadeOut(350);
-            }, 2500);
+            }, 3800);
         });
         return true;
     }
@@ -426,7 +439,7 @@ function comprobarCompetencias(){
     .focusout(function() {
         $("#panel_competencias input").each(function (index)
         {
-            if(!$.isNumeric($(this).val())){
+            if((!$.isNumeric($(this).val())) || parseFloat($(this).val()) > 5){
                 $('#panel_comp_' + index).addClass("panel-danger");
             } else {
                 $('#panel_comp_' + index).removeClass("panel-danger");
@@ -444,7 +457,7 @@ function validarMatricula(){
         matricula_id: $("#nota_matricula").val()
     };
     if(!parseInt($("#nota_matricula").val())){
-        $('#div_lista_espera').append("<h4 id='error_matricula'>" + "<span class='label label-danger'>" + "Debes seleccionar un estudiante para continuar" + "</span>" + "</h4>");
+        $('#div_lista_espera').append("<h4 id='error_matricula'>" + "<span class='label label-danger'>" + "Debes seleccionar un estudiante para continuar." + "</span>" + "</h4>");
         return false;
     }
 }
@@ -456,7 +469,7 @@ function validarCompetencias(){
     confirmar = 0;
     $("#panel_competencias input").each(function (index)
     {
-        if($(this).val() == ""){
+        if((!$.isNumeric($(this).val())) || parseFloat($(this).val()) > 5){
             $('#panel_comp_' + index).addClass("panel-danger");
             confirmar = 1;
         } else {

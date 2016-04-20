@@ -50,6 +50,12 @@ class NotasController extends Controller {
         $periodo_actual = $periodo_actual->getPeriodoActual($em);
         $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $form->handleRequest($request);
+        if($this->notasRepetidas($nota)){
+            $check = true;
+            $response = new Response(\json_encode(true));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $c = new Competencias();
             $lista = $c->getCompetenciasGradoAsig($nota->getAsignacion()->getAsignatura(), $nota->getAsignacion()->getGrupo()->getGrado(), $em);
@@ -60,20 +66,11 @@ class NotasController extends Controller {
                 $nota_persist->setMatricula($nota->getMatricula());
                 $nota_persist->setPeriodo($nota->getPeriodo());
                 $nota_persist->setNota($notas[$i]);
-                if($this->notasRepetidas($nota)){
-                    $check = true;
-                    $response = new Response(\json_encode($check));
-                    $response->headers->set('Content-Type', 'application/json');
-                    return $response;
-                    // No las registra si se repite, solo falta mostrar el mensaje
-
-                    //throw new \Exception('Ojo que esta repetido');
-                } else {
-                    $em->persist($nota_persist);
-                }
+                $em->persist($nota_persist);
             }
             $em->flush();
             //return $this->redirectToRoute('notas_show', array('id' => $nota->getIdNota()));
+            //throw new \Exception($nota->getMatricula()." - "."Si o que?");
         }
 
         return $this->render('notas/new.html.twig', array(
@@ -179,12 +176,16 @@ class NotasController extends Controller {
 
     public function notasRepetidas(Notas $nota) {
         $em = $this->getDoctrine()->getManager();
-        $nota = $em->getRepository('AdonaiUnicoBundle:Notas')->findByIdNota($nota->getIdNota());
-        if($nota != null){
-            return false;
-        } else {
+        $query = $em->createQuery("SELECT nt FROM AdonaiUnicoBundle:Notas nt WHERE nt.asignacion = :asignacion 
+            AND nt.matricula = :matricula AND nt.periodo = :periodo");
+        $query->setParameter('asignacion', $nota->getAsignacion());
+        $query->setParameter('matricula', $nota->getMatricula());
+        $query->setParameter('periodo', $nota->getPeriodo());
+        $resultados = $query->getResult();
+        if(!empty($resultados)){
             return true;
+        } else {
+            return false;
         }
     }
-
 }
