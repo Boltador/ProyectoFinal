@@ -50,12 +50,6 @@ class NotasController extends Controller {
         $periodo_actual = $periodo_actual->getPeriodoActual($em);
         $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $form->handleRequest($request);
-        if($this->notasRepetidas($nota)){
-            $check = true;
-            $response = new Response(\json_encode(true));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
-        }
         if ($form->isSubmitted() && $form->isValid()) {
             $c = new Competencias();
             $lista = $c->getCompetenciasGradoAsig($nota->getAsignacion()->getAsignatura(), $nota->getAsignacion()->getGrupo()->getGrado(), $em);
@@ -97,26 +91,28 @@ class NotasController extends Controller {
     /**
      * Displays a form to edit an existing Notas entity.
      *
-     * @Route("/{id}/edit", name="notas_edit")
+     * @Route("/edit", name="notas_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Notas $nota) {
-        $deleteForm = $this->createDeleteForm($nota);
-        $editForm = $this->createForm('Adonai\UnicoBundle\Form\NotasType', $nota);
+    public function editAction(Request $request) {
+        $notas = $request->get("notas");
+        $em = $this->getDoctrine()->getManager();
+        $al_actual = new ALectivos();
+        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $docente = $this->comprobarUsuarioAction();
+        $nota = new Notas();
+        $periodo_actual = new Periodos();
+        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $editForm = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($nota);
-            $em->flush();
-
-            return $this->redirectToRoute('notas_edit', array('id' => $nota->getIdNota()));
+            $this->actualizarNotasExistentes($nota, $notas);
         }
 
         return $this->render('notas/edit.html.twig', array(
             'nota' => $nota,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
             ));
     }
 
@@ -174,18 +170,56 @@ class NotasController extends Controller {
         }
     }
 
-    public function notasRepetidas(Notas $nota) {
+    /**
+     * @Route("/nota_existente", name="nota_existente")
+     */
+    public function notasExistentes(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->findByIdAsignacion($request->get("asignacion_id"));
+        $periodo = $em->getRepository('AdonaiUnicoBundle:Periodos')->findByIdPeriodo($request->get("periodo_id"));
+        $matricula = $em->getRepository('AdonaiUnicoBundle:Matriculas')->findByIdMat($request->get("matricula_id"));
+
+        $query = $em->createQuery("SELECT nt FROM AdonaiUnicoBundle:Notas nt WHERE nt.asignacion = :asignacion 
+            AND nt.matricula = :matricula AND nt.periodo = :periodo");
+        $query->setParameter('asignacion', $asignacion);
+        $query->setParameter('matricula', $matricula);
+        $query->setParameter('periodo', $periodo);
+        $resultados = $query->getResult();
+
+        $lista_notas_response = array();
+
+        foreach($resultados as $nota){
+            $nota_response = array("id" => $nota->getIdNota(),
+                "competencia" => $nota->getCompetencia(),
+                "nota" => $nota->getNota());
+            $lista_notas_response[] = $nota_response;
+        }
+
+        if(!empty($lista_notas_response)){
+            $response = new Response(\json_encode($lista_notas_response));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } else {
+            $response = new Response(\json_encode(false));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+    }
+
+
+    public function actualizarNotasExistentes($nota_base, $notas_nuevas) {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT nt FROM AdonaiUnicoBundle:Notas nt WHERE nt.asignacion = :asignacion 
             AND nt.matricula = :matricula AND nt.periodo = :periodo");
-        $query->setParameter('asignacion', $nota->getAsignacion());
-        $query->setParameter('matricula', $nota->getMatricula());
-        $query->setParameter('periodo', $nota->getPeriodo());
+        $query->setParameter('asignacion', $nota_base->getAsignacion());
+        $query->setParameter('matricula', $nota_base->getMatricula());
+        $query->setParameter('periodo', $nota_base->getPeriodo());
         $resultados = $query->getResult();
-        if(!empty($resultados)){
-            return true;
-        } else {
-            return false;
+
+        for($i = 0; $i < sizeof($notas_nuevas); $i++){
+            $resultados[$i]->setNota($notas_nuevas[$i]);
         }
+        $em->flush();
     }
 }
