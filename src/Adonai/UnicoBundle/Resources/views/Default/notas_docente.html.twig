@@ -34,7 +34,7 @@
 
         <!-- upper section -->
         <div class="row">
-            <div class="col-sm-3">
+            <div id="row-menu" class="col-sm-3">
                 <!-- left -->
                 <h3><i class="glyphicon glyphicon-menu-hamburger"></i>    Menú</h3>
                 <hr>
@@ -47,7 +47,6 @@
                     <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-folder-open"></i>     Observador Grupo</a></li>
                 </ul>
                 <hr>
-                <hr>
                 <h3><i class="glyphicon glyphicon-wrench"></i>    Opciones</h3>
                 <hr>
 
@@ -56,95 +55,104 @@
                     <li class="nav-item"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>
                 </ul>
                 <hr>
+                <div id="contenedor_promedio" class="col-md-12 hidden">
+                    <div id="panel_promedio" class="panel panel-primary">
+                        <div class="panel-heading"><h4><i class="glyphicon glyphicon-stats"></i>  Promedio</h4></div>
+                        <div id="body_promedio" class="panel-body">
+                        </div><!--/panel-body-->
+                    </div>
+                </div> 
 
-            </div><!-- /span-3 -->
-            <div class="col-sm-9">
+            </div><!-- /row-menu -->
 
+            <div id="contenedor-central" class="col-sm-9">
                 <!-- column 2 -->
                 <h3></i>Panel de Calificaciones Estudiantiles</h3>
-
                 <hr>
+                <!-- center left-->
+                <div id="row_gestionar" class="col-md-12">
+                    <div id="panel_asignaciones" class="panel panel-primary">
+                        <div class="panel-heading"><h4><i class="glyphicon glyphicon-sort"></i>  Gestionar Notas de Estudiantes</h4></div>
+                        <div class="panel-body">
 
-                <div id="fila_general" class="row">
-                    <!-- center left-->
-                    <div class="col-md-12">
-                        <div id="panel_asignaciones" class="panel panel-primary">
-                            <div class="panel-heading"><h4><i class="glyphicon glyphicon-sort"></i>  Gestionar Notas de Estudiantes</h4></div>
-                            <div class="panel-body">
-                                <div class="col-md-4">
-                                    <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
-                                        <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <i class="glyphicon glyphicon-list-alt"></i>
-                                        {{ form_label(form.asignacion) }}
-                                        {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
-                                    </div>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <h4><i class="glyphicon glyphicon-user"></i>  Escoger Estudiante</h4>
-                                        <hr>
-                                        <div id="div_lista_espera">
-                                        </div>
-                                        <table id="tabla_mats" class="table">
-                                            <thead id="head_tabla_mats" class="hidden">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nombre Estudiante</th>
-                                                    <th>Seleccionar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="body_tabla_mats">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div><!--/panel-body-->
+                            <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
+                               <div class="col-xs-4">
+                                <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
                             </div>
-                        </div>
-                        <div class="col-md-12" id="crud-notas">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
-                                <div class="panel-body">
-                                    <div id="div_registrar_espera">
+                            <div class="col-xs-4">
+                                <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>
+                            </div>
+                            <div class="col-xs-4">
+                                <i class="glyphicon glyphicon-list-alt"></i>
+                                {{ form_label(form.asignacion) }}
+                                {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
+                            </div>
+                            <br/><br/><br/>
+                            <div class="col-xs-12">
+                                <hr>
+                                <h4><i class="glyphicon glyphicon-education"></i>  Escoger Estudiante</h4>
+                                <hr>
+                                <div id="panel_escoger_est">
+                                    <div id="div_lista_espera">
                                     </div>
-                                    {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
+                                    <table id="tabla_mats" class="table">
+                                        <thead id="head_tabla_mats" class="hidden">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre Estudiante</th>
+                                                <th>Seleccionar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="body_tabla_mats">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!--/panel-body-->
+                    </div> <!-- panel primary Gestionar -->
+                </div><!-- row Gestionar -->
+                
+                <div id="contenedor_registrar" class="col-sm-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
+                        <div id="panel_registrar_notas" class="panel-body">
+                            <div id="div_registrar_espera">
+                            </div>
 
-                                    {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
+                            {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
 
-                                    {{ form_rest(form) }}
+                            {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
 
-                                    <div id="panel_competencias" class="col-md-12">
-                                    </div> <!-- Fin Panel_Competencias -->
-                                    <br/>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button id="enviar_form" type="submit" class="btn btn-success hidden">
-                                        <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
-                                    </button>
-                                </form>
-                            </div><!--/panel-body-->
-                        </div><!-- Panel-Primary -->
-                    </div><!--/crud-notas-->
+                            {{ form_rest(form) }}
 
-                </div><!--/row segunda-->
-            </div><!--/col-sm-9 -->
-        </div><!--/row primera-->
-    </div><!--/container-->
-    <!-- /upper section -->
+                            <div id="panel_competencias" class="col-md-12">
+                            </div> <!-- Fin Panel_Competencias -->
+                            <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="enviar_form" type="submit" class="btn btn-success hidden">
+                                <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
+                            </button>
+                        </form>
+                    </div><!--/panel-body-->
+                </div><!-- Panel-Primary -->
+            </div><!-- contenedor-registrar -->
 
-    <!-- /Main -->
-    <footer class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>
+        </div><!-- /Contenedor-Central -->
+    </div><!-- row primera -->
+</div><!--/container-->
 
-    <!-- script references -->
-    {% block javascripts %}
-    <script src="{{ asset('public/js/jquery.js') }}"></script>
-    <script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>
-    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-    <script>
-    {{ parent() }}
-    var editadas;
+
+<!-- /Main -->
+<footer id="footer"class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>
+
+<!-- script references -->
+{% block javascripts %}
+<script src="{{ asset('public/js/jquery.js') }}"></script>
+<script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>
+<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script>
+{{ parent() }}
+var editadas;
 //Obtener los datos solicitados
 $(function () {
     selectMatricula();
@@ -162,7 +170,10 @@ $(function () {
                             $("#nota_asignacion").prop("disabled", false);
                             resetearFormulario();
                         } else {
-                            $('#div_registrar_espera').empty();
+                            $("#contenedor_promedio").addClass("hidden");
+                            $("#body_promedio").empty();
+                            $('#panel_escoger_est').slideUp("slow");
+                            $('#panel_registrar_notas').slideUp("slow");
                             $.ajax({
                                 type: 'post',
                                 url: '{{ path("select_matriculas") }}',
@@ -173,10 +184,7 @@ $(function () {
                                     }
                                     $('#enviar_form').removeClass("hidden");
                                     $('#div_lista_espera').empty();
-                                    $('#panel_competencias').empty();
-                                    espera(1);
                                     setearMatriculas(data);
-                                    $('#enviar_form').hide().fadeIn(2000);
                                 }
                             });
                             $.ajax({
@@ -184,7 +192,9 @@ $(function () {
                                 url: '{{ path("select_competencias") }}',
                                 data: data,
                                 success: function (data) {
+                                    $('#div_registrar_espera').empty();
                                     eliminarInputsNota();
+                                    $('#panel_competencias').empty();
                                     setearCompetencias(data);
                                     comprobarCompetencias();
                                     espera(5);
@@ -215,6 +225,7 @@ $('#form_notas').submit(function (e) {
             data: $(this).serialize(),
             success: function (data) {
                 notificacionRegistrar(1); 
+                editadas = 1;
             }
         });
     } else {
@@ -225,6 +236,7 @@ $('#form_notas').submit(function (e) {
             data: $(this).serialize(),
             success: function (data) {
                 notificacionRegistrar(2);
+                alert(data);
             }
         });
     }
@@ -271,18 +283,22 @@ function notificacionRegistrar(ubicacion) {
 
 //Limpia el formulario
 function resetearFormulario() {
+    $("#contenedor_promedio").addClass("hidden");
+    $("#body_promedio").empty();
+    $("#tabla_mats").slideUp("slow");
     $('#form_notas')[0].reset();
     limpiarInputsNota();
     selectMatricula();
     $("#enviar_form").addClass("hidden");
-    $('#body_tabla_mats').empty();
     $("#error_matricula").remove();
-    $("#tag_selec_est").remove();
+    $('#body_tabla_mats').empty();
     $('#panel_competencias').empty();
+    $("#div_registrar_espera").empty();
     $('#body_tabla_mats').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
     $('#panel_competencias').append("<h4>" + "<span id='espera' class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
     $('#head_tabla_mats').addClass("hidden");
     $('#nota_nota').attr('disabled', 'disabled');
+    $("#tabla_mats").slideDown(1000);
 }
 
 //Setear el elemento seleccionado de la tabla en el Combo Estudiantes y Cargar Notas existentes
@@ -305,6 +321,8 @@ function matriculaActiva(id_matricula, id_tabla) {
         }, 400);
     });
     $("#input_nota_0").focus();
+    $("#contenedor_promedio").removeClass("hidden");
+    $('#contenedor_promedio').hide().fadeIn(500);
 }
 
 
@@ -321,15 +339,26 @@ function setearNotasExistentes(){
         data: data,
         success: function (data) {
             if(data.length > 0){
+                var promedio = 0;
                 $("#panel_competencias input").each(function (index)
                 {
-                    $(this).val(data[index]["nota"]);
+                    if(esEntero(data[index]["nota"])){
+                        $(this).val(data[index]["nota"] + "." + 0);
+                    } else {
+                        $(this).val(data[index]["nota"]);
+                    }
                     $(this).prop("disabled", false);
+                    promedio = promedio + data[index]["nota"];
                 });
+                promedio = promedio / data.length;
                 editadas = 1;
+                $("#body_promedio").empty();
+                $("#body_promedio").append("<medium class='text-justify' style='word-wrap: break-word;'>Ya se han registrado notas en el estudiante, tiene la opción de editar.<br/><br/>El promedio de la asignatura es de: <center><strong><h3>" + promedio + "</h3></strong></center></medium>");
                 $("#input_nota_0").focus();
             } else {
                 editadas = 0;
+                $("#body_promedio").empty();
+                $("#body_promedio").append("<medium class='text-justify' style='word-wrap: break-word;'>No tiene notas registradas.</medium>");
                 limpiarInputsNota();
                 $("#panel_competencias input").each(function (index)
                 {
@@ -417,13 +446,13 @@ function setearMatriculas(data) {
     $matricula_selector.html('<option>-- Seleccionar un Estudiante --</option>');
     $('#body_tabla_mats').empty();
     $('#nota_nota').val("");
-    setTimeout(function () {
-        $('#head_tabla_mats').removeClass("hidden").fadeIn(300);
-        $('#body_tabla_mats').append(crearTablaMatriculas(data)).hide().fadeIn(300);
-    }, 950);
+    $('#head_tabla_mats').removeClass("hidden");
+    $('#body_tabla_mats').append(crearTablaMatriculas(data));
+
     for (var i = 0, total = data.length; i < total; i++) {
         $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');
     }
+    $('#panel_escoger_est').slideDown(700);
 }
 
 // Crear las competencias de la asignatura y sus campos de notas correspondientes
@@ -451,8 +480,7 @@ function setearCompetencias(data) {
         "</div>" +
         "</div>" +
         "</div>";
-
-        competencia = $(competencia).hide().fadeIn(1000);
+        //competencia = $(competencia).hide().fadeIn(1000);
         $('#panel_competencias').append(competencia);
         $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' />").appendTo($('#form_notas'));
         $('#input_hide_' + i).mask("9.9");
@@ -461,6 +489,8 @@ function setearCompetencias(data) {
         $.mask.definitions['#']='[12345]';
         $('#input_nota_' + i).mask("#.9");
     }
+    $('#panel_registrar_notas').slideDown(900);
+    promedioFlotante();
 }
 
 // Notas: Setear inputs visibles en los inputs ocultos del formulario
@@ -549,6 +579,23 @@ function validarCompetencias(){
 
     });
     return confirmar;
+}
+
+//Comprobar si un número es entero
+
+function esEntero(numero){
+    if (numero % 1 == 0) {
+        return true;
+    }
+    return false;
+}
+
+
+//Instanciar la ventana promedio
+function promedioFlotante(){
+    posicion = 0;
+    var posicion = ($("#contenedor_registrar").position().top / 6) - $("#contenedor_promedio").position().top * 2;
+    $("#contenedor_promedio").css({top: posicion});
 }
 
 </script>
