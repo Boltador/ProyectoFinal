@@ -189,7 +189,9 @@ class NotasController extends Controller {
 
         $lista_notas_response = array();
 
+        $promedio = 0;
         foreach($resultados as $nota){
+            $promedio += $nota->getNota();
             $nota_response = array("id" => $nota->getIdNota(),
                 "competencia" => $nota->getCompetencia(),
                 "nota" => $nota->getNota());
@@ -197,7 +199,11 @@ class NotasController extends Controller {
         }
 
         if(!empty($lista_notas_response)){
-            $response = new Response(\json_encode($lista_notas_response));
+            $promedio = $promedio / sizeof($lista_notas_response);
+            $lista_notas_and_prom = array();
+            $lista_notas_and_prom[] = $lista_notas_response;
+            $lista_notas_and_prom[] = $promedio;
+            $response = new Response(\json_encode($lista_notas_and_prom));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } else {
