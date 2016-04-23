@@ -909,6 +909,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::notasExistentes',  '_route' => 'nota_existente',);
             }
 
+            // todas_notas
+            if ($pathinfo === '/notas/todas_notas') {
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotas',  '_route' => 'todas_notas',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/periodos')) {

@@ -76,7 +76,7 @@
                         <div class="panel-body">
 
                             <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
-                               <div class="col-xs-4">
+                             <div class="col-xs-4">
                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
                             </div>                                                  
                             <div class="col-xs-4">
@@ -140,8 +140,22 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><h4><i class="glyphicon glyphicon-eye-open"></i>  Ver Calificaciones</h4></div>
                     <div id="panel_ver_notas" class="panel-body">
-                        <select id="combo_asig_ver">
-                        </select>
+                        <div class="col-md-5">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            {{ form_label(form.asignacion) }}
+                            <select id="combo_asig_ver" class="form-control">
+                            </select>
+                        </div><br/><br/><hr>
+                        <div class="col-md-12">
+                            <table id="tabla_notas" class="table">
+                                <thead id="head_tabla_notas">
+                                    <tr id="head_row_notas">
+                                    </tr>
+                                </thead>
+                                <tbody id="body_tabla_notas">
+                                </tbody>
+                            </table>
+                        </div>
                     </div><!--/panel-body-->
                 </div><!-- Panel-Primary -->
             </div><!-- contenedor-registrar -->
@@ -182,16 +196,24 @@ $("#target_ver").click(function() {
         resetearFormulario();
     }
     $("#contenedor_ver_notas").removeClass("hidden");
-    if($('#combo_asig_ver option').length <= 0){
-        $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");
-    }
 });
 
 /** Fin Eventos Listener **/
 
+
+
+/* --- 
+
+
+Javascript del Módulo Registrar Notas
+
+
+--- */
+
 //Obtener los datos solicitados
 $(function () {
     selectMatricula();
+    $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");
     $('#nota_nota').attr('disabled', true);
     $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
     $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
@@ -635,6 +657,100 @@ function promedioFlotante(){
     var posicion = ($("#contenedor_registrar").position().top / 45);
     $("#contenedor_promedio").css({top: posicion});
 }
+
+//  --- Fin Módulo Registrar Notas ---  //
+
+
+/* --- 
+
+
+Javascript del Módulo Ver Notas
+
+
+--- */
+
+//Evento listener combo asignaciones_ver
+$('#combo_asig_ver').on('change',function(){
+    var data = {
+        asignacion_id_ver: $(this).val()
+    };
+    if (data["asignacion_id_ver"] === "") {
+        $("#body_tabla_notas").empty();
+        $("#head_row_notas").empty();
+    } else {     
+        $("#body_tabla_notas").empty();
+        $("#head_row_notas").empty();
+        crearTablaNotas();      
+    }
+});
+
+
+//Crea la tabla donde se visualizarán las notas
+function crearTablaNotas(){
+    var data = {
+        asignacion_id: $("#combo_asig_ver").val(),
+    };
+    $.ajax({
+        type: 'post',
+        url: '{{ path("select_competencias") }}',
+        data: data,
+        success: function (data) {
+            //Header de la Tabla
+            head_generica = "<th><strong>"+'ID'+"</strong></th><th><strong>"+'Estudiante'+"</strong></th>";
+            $("#head_row_notas").append(head_generica);
+            for(i = 1; i <= data.length; i++){
+                header = "<th><strong>Comp "+i+"</strong></th>"
+                $("#head_row_notas").append(header);
+                if(i == data.length){
+                    header = "<th><strong>Total</strong></th>";
+                    $("#head_row_notas").append(header);
+                }
+            } /* Fin For */
+            setearTablaNotas(data.length);
+        }
+    });
+}
+
+//Setea las notas de los estudiantes de la asignacion elegida
+function setearTablaNotas(num_competencias){
+    var data = {
+        asignacion_id: $("#combo_asig_ver").val(),
+        periodo_id: $("#nota_periodo").val(),
+    };
+    $.ajax({
+        type: 'post',
+        url: '{{ path("todas_notas") }}',
+        data: data,
+        success: function (data) {
+            if(data.length > 0){
+                // Body de la Tabla
+                for(i = 0; i < data.length; i++){
+                    datos = "<tr id='estudiante_"+i+"'>"+
+                    "<td>"+ data[i]["id"] +"</td>"+
+                    "<td>"+ data[i]["nombre"] +"</td>"+
+                    "</tr>";
+                    $("#body_tabla_notas").append(datos);
+                    if(data[i]["notas"][0]){  
+                        for(j = 0; j < data[i]["notas"][0].length; j++){
+                            notas = "<td>"+ data[i]["notas"][0][j]["nota"] +"</td>";
+                            $("#estudiante_"+i+"").append(notas);
+                            if(j+1 == data[i]["notas"][0].length){
+                                promedio = "<td><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";
+                                $("#estudiante_"+i+"").append(promedio);
+                            }                  
+                        }/* Fin segundo for */
+                    } else {
+                        $("#estudiante_"+i+"").append("<td colspan='"+ num_competencias +"'><strong>"+'El estudiante no tiene notas registradas.'+"</strong></td>");
+                    }/* Fin segundo else */
+                } /* Fin primer for */
+            } else {
+
+            }/* Fin primer else */
+        }
+    });
+}
+
+//  --- Fin Módulo Ver Notas ---  //
 
 </script>
 

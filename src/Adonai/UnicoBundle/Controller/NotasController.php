@@ -203,7 +203,48 @@ class NotasController extends Controller {
             $lista_notas_and_prom = array();
             $lista_notas_and_prom[] = $lista_notas_response;
             $lista_notas_and_prom[] = $promedio;
-            $response = new Response(\json_encode($lista_notas_and_prom));
+            if($request->get("devolver_todas") == 1){
+                return $lista_notas_and_prom;
+            } else {
+                $response = new Response(\json_encode($lista_notas_and_prom));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
+            }
+        } else {
+            $response = new Response(\json_encode(false));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+    }
+
+
+    /**
+     * @Route("/todas_notas", name="todas_notas")
+     */
+    public function devolverTodasNotas(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($request->get("asignacion_id"));
+
+        $query = $em->createQuery("SELECT mt FROM AdonaiUnicoBundle:Matriculas mt WHERE mt.grupo = :grupo");
+        $query->setParameter('grupo', $asignacion->getGrupo());
+        $matriculas = $query->getResult();
+
+        $lista_notas_response = array();
+
+        $request->attributes->set("devolver_todas", 1);
+        foreach($matriculas as $matricula){
+            $request->attributes->set("matricula_id", $matricula->getIdMat());
+            $notas_estudiante = $this->notasExistentes($request);
+            $nota = array("id" => $matricula->getIdMat(), 
+                "nombre" => $matricula->getEstudiante()->getNomEst(),
+                "notas" => $notas_estudiante);
+            $lista_notas_response[] = $nota;
+        }
+
+        //throw new \Exception($lista_notas_response[0]["notas"][0][0]["nota"]);
+
+        if(!empty($lista_notas_response)){
+            $response = new Response(\json_encode($lista_notas_response));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } else {
