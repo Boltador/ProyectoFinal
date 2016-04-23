@@ -98,11 +98,11 @@ class NotasController extends Controller {
         $notas = $request->get("notas");
         $em = $this->getDoctrine()->getManager();
         $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $docente = $this->comprobarUsuarioAction();
         $nota = new Notas();
         $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $periodo_actual = $periodo_actual->getPeriodoActual();
         $editForm = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $editForm->handleRequest($request);
 

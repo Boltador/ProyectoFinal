@@ -185,7 +185,8 @@ class Periodos
         return $this->a_lectivo;
     }
 
-    public function getPeriodoActual($em){
+    public function getPeriodoActual(){
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE :fecha >= p.fechaInPer AND :fecha <= p.fechaFinPer");
         $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
         $periodo = $query->getSingleResult();

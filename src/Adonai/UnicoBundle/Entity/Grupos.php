@@ -163,19 +163,21 @@ class Grupos
     }
 
 
-    public function getListaGruposActual($em)
+    public function getListaGruposActual()
     {
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $al_actual = new ALectivos();                       
-        $al_actual = $al_actual->getAñoLectivoActual($em); 
+        $al_actual = $al_actual->getAñoLectivoActual(); 
         $query = $em->createQuery("SELECT gr FROM AdonaiUnicoBundle:Grupos gr WHERE gr.a_lectivo = :al_actual");
         $query->setParameter('al_actual', $al_actual);
         $lista_grupos = $query->getResult();
         return $lista_grupos;
     }
 
-    public function comprobarDirectorDocente($docente, $em){
+    public function comprobarDirectorDocente($docente){
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $al_actual = new ALectivos();                       
-        $al_actual = $al_actual->getAñoLectivoActual($em); 
+        $al_actual = $al_actual->getAñoLectivoActual(); 
         $query = $em->createQuery("SELECT gr FROM AdonaiUnicoBundle:Grupos gr WHERE gr.docente = :docente AND gr.a_lectivo = :al_actual");
         $query->setParameter('docente', $docente);
         $query->setParameter('al_actual', $al_actual);

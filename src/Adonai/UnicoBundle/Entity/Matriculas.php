@@ -133,7 +133,8 @@ class Matriculas
         return $this->a_lectivo;
     }
 
-    public function getListaMatriculas($grupo, $em){
+    public function getListaMatriculas($grupo){
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $query = $em->createQuery("SELECT mt FROM AdonaiUnicoBundle:Matriculas mt WHERE mt.grupo = :grupo");
         $query->setParameter('grupo', $grupo);
         $lista_mats = $query->getResult();
@@ -141,10 +142,11 @@ class Matriculas
         return $lista_mats;
     }
 
-    public function getTotalMatriculasActual($lista_grupos, $em){
+    public function getTotalMatriculasActual($lista_grupos){
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $numero = 0;
         foreach($lista_grupos as $grupo){
-            $lista_mats = $this->getListaMatriculas($grupo, $em);
+            $lista_mats = $this->getListaMatriculas($grupo);
             $numero = $numero + count($lista_mats);
         }
         return $numero;

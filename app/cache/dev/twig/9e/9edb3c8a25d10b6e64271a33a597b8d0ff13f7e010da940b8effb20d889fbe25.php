@@ -22,20 +22,20 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_2fb49df70176625725c9910fc8b88a72ee211886c4f230c897d687436304169e = $this->env->getExtension("native_profiler");
-        $__internal_2fb49df70176625725c9910fc8b88a72ee211886c4f230c897d687436304169e->enter($__internal_2fb49df70176625725c9910fc8b88a72ee211886c4f230c897d687436304169e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
+        $__internal_d01a861ab2176ed712c4206164f206c5627a222cfc5ce579b85055f3b46ff8ba = $this->env->getExtension("native_profiler");
+        $__internal_d01a861ab2176ed712c4206164f206c5627a222cfc5ce579b85055f3b46ff8ba->enter($__internal_d01a861ab2176ed712c4206164f206c5627a222cfc5ce579b85055f3b46ff8ba_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_2fb49df70176625725c9910fc8b88a72ee211886c4f230c897d687436304169e->leave($__internal_2fb49df70176625725c9910fc8b88a72ee211886c4f230c897d687436304169e_prof);
+        $__internal_d01a861ab2176ed712c4206164f206c5627a222cfc5ce579b85055f3b46ff8ba->leave($__internal_d01a861ab2176ed712c4206164f206c5627a222cfc5ce579b85055f3b46ff8ba_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_f687e45154c655e8ab0c153fb18432ddc3e0a50a1a8950c0d41c9a2d8f726fd6 = $this->env->getExtension("native_profiler");
-        $__internal_f687e45154c655e8ab0c153fb18432ddc3e0a50a1a8950c0d41c9a2d8f726fd6->enter($__internal_f687e45154c655e8ab0c153fb18432ddc3e0a50a1a8950c0d41c9a2d8f726fd6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_ea69accc7cfa659faf2b2cb3a7cbfeed64477741da5b0d4da2da20a3ce1d7ddf = $this->env->getExtension("native_profiler");
+        $__internal_ea69accc7cfa659faf2b2cb3a7cbfeed64477741da5b0d4da2da20a3ce1d7ddf->enter($__internal_ea69accc7cfa659faf2b2cb3a7cbfeed64477741da5b0d4da2da20a3ce1d7ddf_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "<!-- Header -->
@@ -102,8 +102,8 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                 <hr>
 
                 <ul class=\"nav nav-pills nav-stacked\">
-                    <li class=\"nav-item active\"><a class=\"nav-link active\" href=\"#\"><i class=\"glyphicon glyphicon-plus\"></i>   Registrar Notas</a></li>
-                    <li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\"><i class=\"glyphicon glyphicon-search\"></i>     Ver Notas</a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_registrar\" href=\"#\"><i class=\"glyphicon glyphicon-plus\"></i>   Registrar Notas</a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_ver\" href=\"#\"><i class=\"glyphicon glyphicon-search\"></i>     Ver Notas</a></li>
                 </ul>
                 <hr>
                 <div id=\"contenedor_promedio\" class=\"col-md-12 hidden\">
@@ -121,7 +121,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                 <h3></i>Panel de Calificaciones Estudiantiles</h3>
                 <hr>
                 <!-- center left-->
-                <div id=\"row_gestionar\" class=\"col-md-12\">
+                <div id=\"contenedor_gestionar\" class=\"col-md-12 hidden\">
                     <div id=\"panel_asignaciones\" class=\"panel panel-primary\">
                         <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-sort\"></i>  Gestionar Notas de Estudiantes</h4></div>
                         <div class=\"panel-body\">
@@ -130,14 +130,14 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         // line 78
         echo $this->env->getExtension('routing')->getPath("notas_new");
         echo "\" method=\"POST\" novalidate role=\"form\">
-                             <div class=\"col-xs-4\">
+                               <div class=\"col-xs-4\">
                                 <h5 id=\"subtitulo\"><i class=\"glyphicon glyphicon-calendar\"></i>  Año Lectivo Actual: </h5><medium>";
         // line 80
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["al_actual"]) ? $context["al_actual"] : $this->getContext($context, "al_actual")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
         echo " - ";
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["al_actual"]) ? $context["al_actual"] : $this->getContext($context, "al_actual")), "fechaFinal", array()), "d/m/Y"), "html", null, true);
         echo "</medium>
-                            </div>
+                            </div>                                                  
                             <div class=\"col-xs-4\">
                                 <h5 id=\"subtitulo\"><i class=\"glyphicon glyphicon-calendar\"></i>  Periodo Actual: </h5><medium id=\"periodo_fechas\">";
         // line 83
@@ -184,7 +184,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                     </div> <!-- panel primary Gestionar -->
                 </div><!-- row Gestionar -->
                 
-                <div id=\"contenedor_registrar\" class=\"col-sm-12\">
+                <div id=\"contenedor_registrar\" class=\"col-sm-12 hidden\">
                     <div class=\"panel panel-primary\">
                         <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-edit\"></i>  Registrar Notas</h4></div>
                         <div id=\"panel_registrar_notas\" class=\"panel-body\">
@@ -201,19 +201,28 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "matricula", array()), 'widget', array("attr" => array("class" => "hidden")));
         echo "
 
-                            ";
-        // line 126
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'rest');
-        echo "
-
                             <div id=\"panel_competencias\" class=\"col-md-12\">
                             </div> <!-- Fin Panel_Competencias -->
                             <br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button id=\"enviar_form\" type=\"submit\" class=\"btn btn-success hidden\">
                                 <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Guardar
-                            </button>
+                            </button>  
+                            ";
+        // line 133
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'rest');
+        echo "
                         </form>
+                    </div><!--/panel-body-->
+                </div><!-- Panel-Primary -->
+            </div><!-- contenedor-registrar -->
+
+            <div id=\"contenedor_ver_notas\" class=\"col-sm-12\">
+                <div class=\"panel panel-primary\">
+                    <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-eye-open\"></i>  Ver Calificaciones</h4></div>
+                    <div id=\"panel_ver_notas\" class=\"panel-body\">
+                        <select id=\"combo_asig_ver\">
+                        </select>
                     </div><!--/panel-body-->
                 </div><!-- Panel-Primary -->
             </div><!-- contenedor-registrar -->
@@ -228,36 +237,63 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
 <!-- script references -->
 ";
-        // line 149
+        // line 158
         $this->displayBlock('javascripts', $context, $blocks);
         
-        $__internal_f687e45154c655e8ab0c153fb18432ddc3e0a50a1a8950c0d41c9a2d8f726fd6->leave($__internal_f687e45154c655e8ab0c153fb18432ddc3e0a50a1a8950c0d41c9a2d8f726fd6_prof);
+        $__internal_ea69accc7cfa659faf2b2cb3a7cbfeed64477741da5b0d4da2da20a3ce1d7ddf->leave($__internal_ea69accc7cfa659faf2b2cb3a7cbfeed64477741da5b0d4da2da20a3ce1d7ddf_prof);
 
     }
 
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_15ff5ed90ce9b14a0fd58985c260f85aaa469477703dfcb73751f8b44432a10f = $this->env->getExtension("native_profiler");
-        $__internal_15ff5ed90ce9b14a0fd58985c260f85aaa469477703dfcb73751f8b44432a10f->enter($__internal_15ff5ed90ce9b14a0fd58985c260f85aaa469477703dfcb73751f8b44432a10f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_2ebe7f8e044fc7da72d20aa7c571153a1225a57cad3ae45c2cae44026ca627bb = $this->env->getExtension("native_profiler");
+        $__internal_2ebe7f8e044fc7da72d20aa7c571153a1225a57cad3ae45c2cae44026ca627bb->enter($__internal_2ebe7f8e044fc7da72d20aa7c571153a1225a57cad3ae45c2cae44026ca627bb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 150
+        // line 159
         echo "<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 151
+        // line 160
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.maskedinput.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 152
+        // line 161
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
 <script>
 ";
-        // line 154
+        // line 163
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
 var editadas;
+
+/** Eventos Listener **/
+
+//Evento Click para Registrar
+\$(\"#target_registrar\").click(function() {
+    if(!\$(\"#contenedor_ver_notas\").hasClass(\"hidden\")){
+        \$(\"#contenedor_ver_notas\").addClass(\"hidden\");
+    }
+    \$(\"#contenedor_gestionar\").removeClass(\"hidden\");
+    \$(\"#contenedor_registrar\").removeClass(\"hidden\");
+});
+
+//Evento Click para Ver
+\$(\"#target_ver\").click(function() {
+    if(!(\$(\"#contenedor_gestionar\").hasClass(\"hidden\") && \$(\"#contenedor_registrar\").hasClass(\"hidden\"))){
+        \$(\"#contenedor_gestionar\").addClass(\"hidden\");
+        \$(\"#contenedor_registrar\").addClass(\"hidden\");
+        resetearFormulario();
+    }
+    \$(\"#contenedor_ver_notas\").removeClass(\"hidden\");
+    if(\$('#combo_asig_ver option').length <= 0){
+        \$('#nota_asignacion option').clone().appendTo(\"#combo_asig_ver\");
+    }
+});
+
+/** Fin Eventos Listener **/
+
 //Obtener los datos solicitados
 \$(function () {
     selectMatricula();
@@ -282,7 +318,7 @@ var editadas;
                             \$.ajax({
                                 type: 'post',
                                 url: '";
-        // line 179
+        // line 215
         echo $this->env->getExtension('routing')->getPath("select_matriculas");
         echo "',
                                 data: data,
@@ -297,7 +333,7 @@ var editadas;
                             \$.ajax({
                                 type: 'post',
                                 url: '";
-        // line 191
+        // line 227
         echo $this->env->getExtension('routing')->getPath("select_competencias");
         echo "',
                                 data: data,
@@ -346,7 +382,7 @@ var editadas;
         \$.ajax({
             type: \"POST\",
             url: '";
-        // line 237
+        // line 273
         echo $this->env->getExtension('routing')->getPath("notas_edit");
         echo "',
             data: \$(this).serialize(),
@@ -450,7 +486,7 @@ function setearNotasExistentes(){
     \$.ajax({
         type: 'post',
         url: '";
-        // line 338
+        // line 374
         echo $this->env->getExtension('routing')->getPath("nota_existente");
         echo "',
         data: data,
@@ -490,7 +526,8 @@ function setearNotasExistentes(){
 
 //Muestra mensaje de espera en la ubicacion indicada
 function espera(ubicacion) {
-    if (ubicacion === 1) {
+    switch (ubicacion) {
+        case 1:
         \$('#div_lista_espera').append(\"<h4 id='tag_espera_1'>\" + \"<span class='label label-info'>\" + \"Cargando...\" + \"</span>\" + \"</h4>\");
         \$('#tag_espera_1').hide().fadeIn(200);
         \$(document).ready(function () {
@@ -498,9 +535,8 @@ function espera(ubicacion) {
                 \$(\"#tag_espera_1\").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-    if (ubicacion === 2){
+        break;
+        case 2:
         \$('#div_registrar_espera').append(\"<h4 id='tag_espera_2'>\" + \"<span class='label label-info'>\" + \"Registrando Notas..\" + \"</span>\" + \"</h4>\" + \"<br/>\");
         \$('#tag_espera_2').hide().fadeIn(200);
         \$(document).ready(function () {
@@ -508,9 +544,8 @@ function espera(ubicacion) {
                 \$(\"#tag_espera_2\").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-    if (ubicacion === 3){
+        break;
+        case 3:
         \$('#div_registrar_espera').append(\"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\" +
             \"<h4 id='error_comp'>\" + 
             \"<span class='label label-danger'>\" + 
@@ -522,9 +557,8 @@ function espera(ubicacion) {
                 \$(\"#error_comp\").fadeOut(350);
             }, 3800);
         });
-        return true;
-    }
-    if(ubicacion === 4){
+        break;
+        case 4:
         \$('#div_registrar_espera').append(\"<h4 id='tag_espera_3'>\" + \"<span class='label label-info'>\" + \"Editando Notas..\" + \"</span>\" + \"</h4>\" + \"<br/>\");
         \$('#tag_espera_3').hide().fadeIn(200);
         \$(document).ready(function () {
@@ -532,15 +566,18 @@ function espera(ubicacion) {
                 \$(\"#tag_espera_3\").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-
-    if(ubicacion === 5){
+        break;
+        case 5:
         \$('#div_registrar_espera').append(\"<h4 id='tag_selec_est'>\" + \"<span class='label label-info'>\" + \"Selecciona un estudiante para continuar.\" + \"</span>\" + \"</h4>\" + \"<br/>\");
         \$('#tag_selec_est').hide().fadeIn(1000);
-        return true;
+        break;
+
+        default:
+        alert(\"Error de Notificación\");
+        break;
     }
-}
+} /* Fin Función Espera */
+
 
 // Devolver las Matriculas para Setearlas en la Tabla
 function crearTablaMatriculas(data) {
@@ -570,9 +607,9 @@ function setearMatriculas(data) {
     for (var i = 0, total = data.length; i < total; i++) {
         \$matricula_selector.append('<option value=\"' + data[i][\"id\"] + '\">' + data[i][\"id\"] + ' - ' + data[i][\"nombre\"] + '</option>');
     }
-
     \$('#panel_escoger_est').slideDown(400);
 }
+
 
 // Crear las competencias de la asignatura y sus campos de notas correspondientes
 function setearCompetencias(data) {
@@ -599,7 +636,6 @@ function setearCompetencias(data) {
         \"</div>\" +
         \"</div>\" +
         \"</div>\";
-        //competencia = \$(competencia).hide().fadeIn(1000);
         \$('#panel_competencias').append(competencia);
         \$(\"<input id='input_hide_\" + i + \"' class='hidden' type='number' name='notas[]' />\").appendTo(\$('#form_notas'));
         \$('#input_hide_' + i).mask(\"9.9\");
@@ -612,6 +648,7 @@ function setearCompetencias(data) {
     promedioFlotante();
 }
 
+
 // Notas: Setear inputs visibles en los inputs ocultos del formulario
 function setearInputsNota() {
     \$(\"#panel_competencias input\").each(function (index)
@@ -619,7 +656,6 @@ function setearInputsNota() {
         \$('#input_hide_' + index).val(\$(this).val());
     });
 }
-
 
 // Notas: Limpia los Inputs de las notas visibles y ocultos
 function limpiarInputsNota() {
@@ -721,7 +757,7 @@ function promedioFlotante(){
 
 ";
         
-        $__internal_15ff5ed90ce9b14a0fd58985c260f85aaa469477703dfcb73751f8b44432a10f->leave($__internal_15ff5ed90ce9b14a0fd58985c260f85aaa469477703dfcb73751f8b44432a10f_prof);
+        $__internal_2ebe7f8e044fc7da72d20aa7c571153a1225a57cad3ae45c2cae44026ca627bb->leave($__internal_2ebe7f8e044fc7da72d20aa7c571153a1225a57cad3ae45c2cae44026ca627bb_prof);
 
     }
 
@@ -737,7 +773,7 @@ function promedioFlotante(){
 
     public function getDebugInfo()
     {
-        return array (  454 => 338,  350 => 237,  301 => 191,  286 => 179,  258 => 154,  253 => 152,  249 => 151,  244 => 150,  232 => 149,  206 => 126,  201 => 124,  196 => 122,  159 => 88,  155 => 87,  144 => 83,  136 => 80,  131 => 78,  96 => 46,  90 => 43,  67 => 23,  62 => 20,  58 => 19,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  490 => 374,  386 => 273,  337 => 227,  322 => 215,  267 => 163,  262 => 161,  258 => 160,  253 => 159,  241 => 158,  213 => 133,  201 => 124,  196 => 122,  159 => 88,  155 => 87,  144 => 83,  136 => 80,  131 => 78,  96 => 46,  90 => 43,  67 => 23,  62 => 20,  58 => 19,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -793,8 +829,8 @@ function promedioFlotante(){
 /*                 <hr>*/
 /* */
 /*                 <ul class="nav nav-pills nav-stacked">*/
-/*                     <li class="nav-item active"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>*/
-/*                     <li class="nav-item"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>*/
+/*                     <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>*/
+/*                     <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>*/
 /*                 </ul>*/
 /*                 <hr>*/
 /*                 <div id="contenedor_promedio" class="col-md-12 hidden">*/
@@ -812,15 +848,15 @@ function promedioFlotante(){
 /*                 <h3></i>Panel de Calificaciones Estudiantiles</h3>*/
 /*                 <hr>*/
 /*                 <!-- center left-->*/
-/*                 <div id="row_gestionar" class="col-md-12">*/
+/*                 <div id="contenedor_gestionar" class="col-md-12 hidden">*/
 /*                     <div id="panel_asignaciones" class="panel panel-primary">*/
 /*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-sort"></i>  Gestionar Notas de Estudiantes</h4></div>*/
 /*                         <div class="panel-body">*/
 /* */
 /*                             <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">*/
-/*                              <div class="col-xs-4">*/
+/*                                <div class="col-xs-4">*/
 /*                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>*/
-/*                             </div>*/
+/*                             </div>                                                  */
 /*                             <div class="col-xs-4">*/
 /*                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>*/
 /*                             </div>*/
@@ -854,7 +890,7 @@ function promedioFlotante(){
 /*                     </div> <!-- panel primary Gestionar -->*/
 /*                 </div><!-- row Gestionar -->*/
 /*                 */
-/*                 <div id="contenedor_registrar" class="col-sm-12">*/
+/*                 <div id="contenedor_registrar" class="col-sm-12 hidden">*/
 /*                     <div class="panel panel-primary">*/
 /*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>*/
 /*                         <div id="panel_registrar_notas" class="panel-body">*/
@@ -865,16 +901,25 @@ function promedioFlotante(){
 /* */
 /*                             {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}*/
 /* */
-/*                             {{ form_rest(form) }}*/
-/* */
 /*                             <div id="panel_competencias" class="col-md-12">*/
 /*                             </div> <!-- Fin Panel_Competencias -->*/
 /*                             <br/>*/
 /*                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
 /*                             <button id="enviar_form" type="submit" class="btn btn-success hidden">*/
 /*                                 <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar*/
-/*                             </button>*/
+/*                             </button>  */
+/*                             {{ form_rest(form) }}*/
 /*                         </form>*/
+/*                     </div><!--/panel-body-->*/
+/*                 </div><!-- Panel-Primary -->*/
+/*             </div><!-- contenedor-registrar -->*/
+/* */
+/*             <div id="contenedor_ver_notas" class="col-sm-12">*/
+/*                 <div class="panel panel-primary">*/
+/*                     <div class="panel-heading"><h4><i class="glyphicon glyphicon-eye-open"></i>  Ver Calificaciones</h4></div>*/
+/*                     <div id="panel_ver_notas" class="panel-body">*/
+/*                         <select id="combo_asig_ver">*/
+/*                         </select>*/
 /*                     </div><!--/panel-body-->*/
 /*                 </div><!-- Panel-Primary -->*/
 /*             </div><!-- contenedor-registrar -->*/
@@ -895,6 +940,33 @@ function promedioFlotante(){
 /* <script>*/
 /* {{ parent() }}*/
 /* var editadas;*/
+/* */
+/* /** Eventos Listener **//* */
+/* */
+/* //Evento Click para Registrar*/
+/* $("#target_registrar").click(function() {*/
+/*     if(!$("#contenedor_ver_notas").hasClass("hidden")){*/
+/*         $("#contenedor_ver_notas").addClass("hidden");*/
+/*     }*/
+/*     $("#contenedor_gestionar").removeClass("hidden");*/
+/*     $("#contenedor_registrar").removeClass("hidden");*/
+/* });*/
+/* */
+/* //Evento Click para Ver*/
+/* $("#target_ver").click(function() {*/
+/*     if(!($("#contenedor_gestionar").hasClass("hidden") && $("#contenedor_registrar").hasClass("hidden"))){*/
+/*         $("#contenedor_gestionar").addClass("hidden");*/
+/*         $("#contenedor_registrar").addClass("hidden");*/
+/*         resetearFormulario();*/
+/*     }*/
+/*     $("#contenedor_ver_notas").removeClass("hidden");*/
+/*     if($('#combo_asig_ver option').length <= 0){*/
+/*         $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");*/
+/*     }*/
+/* });*/
+/* */
+/* /** Fin Eventos Listener **//* */
+/* */
 /* //Obtener los datos solicitados*/
 /* $(function () {*/
 /*     selectMatricula();*/
@@ -1115,7 +1187,8 @@ function promedioFlotante(){
 /* */
 /* //Muestra mensaje de espera en la ubicacion indicada*/
 /* function espera(ubicacion) {*/
-/*     if (ubicacion === 1) {*/
+/*     switch (ubicacion) {*/
+/*         case 1:*/
 /*         $('#div_lista_espera').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");*/
 /*         $('#tag_espera_1').hide().fadeIn(200);*/
 /*         $(document).ready(function () {*/
@@ -1123,9 +1196,8 @@ function promedioFlotante(){
 /*                 $("#tag_espera_1").fadeOut(350);*/
 /*             }, 950);*/
 /*         });*/
-/*         return true;*/
-/*     }*/
-/*     if (ubicacion === 2){*/
+/*         break;*/
+/*         case 2:*/
 /*         $('#div_registrar_espera').append("<h4 id='tag_espera_2'>" + "<span class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");*/
 /*         $('#tag_espera_2').hide().fadeIn(200);*/
 /*         $(document).ready(function () {*/
@@ -1133,9 +1205,8 @@ function promedioFlotante(){
 /*                 $("#tag_espera_2").fadeOut(350);*/
 /*             }, 950);*/
 /*         });*/
-/*         return true;*/
-/*     }*/
-/*     if (ubicacion === 3){*/
+/*         break;*/
+/*         case 3:*/
 /*         $('#div_registrar_espera').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +*/
 /*             "<h4 id='error_comp'>" + */
 /*             "<span class='label label-danger'>" + */
@@ -1147,9 +1218,8 @@ function promedioFlotante(){
 /*                 $("#error_comp").fadeOut(350);*/
 /*             }, 3800);*/
 /*         });*/
-/*         return true;*/
-/*     }*/
-/*     if(ubicacion === 4){*/
+/*         break;*/
+/*         case 4:*/
 /*         $('#div_registrar_espera').append("<h4 id='tag_espera_3'>" + "<span class='label label-info'>" + "Editando Notas.." + "</span>" + "</h4>" + "<br/>");*/
 /*         $('#tag_espera_3').hide().fadeIn(200);*/
 /*         $(document).ready(function () {*/
@@ -1157,15 +1227,18 @@ function promedioFlotante(){
 /*                 $("#tag_espera_3").fadeOut(350);*/
 /*             }, 950);*/
 /*         });*/
-/*         return true;*/
-/*     }*/
-/* */
-/*     if(ubicacion === 5){*/
+/*         break;*/
+/*         case 5:*/
 /*         $('#div_registrar_espera').append("<h4 id='tag_selec_est'>" + "<span class='label label-info'>" + "Selecciona un estudiante para continuar." + "</span>" + "</h4>" + "<br/>");*/
 /*         $('#tag_selec_est').hide().fadeIn(1000);*/
-/*         return true;*/
+/*         break;*/
+/* */
+/*         default:*/
+/*         alert("Error de Notificación");*/
+/*         break;*/
 /*     }*/
-/* }*/
+/* } /* Fin Función Espera *//* */
+/* */
 /* */
 /* // Devolver las Matriculas para Setearlas en la Tabla*/
 /* function crearTablaMatriculas(data) {*/
@@ -1195,9 +1268,9 @@ function promedioFlotante(){
 /*     for (var i = 0, total = data.length; i < total; i++) {*/
 /*         $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');*/
 /*     }*/
-/* */
 /*     $('#panel_escoger_est').slideDown(400);*/
 /* }*/
+/* */
 /* */
 /* // Crear las competencias de la asignatura y sus campos de notas correspondientes*/
 /* function setearCompetencias(data) {*/
@@ -1224,7 +1297,6 @@ function promedioFlotante(){
 /*         "</div>" +*/
 /*         "</div>" +*/
 /*         "</div>";*/
-/*         //competencia = $(competencia).hide().fadeIn(1000);*/
 /*         $('#panel_competencias').append(competencia);*/
 /*         $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' />").appendTo($('#form_notas'));*/
 /*         $('#input_hide_' + i).mask("9.9");*/
@@ -1237,6 +1309,7 @@ function promedioFlotante(){
 /*     promedioFlotante();*/
 /* }*/
 /* */
+/* */
 /* // Notas: Setear inputs visibles en los inputs ocultos del formulario*/
 /* function setearInputsNota() {*/
 /*     $("#panel_competencias input").each(function (index)*/
@@ -1244,7 +1317,6 @@ function promedioFlotante(){
 /*         $('#input_hide_' + index).val($(this).val());*/
 /*     });*/
 /* }*/
-/* */
 /* */
 /* // Notas: Limpia los Inputs de las notas visibles y ocultos*/
 /* function limpiarInputsNota() {*/

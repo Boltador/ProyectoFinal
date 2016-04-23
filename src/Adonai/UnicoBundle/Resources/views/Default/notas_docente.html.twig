@@ -51,8 +51,8 @@
                 <hr>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="nav-item active"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>
                 </ul>
                 <hr>
                 <div id="contenedor_promedio" class="col-md-12 hidden">
@@ -70,15 +70,15 @@
                 <h3></i>Panel de Calificaciones Estudiantiles</h3>
                 <hr>
                 <!-- center left-->
-                <div id="row_gestionar" class="col-md-12">
+                <div id="contenedor_gestionar" class="col-md-12 hidden">
                     <div id="panel_asignaciones" class="panel panel-primary">
                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-sort"></i>  Gestionar Notas de Estudiantes</h4></div>
                         <div class="panel-body">
 
                             <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
-                             <div class="col-xs-4">
+                               <div class="col-xs-4">
                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
-                            </div>
+                            </div>                                                  
                             <div class="col-xs-4">
                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/><i><medium>Número: </medium></i><medium id="periodo_numero">{{ periodo_actual.numero }}</medium>
                             </div>
@@ -112,7 +112,7 @@
                     </div> <!-- panel primary Gestionar -->
                 </div><!-- row Gestionar -->
                 
-                <div id="contenedor_registrar" class="col-sm-12">
+                <div id="contenedor_registrar" class="col-sm-12 hidden">
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Registrar Notas</h4></div>
                         <div id="panel_registrar_notas" class="panel-body">
@@ -123,16 +123,25 @@
 
                             {{ form_widget(form.matricula, {'attr': {'class':'hidden'}})}}
 
-                            {{ form_rest(form) }}
-
                             <div id="panel_competencias" class="col-md-12">
                             </div> <!-- Fin Panel_Competencias -->
                             <br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="enviar_form" type="submit" class="btn btn-success hidden">
                                 <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar
-                            </button>
+                            </button>  
+                            {{ form_rest(form) }}
                         </form>
+                    </div><!--/panel-body-->
+                </div><!-- Panel-Primary -->
+            </div><!-- contenedor-registrar -->
+
+            <div id="contenedor_ver_notas" class="col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h4><i class="glyphicon glyphicon-eye-open"></i>  Ver Calificaciones</h4></div>
+                    <div id="panel_ver_notas" class="panel-body">
+                        <select id="combo_asig_ver">
+                        </select>
                     </div><!--/panel-body-->
                 </div><!-- Panel-Primary -->
             </div><!-- contenedor-registrar -->
@@ -153,6 +162,33 @@
 <script>
 {{ parent() }}
 var editadas;
+
+/** Eventos Listener **/
+
+//Evento Click para Registrar
+$("#target_registrar").click(function() {
+    if(!$("#contenedor_ver_notas").hasClass("hidden")){
+        $("#contenedor_ver_notas").addClass("hidden");
+    }
+    $("#contenedor_gestionar").removeClass("hidden");
+    $("#contenedor_registrar").removeClass("hidden");
+});
+
+//Evento Click para Ver
+$("#target_ver").click(function() {
+    if(!($("#contenedor_gestionar").hasClass("hidden") && $("#contenedor_registrar").hasClass("hidden"))){
+        $("#contenedor_gestionar").addClass("hidden");
+        $("#contenedor_registrar").addClass("hidden");
+        resetearFormulario();
+    }
+    $("#contenedor_ver_notas").removeClass("hidden");
+    if($('#combo_asig_ver option').length <= 0){
+        $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");
+    }
+});
+
+/** Fin Eventos Listener **/
+
 //Obtener los datos solicitados
 $(function () {
     selectMatricula();
@@ -373,7 +409,8 @@ function setearNotasExistentes(){
 
 //Muestra mensaje de espera en la ubicacion indicada
 function espera(ubicacion) {
-    if (ubicacion === 1) {
+    switch (ubicacion) {
+        case 1:
         $('#div_lista_espera').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
         $('#tag_espera_1').hide().fadeIn(200);
         $(document).ready(function () {
@@ -381,9 +418,8 @@ function espera(ubicacion) {
                 $("#tag_espera_1").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-    if (ubicacion === 2){
+        break;
+        case 2:
         $('#div_registrar_espera').append("<h4 id='tag_espera_2'>" + "<span class='label label-info'>" + "Registrando Notas.." + "</span>" + "</h4>" + "<br/>");
         $('#tag_espera_2').hide().fadeIn(200);
         $(document).ready(function () {
@@ -391,9 +427,8 @@ function espera(ubicacion) {
                 $("#tag_espera_2").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-    if (ubicacion === 3){
+        break;
+        case 3:
         $('#div_registrar_espera').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
             "<h4 id='error_comp'>" + 
             "<span class='label label-danger'>" + 
@@ -405,9 +440,8 @@ function espera(ubicacion) {
                 $("#error_comp").fadeOut(350);
             }, 3800);
         });
-        return true;
-    }
-    if(ubicacion === 4){
+        break;
+        case 4:
         $('#div_registrar_espera').append("<h4 id='tag_espera_3'>" + "<span class='label label-info'>" + "Editando Notas.." + "</span>" + "</h4>" + "<br/>");
         $('#tag_espera_3').hide().fadeIn(200);
         $(document).ready(function () {
@@ -415,15 +449,18 @@ function espera(ubicacion) {
                 $("#tag_espera_3").fadeOut(350);
             }, 950);
         });
-        return true;
-    }
-
-    if(ubicacion === 5){
+        break;
+        case 5:
         $('#div_registrar_espera').append("<h4 id='tag_selec_est'>" + "<span class='label label-info'>" + "Selecciona un estudiante para continuar." + "</span>" + "</h4>" + "<br/>");
         $('#tag_selec_est').hide().fadeIn(1000);
-        return true;
+        break;
+
+        default:
+        alert("Error de Notificación");
+        break;
     }
-}
+} /* Fin Función Espera */
+
 
 // Devolver las Matriculas para Setearlas en la Tabla
 function crearTablaMatriculas(data) {
@@ -453,9 +490,9 @@ function setearMatriculas(data) {
     for (var i = 0, total = data.length; i < total; i++) {
         $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');
     }
-
     $('#panel_escoger_est').slideDown(400);
 }
+
 
 // Crear las competencias de la asignatura y sus campos de notas correspondientes
 function setearCompetencias(data) {
@@ -482,7 +519,6 @@ function setearCompetencias(data) {
         "</div>" +
         "</div>" +
         "</div>";
-        //competencia = $(competencia).hide().fadeIn(1000);
         $('#panel_competencias').append(competencia);
         $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' />").appendTo($('#form_notas'));
         $('#input_hide_' + i).mask("9.9");
@@ -495,6 +531,7 @@ function setearCompetencias(data) {
     promedioFlotante();
 }
 
+
 // Notas: Setear inputs visibles en los inputs ocultos del formulario
 function setearInputsNota() {
     $("#panel_competencias input").each(function (index)
@@ -502,7 +539,6 @@ function setearInputsNota() {
         $('#input_hide_' + index).val($(this).val());
     });
 }
-
 
 // Notas: Limpia los Inputs de las notas visibles y ocultos
 function limpiarInputsNota() {

@@ -150,4 +150,5 @@ class AsignacionesController extends Controller
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($id);
         return $asignacion;
     }
+    
 }

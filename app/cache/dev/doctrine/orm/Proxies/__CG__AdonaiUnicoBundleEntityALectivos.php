@@ -257,12 +257,12 @@ class ALectivos extends \Adonai\UnicoBundle\Entity\ALectivos implements \Doctrin
     /**
      * {@inheritDoc}
      */
-    public function getAñoLectivoActual($em)
+    public function getAñoLectivoActual()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAñoLectivoActual', array($em));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAñoLectivoActual', array());
 
-        return parent::getAñoLectivoActual($em);
+        return parent::getAñoLectivoActual();
     }
 
 }

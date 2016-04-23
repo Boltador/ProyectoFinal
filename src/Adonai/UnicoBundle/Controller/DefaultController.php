@@ -13,26 +13,24 @@ use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+
 class DefaultController extends Controller
 {
-
     /**
      * @Route("/")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
         $usuario_login = $this->comprobarUsuarioAction();
         $a_lectivo = new ALectivos();
-        $añol_actual = $a_lectivo->getAñoLectivoActual($em);
+        $añol_actual = $a_lectivo->getAñoLectivoActual();
         $gr = new Grupos();
-        $lista_grupos = $gr->getListaGruposActual($em);
+        $lista_grupos = $gr->getListaGruposActual();
         return $this->render('AdonaiUnicoBundle:Default:index.html.twig', array('usuario_login' => $usuario_login, 'añol_actual' => $añol_actual, 'lista_grupos' => $lista_grupos));
     }
 
     public function adminAction()
     {
-        $em = $this->getDoctrine()->getManager();
         $coordinador = $this->comprobarUsuarioAction();
         if (!$coordinador) {
             throw $this->createNotFoundException(
@@ -40,13 +38,13 @@ class DefaultController extends Controller
                 );
         }
         $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $periodo_actual = $periodo_actual->getPeriodoActual();
         $lista_grupos = new Grupos();
-        $lista_grupos = $lista_grupos->getListaGruposActual($em);
+        $lista_grupos = $lista_grupos->getListaGruposActual();
         $matricula = new Matriculas();
-        $total_est =  $matricula->getTotalMatriculasActual($lista_grupos, $em);
+        $total_est =  $matricula->getTotalMatriculasActual($lista_grupos);
 
         return $this->render('AdonaiUnicoBundle:Default:admin.html.twig', array('coordinador' => $coordinador,
             'lista_grupos' => $lista_grupos,
@@ -57,7 +55,6 @@ class DefaultController extends Controller
 
     public function docenteAction()
     {
-        $em = $this->getDoctrine()->getManager();
         $docente = $this->comprobarUsuarioAction();
         if (!$docente) {
             throw $this->createNotFoundException(
@@ -65,13 +62,13 @@ class DefaultController extends Controller
                 );
         }
         $lista_asignaciones = new Asignaciones();
-        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente, $em);
+        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente);
         $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $periodo_actual = $periodo_actual->getPeriodoActual();
         $grupo_dir = new Grupos();
-        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente, $em);
+        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
 
         
         return $this->render('AdonaiUnicoBundle:Default:docente.html.twig', array('docente' => $docente,
@@ -82,7 +79,6 @@ class DefaultController extends Controller
 
 
     public function notasDocenteAction(){
-        $em = $this->getDoctrine()->getManager();
         $docente = $this->comprobarUsuarioAction();
         if (!$docente) {
             throw $this->createNotFoundException(
@@ -90,22 +86,16 @@ class DefaultController extends Controller
                 );
         }
         $lista_asignaciones = new Asignaciones();
-        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente, $em);
+        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente);
         $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $periodo_actual = $periodo_actual->getPeriodoActual();
         $grupo_dir = new Grupos();
-        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente, $em);
+        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
 
         $nota = new Notas();
         $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($nota);
-            $em->flush();
-        }
 
         return $this->render('AdonaiUnicoBundle:Default:notas_docente.html.twig', array('docente' => $docente,
             'lista_asignaciones' => $lista_asignaciones,

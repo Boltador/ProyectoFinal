@@ -22,20 +22,20 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d452e1341281780bb6124dcfcc69883c0e81ea8baf64b8085226f170505b4d70 = $this->env->getExtension("native_profiler");
-        $__internal_d452e1341281780bb6124dcfcc69883c0e81ea8baf64b8085226f170505b4d70->enter($__internal_d452e1341281780bb6124dcfcc69883c0e81ea8baf64b8085226f170505b4d70_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:docente.html.twig"));
+        $__internal_3f6d2fcf28444692d8a78567205146caa5b9854b138bb235f686a0c07c2ec9c9 = $this->env->getExtension("native_profiler");
+        $__internal_3f6d2fcf28444692d8a78567205146caa5b9854b138bb235f686a0c07c2ec9c9->enter($__internal_3f6d2fcf28444692d8a78567205146caa5b9854b138bb235f686a0c07c2ec9c9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d452e1341281780bb6124dcfcc69883c0e81ea8baf64b8085226f170505b4d70->leave($__internal_d452e1341281780bb6124dcfcc69883c0e81ea8baf64b8085226f170505b4d70_prof);
+        $__internal_3f6d2fcf28444692d8a78567205146caa5b9854b138bb235f686a0c07c2ec9c9->leave($__internal_3f6d2fcf28444692d8a78567205146caa5b9854b138bb235f686a0c07c2ec9c9_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_287a7e3fcbadecb5479d64ba80e3f2e7a39c6c25ab649c694b36346bbd94d27a = $this->env->getExtension("native_profiler");
-        $__internal_287a7e3fcbadecb5479d64ba80e3f2e7a39c6c25ab649c694b36346bbd94d27a->enter($__internal_287a7e3fcbadecb5479d64ba80e3f2e7a39c6c25ab649c694b36346bbd94d27a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_a5eea7dedfe46fd7bae9657209e3516723ad6c091143f94b94be7cdaa5bf0764 = $this->env->getExtension("native_profiler");
+        $__internal_a5eea7dedfe46fd7bae9657209e3516723ad6c091143f94b94be7cdaa5bf0764->enter($__internal_a5eea7dedfe46fd7bae9657209e3516723ad6c091143f94b94be7cdaa5bf0764_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "<!-- Header -->
@@ -85,7 +85,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
         <hr>
 
         <ul class=\"nav nav-pills nav-stacked\">
-          <li class=\"nav-item active\"><a href=\"";
+          <li class=\"nav-item\"><a href=\"";
         // line 43
         echo $this->env->getExtension('routing')->getPath("AdonaiUsuarios_docente");
         echo "\"><i class=\"glyphicon glyphicon-home\"></i>   Inicio</a></li>
@@ -287,15 +287,15 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
         // line 221
         echo "  ";
         
-        $__internal_287a7e3fcbadecb5479d64ba80e3f2e7a39c6c25ab649c694b36346bbd94d27a->leave($__internal_287a7e3fcbadecb5479d64ba80e3f2e7a39c6c25ab649c694b36346bbd94d27a_prof);
+        $__internal_a5eea7dedfe46fd7bae9657209e3516723ad6c091143f94b94be7cdaa5bf0764->leave($__internal_a5eea7dedfe46fd7bae9657209e3516723ad6c091143f94b94be7cdaa5bf0764_prof);
 
     }
 
     // line 170
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_369a420d1bd2385f6faec83b3ce2fbbcfb48298db750af3e2b11e09b23884ed0 = $this->env->getExtension("native_profiler");
-        $__internal_369a420d1bd2385f6faec83b3ce2fbbcfb48298db750af3e2b11e09b23884ed0->enter($__internal_369a420d1bd2385f6faec83b3ce2fbbcfb48298db750af3e2b11e09b23884ed0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_1260d6cb0145f10135a8b19b9c899f7b5f3c1dc373361039b5613202c6f5725b = $this->env->getExtension("native_profiler");
+        $__internal_1260d6cb0145f10135a8b19b9c899f7b5f3c1dc373361039b5613202c6f5725b->enter($__internal_1260d6cb0145f10135a8b19b9c899f7b5f3c1dc373361039b5613202c6f5725b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 171
         echo "  <script src=\"";
@@ -372,7 +372,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
   </script>
   ";
         
-        $__internal_369a420d1bd2385f6faec83b3ce2fbbcfb48298db750af3e2b11e09b23884ed0->leave($__internal_369a420d1bd2385f6faec83b3ce2fbbcfb48298db750af3e2b11e09b23884ed0_prof);
+        $__internal_1260d6cb0145f10135a8b19b9c899f7b5f3c1dc373361039b5613202c6f5725b->leave($__internal_1260d6cb0145f10135a8b19b9c899f7b5f3c1dc373361039b5613202c6f5725b_prof);
 
     }
 
@@ -433,7 +433,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 /*         <hr>*/
 /* */
 /*         <ul class="nav nav-pills nav-stacked">*/
-/*           <li class="nav-item active"><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>*/
+/*           <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>*/
 /*           <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-education"></i>   Competencias</a></li>*/
 /*           <li class="nav-item"><a href="http://www.bootply.com/85861"><i class="glyphicon glyphicon-th-list"></i>   Planeadores</a></li>*/
 /*           <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente_notas') }}"><i class="glyphicon glyphicon-pencil"></i>   Notas Estudiantes</a></li>*/

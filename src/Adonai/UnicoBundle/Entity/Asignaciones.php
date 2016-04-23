@@ -169,10 +169,11 @@ class Asignaciones
     }
 
 
-    public function getListaAsignacionesActual($docente, $em)
+    public function getListaAsignacionesActual($docente)
     {
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
         $al_actual = new ALectivos();                       
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $query = $em->createQuery("SELECT asig FROM AdonaiUnicoBundle:Asignaciones asig WHERE asig.docente = :docente AND asig.a_lectivo = :al_actual");
         $query->setParameter('docente', $docente);
         $query->setParameter('al_actual', $al_actual);

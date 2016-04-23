@@ -279,23 +279,23 @@ class Grupos extends \Adonai\UnicoBundle\Entity\Grupos implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
-    public function getListaGruposActual($em)
+    public function getListaGruposActual()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getListaGruposActual', array($em));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getListaGruposActual', array());
 
-        return parent::getListaGruposActual($em);
+        return parent::getListaGruposActual();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function comprobarDirectorDocente($docente, $em)
+    public function comprobarDirectorDocente($docente)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'comprobarDirectorDocente', array($docente, $em));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'comprobarDirectorDocente', array($docente));
 
-        return parent::comprobarDirectorDocente($docente, $em);
+        return parent::comprobarDirectorDocente($docente);
     }
 
     /**
