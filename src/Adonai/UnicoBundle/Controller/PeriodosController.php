@@ -161,13 +161,13 @@ class PeriodosController extends Controller
     /**
      * @Route("/periodos_al", name="periodos_al")
      */
-    public function getPeriodosAl(){
+    public function getPeriodosAl($al_actual){
         $em = $this->getDoctrine()->getManager();
-        $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual();
-        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.aLectivo = :aLectivo");
-        $query->setParameter('aLectivo', $al_actual);
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.a_lectivo = :a_lectivo AND :fecha >= p.fechaInPer");
+        $query->setParameter('a_lectivo', $al_actual);
+        $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
         $periodos = $query->getResult();
+        return $periodos;
 
         $response = new Response(\json_encode($periodos));
         $response->headers->set('Content-Type', 'application/json');

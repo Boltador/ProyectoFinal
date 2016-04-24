@@ -201,10 +201,11 @@ class Periodos
     }
 
 
-    public function getPeriodosAl($al_actual){
+    public function getPeriodosActuales($al_actual){
         $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
-        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.a_lectivo = :a_lectivo");
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.a_lectivo = :a_lectivo AND :fecha >= p.fechaInPer");
         $query->setParameter('a_lectivo', $al_actual);
+        $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
         $periodos = $query->getResult();
         return $periodos;
     }

@@ -76,7 +76,7 @@
                         <div class="panel-body">
 
                             <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">
-                             <div class="col-xs-4">
+                               <div class="col-xs-4">
                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
                             </div>                                                  
                             <div class="col-xs-4">
@@ -176,7 +176,7 @@
                         <br/>
                         <div class="col-md-12">
                             <br/>
-                            <button type="button" id="btn_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                            <button type="button" id="boton_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>
                         </div>
                     </div><!-- Panel-Primary -->
                 </div><!-- contenedor-registrar -->
@@ -724,9 +724,9 @@ $('#combo_periodo_ver').append($('<option>', {
 
 
 // Evento Listener Click Boton Buscar
-$('#btn_buscar').on('click', function() {
-    $("#btn_buscar").attr('disabled',true);
-    $("#btn_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");
+$('#boton_buscar').on('click', function() {
+    $("#boton_buscar").attr('disabled',true);
+    $("#boton_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");
     var data = {
         asignacion_id: $("#combo_asig_ver").val(),
     };
@@ -831,7 +831,11 @@ function setearTablaNotas(num_competencias){
                             notas = "<td class='success'>"+ data[i]["notas"][0][j]["nota"] +"</td>";
                             $("#estudiante_"+i+"").append(notas);
                             if(j+1 == data[i]["notas"][0].length){
-                                promedio = "<td class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";
+                                if(data[i]["notas"][1].toFixed("1") <= 2.9){
+                                    promedio = "<td style='color: #B12222;' class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";
+                                } else {
+                                    promedio = "<td class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>"; 
+                                }
                                 $("#estudiante_"+i+"").append(promedio);
                             }                  
                         }/* Fin segundo for */
@@ -842,9 +846,9 @@ function setearTablaNotas(num_competencias){
             } else {
             }/* Fin primer else */
             $("#div_espera_ver").empty();
-            $("#btn_buscar").prop("disabled",false);
-            $("#btn_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");
-            $("#btn_buscar").blur();
+            $("#boton_buscar").prop("disabled",false);
+            $("#boton_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");
+            $("#boton_buscar").blur();
             //$("#combo_asig_ver").prop('disabled', false);    
         }
     });

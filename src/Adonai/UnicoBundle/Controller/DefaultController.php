@@ -91,7 +91,7 @@ class DefaultController extends Controller
         $al_actual = $al_actual->getAñoLectivoActual();
         $periodo_actual = new Periodos();
         $periodo_actual = $periodo_actual->getPeriodoActual();
-        $periodos = $periodo_actual->getPeriodosAl($al_actual);
+        $periodos = $periodo_actual->getPeriodosActuales($al_actual);
         $grupo_dir = new Grupos();
         $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
 

@@ -22,20 +22,20 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352 = $this->env->getExtension("native_profiler");
-        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352->enter($__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
+        $__internal_a9075b261c38b10209acc5845a9c45fb44ba99bd711baad61d20c862135bc41c = $this->env->getExtension("native_profiler");
+        $__internal_a9075b261c38b10209acc5845a9c45fb44ba99bd711baad61d20c862135bc41c->enter($__internal_a9075b261c38b10209acc5845a9c45fb44ba99bd711baad61d20c862135bc41c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352->leave($__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352_prof);
+        $__internal_a9075b261c38b10209acc5845a9c45fb44ba99bd711baad61d20c862135bc41c->leave($__internal_a9075b261c38b10209acc5845a9c45fb44ba99bd711baad61d20c862135bc41c_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2 = $this->env->getExtension("native_profiler");
-        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2->enter($__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_70ec2ba340e6a319d07ccbc504dbad235439d36a50e375f557824a7ea3dcaaed = $this->env->getExtension("native_profiler");
+        $__internal_70ec2ba340e6a319d07ccbc504dbad235439d36a50e375f557824a7ea3dcaaed->enter($__internal_70ec2ba340e6a319d07ccbc504dbad235439d36a50e375f557824a7ea3dcaaed_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "<!-- Header -->
@@ -130,7 +130,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         // line 78
         echo $this->env->getExtension('routing')->getPath("notas_new");
         echo "\" method=\"POST\" novalidate role=\"form\">
-                             <div class=\"col-xs-4\">
+                               <div class=\"col-xs-4\">
                                 <h5 id=\"subtitulo\"><i class=\"glyphicon glyphicon-calendar\"></i>  Año Lectivo Actual: </h5><medium>";
         // line 80
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["al_actual"]) ? $context["al_actual"] : $this->getContext($context, "al_actual")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
@@ -257,7 +257,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                         <br/>
                         <div class=\"col-md-12\">
                             <br/>
-                            <button type=\"button\" id=\"btn_buscar\" data-loading-text=\"Buscando\" autocomplete=\"off\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Buscar</button>
+                            <button type=\"button\" id=\"boton_buscar\" data-loading-text=\"Buscando\" autocomplete=\"off\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Buscar</button>
                         </div>
                     </div><!-- Panel-Primary -->
                 </div><!-- contenedor-registrar -->
@@ -275,14 +275,14 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         // line 193
         $this->displayBlock('javascripts', $context, $blocks);
         
-        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2->leave($__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2_prof);
+        $__internal_70ec2ba340e6a319d07ccbc504dbad235439d36a50e375f557824a7ea3dcaaed->leave($__internal_70ec2ba340e6a319d07ccbc504dbad235439d36a50e375f557824a7ea3dcaaed_prof);
 
     }
 
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe = $this->env->getExtension("native_profiler");
-        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe->enter($__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_d3653999e8df622897aa344f472d9d0a655c746e6dfb21927bb6493d2beee7dc = $this->env->getExtension("native_profiler");
+        $__internal_d3653999e8df622897aa344f472d9d0a655c746e6dfb21927bb6493d2beee7dc->enter($__internal_d3653999e8df622897aa344f472d9d0a655c746e6dfb21927bb6493d2beee7dc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 194
         echo "    <script src=\"";
@@ -857,9 +857,9 @@ Javascript del Módulo Ver Notas
 
 
 // Evento Listener Click Boton Buscar
-\$('#btn_buscar').on('click', function() {
-    \$(\"#btn_buscar\").attr('disabled',true);
-    \$(\"#btn_buscar\").html(\"<span class='fa fa-spinner fa-pulse'></span> Buscando\");
+\$('#boton_buscar').on('click', function() {
+    \$(\"#boton_buscar\").attr('disabled',true);
+    \$(\"#boton_buscar\").html(\"<span class='fa fa-spinner fa-pulse'></span> Buscando\");
     var data = {
         asignacion_id: \$(\"#combo_asig_ver\").val(),
     };
@@ -973,7 +973,11 @@ function setearTablaNotas(num_competencias){
                             notas = \"<td class='success'>\"+ data[i][\"notas\"][0][j][\"nota\"] +\"</td>\";
                             \$(\"#estudiante_\"+i+\"\").append(notas);
                             if(j+1 == data[i][\"notas\"][0].length){
-                                promedio = \"<td class='success'><strong>\"+ data[i][\"notas\"][1].toFixed(\"1\") +\"</strong></td>\";
+                                if(data[i][\"notas\"][1].toFixed(\"1\") <= 2.9){
+                                    promedio = \"<td style='color: #B12222;' class='success'><strong>\"+ data[i][\"notas\"][1].toFixed(\"1\") +\"</strong></td>\";
+                                } else {
+                                    promedio = \"<td class='success'><strong>\"+ data[i][\"notas\"][1].toFixed(\"1\") +\"</strong></td>\"; 
+                                }
                                 \$(\"#estudiante_\"+i+\"\").append(promedio);
                             }                  
                         }/* Fin segundo for */
@@ -984,9 +988,9 @@ function setearTablaNotas(num_competencias){
             } else {
             }/* Fin primer else */
             \$(\"#div_espera_ver\").empty();
-            \$(\"#btn_buscar\").prop(\"disabled\",false);
-            \$(\"#btn_buscar\").html(\"<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar\");
-            \$(\"#btn_buscar\").blur();
+            \$(\"#boton_buscar\").prop(\"disabled\",false);
+            \$(\"#boton_buscar\").html(\"<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar\");
+            \$(\"#boton_buscar\").blur();
             //\$(\"#combo_asig_ver\").prop('disabled', false);    
         }
     });
@@ -999,7 +1003,7 @@ function setearTablaNotas(num_competencias){
 
 ";
         
-        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe->leave($__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe_prof);
+        $__internal_d3653999e8df622897aa344f472d9d0a655c746e6dfb21927bb6493d2beee7dc->leave($__internal_d3653999e8df622897aa344f472d9d0a655c746e6dfb21927bb6493d2beee7dc_prof);
 
     }
 
@@ -1096,7 +1100,7 @@ function setearTablaNotas(num_competencias){
 /*                         <div class="panel-body">*/
 /* */
 /*                             <form id="form_notas" action="{{ path('notas_new') }}" method="POST" novalidate role="form">*/
-/*                              <div class="col-xs-4">*/
+/*                                <div class="col-xs-4">*/
 /*                                 <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>*/
 /*                             </div>                                                  */
 /*                             <div class="col-xs-4">*/
@@ -1196,7 +1200,7 @@ function setearTablaNotas(num_competencias){
 /*                         <br/>*/
 /*                         <div class="col-md-12">*/
 /*                             <br/>*/
-/*                             <button type="button" id="btn_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>*/
+/*                             <button type="button" id="boton_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>*/
 /*                         </div>*/
 /*                     </div><!-- Panel-Primary -->*/
 /*                 </div><!-- contenedor-registrar -->*/
@@ -1744,9 +1748,9 @@ function setearTablaNotas(num_competencias){
 /* */
 /* */
 /* // Evento Listener Click Boton Buscar*/
-/* $('#btn_buscar').on('click', function() {*/
-/*     $("#btn_buscar").attr('disabled',true);*/
-/*     $("#btn_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");*/
+/* $('#boton_buscar').on('click', function() {*/
+/*     $("#boton_buscar").attr('disabled',true);*/
+/*     $("#boton_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");*/
 /*     var data = {*/
 /*         asignacion_id: $("#combo_asig_ver").val(),*/
 /*     };*/
@@ -1851,7 +1855,11 @@ function setearTablaNotas(num_competencias){
 /*                             notas = "<td class='success'>"+ data[i]["notas"][0][j]["nota"] +"</td>";*/
 /*                             $("#estudiante_"+i+"").append(notas);*/
 /*                             if(j+1 == data[i]["notas"][0].length){*/
-/*                                 promedio = "<td class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";*/
+/*                                 if(data[i]["notas"][1].toFixed("1") <= 2.9){*/
+/*                                     promedio = "<td style='color: #B12222;' class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";*/
+/*                                 } else {*/
+/*                                     promedio = "<td class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>"; */
+/*                                 }*/
 /*                                 $("#estudiante_"+i+"").append(promedio);*/
 /*                             }                  */
 /*                         }/* Fin segundo for *//* */
@@ -1862,9 +1870,9 @@ function setearTablaNotas(num_competencias){
 /*             } else {*/
 /*             }/* Fin primer else *//* */
 /*             $("#div_espera_ver").empty();*/
-/*             $("#btn_buscar").prop("disabled",false);*/
-/*             $("#btn_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");*/
-/*             $("#btn_buscar").blur();*/
+/*             $("#boton_buscar").prop("disabled",false);*/
+/*             $("#boton_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");*/
+/*             $("#boton_buscar").blur();*/
 /*             //$("#combo_asig_ver").prop('disabled', false);    */
 /*         }*/
 /*     });*/
