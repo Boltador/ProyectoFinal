@@ -171,7 +171,7 @@ class Asignaciones
 
     public function getListaAsignacionesActual($docente)
     {
-        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
         $al_actual = new ALectivos();                       
         $al_actual = $al_actual->getAñoLectivoActual();
         $query = $em->createQuery("SELECT asig FROM AdonaiUnicoBundle:Asignaciones asig WHERE asig.docente = :docente AND asig.a_lectivo = :al_actual");

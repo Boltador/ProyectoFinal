@@ -71,7 +71,7 @@ class AddMatriculaFieldSubscriber implements EventSubscriberInterface
         }
 
         $asignacion = array_key_exists('asignacion', $data) ? $data['asignacion'] : null; // Esto es un id
-        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($asignacion);
         $grupo = $asignacion->getGrupo();
         $this->addMatriculaForm($form, $grupo);

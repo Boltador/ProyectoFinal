@@ -129,7 +129,7 @@ class ALectivos
      */
     public function getAñoLectivoActual()
     {
-        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
         $query = $em->createQuery("SELECT al FROM AdonaiUnicoBundle:ALectivos al WHERE :fecha >= al.fechaInicio AND :fecha <= al.fechaFinal");
         $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
         $año_lectivo = $query->getSingleResult();

@@ -140,13 +140,26 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><h4><i class="glyphicon glyphicon-eye-open"></i>  Ver Calificaciones</h4></div>
                     <div id="panel_ver_notas" class="panel-body">
-                        <div class="col-md-5">
-                            <i class="glyphicon glyphicon-list-alt"></i>
-                            {{ form_label(form.asignacion) }}
+                        <div class="col-md-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-list-alt"></i>  Escoger Asignación: </h5>
                             <select id="combo_asig_ver" class="form-control">
                             </select>
-                        </div><br/><br/><hr>
-                        <div class="col-md-12">
+                        </div>
+                        <div class="col-md-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-info-sign"></i>  Escoger Periodo: </h5>
+                            <select id="combo_periodo_ver" class="form-control">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-signal"></i>  Notas Pendientes </h5>
+                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Total Año Lectivo: </strong></medium><br/>
+                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Progreso Periodo: </strong></medium>
+                        </div>
+                        <br/><br/>
+                        <div id="panel_tabla_notas" class="col-md-12 hidden">
+                            <hr>
+                            <div id="div_espera_ver">
+                            </div>
                             <table id="tabla_notas" class="table">
                                 <thead id="head_tabla_notas">
                                     <tr id="head_row_notas">
@@ -155,29 +168,32 @@
                                 <tbody id="body_tabla_notas">
                                 </tbody>
                             </table>
-                        </div>
-                    </div><!--/panel-body-->
-                </div><!-- Panel-Primary -->
-            </div><!-- contenedor-registrar -->
+                            <br/>
+                            <h4><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Convenciones: </h4>
+                            <div id="contenedor_convenciones">  
+                            </div>
+                        </div><!--/panel-body-->
+                    </div><!-- Panel-Primary -->
+                </div><!-- contenedor-registrar -->
 
-        </div><!-- /Contenedor-Central -->
-    </div><!-- row primera -->
-</div><!--/container-->
+            </div><!-- /Contenedor-Central -->
+        </div><!-- row primera -->
+    </div><!--/container-->
 
 
-<!-- /Main -->
-<footer id="footer"class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>
+    <!-- /Main -->
+    <footer id="footer"class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>
 
-<!-- script references -->
-{% block javascripts %}
-<script src="{{ asset('public/js/jquery.js') }}"></script>
-<script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>
-<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-<script>
-{{ parent() }}
-var editadas;
+    <!-- script references -->
+    {% block javascripts %}
+    <script src="{{ asset('public/js/jquery.js') }}"></script>
+    <script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <script>
+    {{ parent() }}
+    var editadas;
 
-/** Eventos Listener **/
+    /** Eventos Listener **/
 
 //Evento Click para Registrar
 $("#target_registrar").click(function() {
@@ -199,7 +215,6 @@ $("#target_ver").click(function() {
 });
 
 /** Fin Eventos Listener **/
-
 
 
 /* --- 
@@ -429,11 +444,11 @@ function setearNotasExistentes(){
     });
 }
 
-//Muestra mensaje de espera en la ubicacion indicada
+//Muestra mensaje de predefinido en la ubicacion indicada
 function espera(ubicacion) {
     switch (ubicacion) {
         case 1:
-        $('#div_lista_espera').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4>");
+        $('#div_espera_ver').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Cargando..." + "</span>" + "</h4><br/>");
         $('#tag_espera_1').hide().fadeIn(200);
         $(document).ready(function () {
             setTimeout(function () {
@@ -612,6 +627,7 @@ function comprobarCompetencias(){
 /*  ---  Funciones de Validación --- */
 
 /* Validar Matricula */
+// Verifica al enviar
 
 function validarMatricula(){
     var data = {
@@ -663,30 +679,35 @@ function promedioFlotante(){
 
 /* --- 
 
-
 Javascript del Módulo Ver Notas
-
 
 --- */
 
 //Evento listener combo asignaciones_ver
 $('#combo_asig_ver').on('change',function(){
+    $("#combo_asig_ver").attr('disabled', 'disabled');
     var data = {
         asignacion_id_ver: $(this).val()
     };
     if (data["asignacion_id_ver"] === "") {
-        $("#body_tabla_notas").empty();
-        $("#head_row_notas").empty();
+        if(!$("#panel_tabla_notas").hasClass("hidden")){
+            $("#panel_tabla_notas").addClass("hidden");
+        }
     } else {     
         $("#body_tabla_notas").empty();
         $("#head_row_notas").empty();
-        crearTablaNotas();      
+        $("#contenedor_convenciones").empty();
+        $("#panel_tabla_notas").removeClass("hidden");
+        crearCabeceraTablaNotas();  
     }
 });
 
 
-//Crea la tabla donde se visualizarán las notas
-function crearTablaNotas(){
+//Resetear Campos Ver Notas
+
+
+//Crea la cabecera y los datos de la tabla notas
+function crearCabeceraTablaNotas(){
     var data = {
         asignacion_id: $("#combo_asig_ver").val(),
     };
@@ -696,11 +717,15 @@ function crearTablaNotas(){
         data: data,
         success: function (data) {
             //Header de la Tabla
+            espera(1);
             head_generica = "<th><strong>"+'ID'+"</strong></th><th><strong>"+'Estudiante'+"</strong></th>";
             $("#head_row_notas").append(head_generica);
             for(i = 1; i <= data.length; i++){
                 header = "<th><strong>Comp "+i+"</strong></th>"
                 $("#head_row_notas").append(header);
+                convencion = "<br/><medium><strong>Comp "+ i +": </strong>"+ data[i-1]["contenido"] +
+                "</medium>";
+                $("#contenedor_convenciones").append(convencion);
                 if(i == data.length){
                     header = "<th><strong>Total</strong></th>";
                     $("#head_row_notas").append(header);
@@ -711,7 +736,7 @@ function crearTablaNotas(){
     });
 }
 
-//Setea las notas de los estudiantes de la asignacion elegida
+//Setea las notas de los estudiantes de la asignacion elegida en la tabla (Depende del método crearTablaNotas)
 function setearTablaNotas(num_competencias){
     var data = {
         asignacion_id: $("#combo_asig_ver").val(),
@@ -732,20 +757,21 @@ function setearTablaNotas(num_competencias){
                     $("#body_tabla_notas").append(datos);
                     if(data[i]["notas"][0]){  
                         for(j = 0; j < data[i]["notas"][0].length; j++){
-                            notas = "<td>"+ data[i]["notas"][0][j]["nota"] +"</td>";
+                            notas = "<td class='success'>"+ data[i]["notas"][0][j]["nota"] +"</td>";
                             $("#estudiante_"+i+"").append(notas);
                             if(j+1 == data[i]["notas"][0].length){
-                                promedio = "<td><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";
+                                promedio = "<td class='success'><strong>"+ data[i]["notas"][1].toFixed("1") +"</strong></td>";
                                 $("#estudiante_"+i+"").append(promedio);
                             }                  
                         }/* Fin segundo for */
                     } else {
-                        $("#estudiante_"+i+"").append("<td colspan='"+ num_competencias +"'><strong>"+'El estudiante no tiene notas registradas.'+"</strong></td>");
+                        $("#estudiante_"+i+"").append("<td class='danger' colspan='"+ (num_competencias+1) +"'><strong>"+'El estudiante no tiene notas registradas.'+"</strong></td>");
                     }/* Fin segundo else */
                 } /* Fin primer for */
             } else {
-
             }/* Fin primer else */
+            $("#div_espera_ver").empty();
+            $("#combo_asig_ver").prop('disabled', false);    
         }
     });
 }

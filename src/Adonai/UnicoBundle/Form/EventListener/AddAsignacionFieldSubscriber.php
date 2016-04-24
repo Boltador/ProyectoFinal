@@ -69,7 +69,7 @@ class AddAsignacionFieldSubscriber implements EventSubscriberInterface
         }
 
         $asignacion = array_key_exists('asignacion', $data) ? $data['asignacion'] : null;
-        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($asignacion);
         $grupo = $asignacion->getGrupo();
         $this->addAsignacionForm($form, $grupo);
