@@ -976,9 +976,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_periodos_delete:
 
-            // select_periodo_actual
-            if ($pathinfo === '/periodos/periodo_actual') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::periodoActualAction',  '_route' => 'select_periodo_actual',);
+            if (0 === strpos($pathinfo, '/periodos/periodo')) {
+                // select_periodo_actual
+                if ($pathinfo === '/periodos/periodo_actual') {
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::periodoActualAction',  '_route' => 'select_periodo_actual',);
+                }
+
+                // periodos_al
+                if ($pathinfo === '/periodos/periodos_al') {
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::getPeriodosAl',  '_route' => 'periodos_al',);
+                }
+
             }
 
         }

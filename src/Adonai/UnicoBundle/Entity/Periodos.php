@@ -3,6 +3,7 @@
 namespace Adonai\UnicoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Adonai\UnicoBundle\Entity\ALectivos;
 
 /**
  * Periodos
@@ -165,12 +166,12 @@ class Periodos
     /**
      * Set a_lectivo
      *
-     * @param \Adonai\UnicoBundle\Entity\ALectivos $aLectivo
+     * @param \Adonai\UnicoBundle\Entity\ALectivos $a_lectivo
      * @return Periodos
      */
-    public function setAñoLectivo(\Adonai\UnicoBundle\Entity\ALectivos $aLectivo = null)
+    public function setALectivo(\Adonai\UnicoBundle\Entity\ALectivos $a_lectivo = null)
     {
-        $this->a_lectivo = $aLectivo;
+        $this->a_lectivo = $a_lectivo;
 
         return $this;
     }
@@ -180,16 +181,37 @@ class Periodos
      *
      * @return \Adonai\UnicoBundle\Entity\ALectivos 
      */
-    public function getAñoLectivo()
+    public function getALectivo()
     {
         return $this->a_lectivo;
     }
 
+
+    /**
+     * Get PeriodoActual
+     *
+     * @return \Adonai\UnicoBundle\Entity\Periodos
+     */
     public function getPeriodoActual(){
         $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
         $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE :fecha >= p.fechaInPer AND :fecha <= p.fechaFinPer");
         $query->setParameter('fecha', date_format(new \DateTime('now'), 'Y-m-d'));
         $periodo = $query->getSingleResult();
         return $periodo;
+    }
+
+
+    public function getPeriodosAl($al_actual){
+        $em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getManager();
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.a_lectivo = :a_lectivo");
+        $query->setParameter('a_lectivo', $al_actual);
+        $periodos = $query->getResult();
+        return $periodos;
+    }
+
+    public function __toString()
+    {
+        $numero = $this->getNumero();
+        return (string)$numero;
     }
 }

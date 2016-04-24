@@ -91,6 +91,7 @@ class DefaultController extends Controller
         $al_actual = $al_actual->getAñoLectivoActual();
         $periodo_actual = new Periodos();
         $periodo_actual = $periodo_actual->getPeriodoActual();
+        $periodos = $periodo_actual->getPeriodosAl($al_actual);
         $grupo_dir = new Grupos();
         $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
 
@@ -100,6 +101,7 @@ class DefaultController extends Controller
         return $this->render('AdonaiUnicoBundle:Default:notas_docente.html.twig', array('docente' => $docente,
             'lista_asignaciones' => $lista_asignaciones,
             'al_actual' => $al_actual, 'periodo_actual' => $periodo_actual,
+            'periodos' => $periodos,
             'grupo_dir' => $grupo_dir,
             'nota' => $nota,
             'form' => $form->createView()));

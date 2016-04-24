@@ -173,6 +173,11 @@
                             <div id="contenedor_convenciones">  
                             </div>
                         </div><!--/panel-body-->
+                        <br/>
+                        <div class="col-md-12">
+                            <br/>
+                            <button type="button" id="btn_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                        </div>
                     </div><!-- Panel-Primary -->
                 </div><!-- contenedor-registrar -->
 
@@ -228,7 +233,6 @@ Javascript del Módulo Registrar Notas
 //Obtener los datos solicitados
 $(function () {
     selectMatricula();
-    $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");
     $('#nota_nota').attr('disabled', true);
     $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
     $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");
@@ -677,14 +681,30 @@ function promedioFlotante(){
 //  --- Fin Módulo Registrar Notas ---  //
 
 
+
 /* --- 
 
 Javascript del Módulo Ver Notas
 
 --- */
 
-//Evento listener combo asignaciones_ver
-$('#combo_asig_ver').on('change',function(){
+/* Cargar Datos Iniciales */
+
+$('#nota_asignacion option').clone().appendTo("#combo_asig_ver");
+
+$("#combo_periodo_ver").append('<option>-- Seleccione un Periodo --</option>');
+{% for periodo in periodos %}
+$('#combo_periodo_ver').append($('<option>', {
+    value: {{ periodo.idPeriodo }},
+    text: '{{periodo.numero}}'
+}));
+{% endfor %}
+
+/* Fin Carga */
+
+
+//Evento listener combo_asignaciones_ver
+/*$('#combo_asig_ver').on('change',function(){
     $("#combo_asig_ver").attr('disabled', 'disabled');
     var data = {
         asignacion_id_ver: $(this).val()
@@ -698,10 +718,61 @@ $('#combo_asig_ver').on('change',function(){
         $("#head_row_notas").empty();
         $("#contenedor_convenciones").empty();
         $("#panel_tabla_notas").removeClass("hidden");
-        crearCabeceraTablaNotas();  
+        //crearCabeceraTablaNotas();
     }
+});*/
+
+
+// Evento Listener Click Boton Buscar
+$('#btn_buscar').on('click', function() {
+    $("#btn_buscar").attr('disabled',true);
+    $("#btn_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");
+    var data = {
+        asignacion_id: $("#combo_asig_ver").val(),
+    };
+    $.ajax({
+        url: "{{ path('select_competencias') }}",
+        data: data,
+        method: 'POST',
+        dataType: "json",
+                //Esto es cuando ya hay una respuesta
+                success: function (data) {
+                    if (data["asignacion_id"] === "") {
+                        if(!$("#panel_tabla_notas").hasClass("hidden")){
+                            $("#panel_tabla_notas").addClass("hidden");
+                        }
+                    } else {     
+                        $("#body_tabla_notas").empty();
+                        $("#head_row_notas").empty();
+                        $("#contenedor_convenciones").empty();
+                        $("#panel_tabla_notas").removeClass("hidden");
+
+                    //Header de la Tabla
+                    espera(1);
+                    head_generica = "<th><strong>"+'ID'+"</strong></th><th><strong>"+'Estudiante'+"</strong></th>";
+                    $("#head_row_notas").append(head_generica);
+                    for(i = 1; i <= data.length; i++){
+                        header = "<th><strong>Comp "+i+"</strong></th>"
+                        $("#head_row_notas").append(header);
+                        convencion = "<br/><medium><strong>Comp "+ i +": </strong>"+ data[i-1]["contenido"] +
+                        "</medium>";
+                        $("#contenedor_convenciones").append(convencion);
+                        if(i == data.length){
+                            header = "<th><strong>Total</strong></th>";
+                            $("#head_row_notas").append(header);
+                        }
+                    } /* Fin For */
+                    setearTablaNotas(data.length);
+                }
+            },
+            error: function () {
+            }
+        });      
 });
 
+//Evento listener combo_periodo_ver
+$('#combo_periodo_ver').on('change',function(){
+});
 
 //Resetear Campos Ver Notas
 
@@ -771,10 +842,14 @@ function setearTablaNotas(num_competencias){
             } else {
             }/* Fin primer else */
             $("#div_espera_ver").empty();
-            $("#combo_asig_ver").prop('disabled', false);    
+            $("#btn_buscar").prop("disabled",false);
+            $("#btn_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");
+            $("#btn_buscar").blur();
+            //$("#combo_asig_ver").prop('disabled', false);    
         }
     });
 }
+
 
 //  --- Fin Módulo Ver Notas ---  //
 

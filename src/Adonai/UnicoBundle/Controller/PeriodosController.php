@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Adonai\UnicoBundle\Entity\Periodos;
+use Adonai\UnicoBundle\Entity\ALectivos;
 use Adonai\UnicoBundle\Form\PeriodosType;
 
 /**
@@ -142,8 +143,8 @@ class PeriodosController extends Controller
     /**
      * @Route("/periodo_actual", name="select_periodo_actual")
      */
-     public function periodoActualAction(Request $request)
-     {
+    public function periodoActualAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE :fecha >= p.fechaInPer AND :fecha <= p.fechaFinPer");
@@ -153,6 +154,23 @@ class PeriodosController extends Controller
         $response = new Response(\json_encode($periodo));
         $response->headers->set('Content-Type', 'application/json');
 
+        return $response;
+    }
+
+
+    /**
+     * @Route("/periodos_al", name="periodos_al")
+     */
+    public function getPeriodosAl(){
+        $em = $this->getDoctrine()->getManager();
+        $al_actual = new ALectivos();
+        $al_actual = $al_actual->getAñoLectivoActual();
+        $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.aLectivo = :aLectivo");
+        $query->setParameter('aLectivo', $al_actual);
+        $periodos = $query->getResult();
+
+        $response = new Response(\json_encode($periodos));
+        $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
 }

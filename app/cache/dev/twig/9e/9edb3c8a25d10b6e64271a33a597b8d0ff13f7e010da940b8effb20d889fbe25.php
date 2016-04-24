@@ -22,20 +22,20 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_048f309ef74d67f6ffa199d7017b7654aee1db39e42feaa590328dea464ba7be = $this->env->getExtension("native_profiler");
-        $__internal_048f309ef74d67f6ffa199d7017b7654aee1db39e42feaa590328dea464ba7be->enter($__internal_048f309ef74d67f6ffa199d7017b7654aee1db39e42feaa590328dea464ba7be_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
+        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352 = $this->env->getExtension("native_profiler");
+        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352->enter($__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_048f309ef74d67f6ffa199d7017b7654aee1db39e42feaa590328dea464ba7be->leave($__internal_048f309ef74d67f6ffa199d7017b7654aee1db39e42feaa590328dea464ba7be_prof);
+        $__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352->leave($__internal_204de2a92ce072b40f48ef82b95acb0b13a8eea7b8dbfbcb80faa0df21578352_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_d57a2cde9025f5146e2805177d17940a66f94f607e9720768ade196c65e42828 = $this->env->getExtension("native_profiler");
-        $__internal_d57a2cde9025f5146e2805177d17940a66f94f607e9720768ade196c65e42828->enter($__internal_d57a2cde9025f5146e2805177d17940a66f94f607e9720768ade196c65e42828_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2 = $this->env->getExtension("native_profiler");
+        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2->enter($__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "<!-- Header -->
@@ -254,6 +254,11 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                             <div id=\"contenedor_convenciones\">  
                             </div>
                         </div><!--/panel-body-->
+                        <br/>
+                        <div class=\"col-md-12\">
+                            <br/>
+                            <button type=\"button\" id=\"btn_buscar\" data-loading-text=\"Buscando\" autocomplete=\"off\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Buscar</button>
+                        </div>
                     </div><!-- Panel-Primary -->
                 </div><!-- contenedor-registrar -->
 
@@ -267,33 +272,33 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     <!-- script references -->
     ";
-        // line 188
+        // line 193
         $this->displayBlock('javascripts', $context, $blocks);
         
-        $__internal_d57a2cde9025f5146e2805177d17940a66f94f607e9720768ade196c65e42828->leave($__internal_d57a2cde9025f5146e2805177d17940a66f94f607e9720768ade196c65e42828_prof);
+        $__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2->leave($__internal_1a76a7215c953857f150d1e46309514cd5422fda4d09971a07b351cc32bda1d2_prof);
 
     }
 
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_c0e55ce84e68d990f66838ec1699fb6f0fc90a29858b012186f445ac46847633 = $this->env->getExtension("native_profiler");
-        $__internal_c0e55ce84e68d990f66838ec1699fb6f0fc90a29858b012186f445ac46847633->enter($__internal_c0e55ce84e68d990f66838ec1699fb6f0fc90a29858b012186f445ac46847633_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe = $this->env->getExtension("native_profiler");
+        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe->enter($__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 189
+        // line 194
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 190
+        // line 195
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.maskedinput.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 191
+        // line 196
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
     <script>
     ";
-        // line 193
+        // line 198
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     var editadas;
@@ -333,7 +338,6 @@ Javascript del Módulo Registrar Notas
 //Obtener los datos solicitados
 \$(function () {
     selectMatricula();
-    \$('#nota_asignacion option').clone().appendTo(\"#combo_asig_ver\");
     \$('#nota_nota').attr('disabled', true);
     \$('#body_tabla_mats').append(\"<h4>\" + \"<span class='label label-info'>\" + \"Selecciona una asignación de la lista para continuar\" + \"</span>\" + \"</h4>\");
     \$('#panel_competencias').append(\"<h4>\" + \"<span class='label label-info'>\" + \"Selecciona una asignación de la lista para continuar\" + \"</span>\" + \"</h4>\");
@@ -355,7 +359,7 @@ Javascript del Módulo Registrar Notas
                             \$.ajax({
                                 type: 'post',
                                 url: '";
-        // line 252
+        // line 256
         echo $this->env->getExtension('routing')->getPath("select_matriculas");
         echo "',
                                 data: data,
@@ -370,7 +374,7 @@ Javascript del Módulo Registrar Notas
                             \$.ajax({
                                 type: 'post',
                                 url: '";
-        // line 264
+        // line 268
         echo $this->env->getExtension('routing')->getPath("select_competencias");
         echo "',
                                 data: data,
@@ -419,7 +423,7 @@ Javascript del Módulo Registrar Notas
         \$.ajax({
             type: \"POST\",
             url: '";
-        // line 310
+        // line 314
         echo $this->env->getExtension('routing')->getPath("notas_edit");
         echo "',
             data: \$(this).serialize(),
@@ -523,7 +527,7 @@ function setearNotasExistentes(){
     \$.ajax({
         type: 'post',
         url: '";
-        // line 411
+        // line 415
         echo $this->env->getExtension('routing')->getPath("nota_existente");
         echo "',
         data: data,
@@ -794,14 +798,46 @@ function promedioFlotante(){
 //  --- Fin Módulo Registrar Notas ---  //
 
 
+
 /* --- 
 
 Javascript del Módulo Ver Notas
 
 --- */
 
-//Evento listener combo asignaciones_ver
-\$('#combo_asig_ver').on('change',function(){
+/* Cargar Datos Iniciales */
+
+\$('#nota_asignacion option').clone().appendTo(\"#combo_asig_ver\");
+
+\$(\"#combo_periodo_ver\").append('<option>-- Seleccione un Periodo --</option>');
+";
+        // line 696
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["periodos"]) ? $context["periodos"] : $this->getContext($context, "periodos")));
+        foreach ($context['_seq'] as $context["_key"] => $context["periodo"]) {
+            // line 697
+            echo "\$('#combo_periodo_ver').append(\$('<option>', {
+    value: ";
+            // line 698
+            echo twig_escape_filter($this->env, $this->getAttribute($context["periodo"], "idPeriodo", array()), "html", null, true);
+            echo ",
+    text: '";
+            // line 699
+            echo twig_escape_filter($this->env, $this->getAttribute($context["periodo"], "numero", array()), "html", null, true);
+            echo "'
+}));
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['periodo'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 702
+        echo "
+/* Fin Carga */
+
+
+//Evento listener combo_asignaciones_ver
+/*\$('#combo_asig_ver').on('change',function(){
     \$(\"#combo_asig_ver\").attr('disabled', 'disabled');
     var data = {
         asignacion_id_ver: \$(this).val()
@@ -815,10 +851,64 @@ Javascript del Módulo Ver Notas
         \$(\"#head_row_notas\").empty();
         \$(\"#contenedor_convenciones\").empty();
         \$(\"#panel_tabla_notas\").removeClass(\"hidden\");
-        crearCabeceraTablaNotas();  
+        //crearCabeceraTablaNotas();
     }
+});*/
+
+
+// Evento Listener Click Boton Buscar
+\$('#btn_buscar').on('click', function() {
+    \$(\"#btn_buscar\").attr('disabled',true);
+    \$(\"#btn_buscar\").html(\"<span class='fa fa-spinner fa-pulse'></span> Buscando\");
+    var data = {
+        asignacion_id: \$(\"#combo_asig_ver\").val(),
+    };
+    \$.ajax({
+        url: \"";
+        // line 734
+        echo $this->env->getExtension('routing')->getPath("select_competencias");
+        echo "\",
+        data: data,
+        method: 'POST',
+        dataType: \"json\",
+                //Esto es cuando ya hay una respuesta
+                success: function (data) {
+                    if (data[\"asignacion_id\"] === \"\") {
+                        if(!\$(\"#panel_tabla_notas\").hasClass(\"hidden\")){
+                            \$(\"#panel_tabla_notas\").addClass(\"hidden\");
+                        }
+                    } else {     
+                        \$(\"#body_tabla_notas\").empty();
+                        \$(\"#head_row_notas\").empty();
+                        \$(\"#contenedor_convenciones\").empty();
+                        \$(\"#panel_tabla_notas\").removeClass(\"hidden\");
+
+                    //Header de la Tabla
+                    espera(1);
+                    head_generica = \"<th><strong>\"+'ID'+\"</strong></th><th><strong>\"+'Estudiante'+\"</strong></th>\";
+                    \$(\"#head_row_notas\").append(head_generica);
+                    for(i = 1; i <= data.length; i++){
+                        header = \"<th><strong>Comp \"+i+\"</strong></th>\"
+                        \$(\"#head_row_notas\").append(header);
+                        convencion = \"<br/><medium><strong>Comp \"+ i +\": </strong>\"+ data[i-1][\"contenido\"] +
+                        \"</medium>\";
+                        \$(\"#contenedor_convenciones\").append(convencion);
+                        if(i == data.length){
+                            header = \"<th><strong>Total</strong></th>\";
+                            \$(\"#head_row_notas\").append(header);
+                        }
+                    } /* Fin For */
+                    setearTablaNotas(data.length);
+                }
+            },
+            error: function () {
+            }
+        });      
 });
 
+//Evento listener combo_periodo_ver
+\$('#combo_periodo_ver').on('change',function(){
+});
 
 //Resetear Campos Ver Notas
 
@@ -831,7 +921,7 @@ function crearCabeceraTablaNotas(){
     \$.ajax({
         type: 'post',
         url: '";
-        // line 716
+        // line 787
         echo $this->env->getExtension('routing')->getPath("select_competencias");
         echo "',
         data: data,
@@ -865,7 +955,7 @@ function setearTablaNotas(num_competencias){
     \$.ajax({
         type: 'post',
         url: '";
-        // line 747
+        // line 818
         echo $this->env->getExtension('routing')->getPath("todas_notas");
         echo "',
         data: data,
@@ -894,10 +984,14 @@ function setearTablaNotas(num_competencias){
             } else {
             }/* Fin primer else */
             \$(\"#div_espera_ver\").empty();
-            \$(\"#combo_asig_ver\").prop('disabled', false);    
+            \$(\"#btn_buscar\").prop(\"disabled\",false);
+            \$(\"#btn_buscar\").html(\"<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar\");
+            \$(\"#btn_buscar\").blur();
+            //\$(\"#combo_asig_ver\").prop('disabled', false);    
         }
     });
 }
+
 
 //  --- Fin Módulo Ver Notas ---  //
 
@@ -905,7 +999,7 @@ function setearTablaNotas(num_competencias){
 
 ";
         
-        $__internal_c0e55ce84e68d990f66838ec1699fb6f0fc90a29858b012186f445ac46847633->leave($__internal_c0e55ce84e68d990f66838ec1699fb6f0fc90a29858b012186f445ac46847633_prof);
+        $__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe->leave($__internal_c03f1fdcef1eb0b9130fcd70c93d879959bc947ee78d5d0152f24e80bd296bbe_prof);
 
     }
 
@@ -921,7 +1015,7 @@ function setearTablaNotas(num_competencias){
 
     public function getDebugInfo()
     {
-        return array (  869 => 747,  835 => 716,  527 => 411,  423 => 310,  374 => 264,  359 => 252,  297 => 193,  292 => 191,  288 => 190,  283 => 189,  271 => 188,  213 => 133,  201 => 124,  196 => 122,  159 => 88,  155 => 87,  144 => 83,  136 => 80,  131 => 78,  96 => 46,  90 => 43,  67 => 23,  62 => 20,  58 => 19,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  959 => 818,  925 => 787,  869 => 734,  835 => 702,  826 => 699,  822 => 698,  819 => 697,  815 => 696,  531 => 415,  427 => 314,  378 => 268,  363 => 256,  302 => 198,  297 => 196,  293 => 195,  288 => 194,  276 => 193,  213 => 133,  201 => 124,  196 => 122,  159 => 88,  155 => 87,  144 => 83,  136 => 80,  131 => 78,  96 => 46,  90 => 43,  67 => 23,  62 => 20,  58 => 19,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -1099,6 +1193,11 @@ function setearTablaNotas(num_competencias){
 /*                             <div id="contenedor_convenciones">  */
 /*                             </div>*/
 /*                         </div><!--/panel-body-->*/
+/*                         <br/>*/
+/*                         <div class="col-md-12">*/
+/*                             <br/>*/
+/*                             <button type="button" id="btn_buscar" data-loading-text="Buscando" autocomplete="off" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>*/
+/*                         </div>*/
 /*                     </div><!-- Panel-Primary -->*/
 /*                 </div><!-- contenedor-registrar -->*/
 /* */
@@ -1154,7 +1253,6 @@ function setearTablaNotas(num_competencias){
 /* //Obtener los datos solicitados*/
 /* $(function () {*/
 /*     selectMatricula();*/
-/*     $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");*/
 /*     $('#nota_nota').attr('disabled', true);*/
 /*     $('#body_tabla_mats').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");*/
 /*     $('#panel_competencias').append("<h4>" + "<span class='label label-info'>" + "Selecciona una asignación de la lista para continuar" + "</span>" + "</h4>");*/
@@ -1603,14 +1701,30 @@ function setearTablaNotas(num_competencias){
 /* //  --- Fin Módulo Registrar Notas ---  //*/
 /* */
 /* */
+/* */
 /* /* --- */
 /* */
 /* Javascript del Módulo Ver Notas*/
 /* */
 /* --- *//* */
 /* */
-/* //Evento listener combo asignaciones_ver*/
-/* $('#combo_asig_ver').on('change',function(){*/
+/* /* Cargar Datos Iniciales *//* */
+/* */
+/* $('#nota_asignacion option').clone().appendTo("#combo_asig_ver");*/
+/* */
+/* $("#combo_periodo_ver").append('<option>-- Seleccione un Periodo --</option>');*/
+/* {% for periodo in periodos %}*/
+/* $('#combo_periodo_ver').append($('<option>', {*/
+/*     value: {{ periodo.idPeriodo }},*/
+/*     text: '{{periodo.numero}}'*/
+/* }));*/
+/* {% endfor %}*/
+/* */
+/* /* Fin Carga *//* */
+/* */
+/* */
+/* //Evento listener combo_asignaciones_ver*/
+/* /*$('#combo_asig_ver').on('change',function(){*/
 /*     $("#combo_asig_ver").attr('disabled', 'disabled');*/
 /*     var data = {*/
 /*         asignacion_id_ver: $(this).val()*/
@@ -1624,10 +1738,61 @@ function setearTablaNotas(num_competencias){
 /*         $("#head_row_notas").empty();*/
 /*         $("#contenedor_convenciones").empty();*/
 /*         $("#panel_tabla_notas").removeClass("hidden");*/
-/*         crearCabeceraTablaNotas();  */
+/*         //crearCabeceraTablaNotas();*/
 /*     }*/
+/* });*//* */
+/* */
+/* */
+/* // Evento Listener Click Boton Buscar*/
+/* $('#btn_buscar').on('click', function() {*/
+/*     $("#btn_buscar").attr('disabled',true);*/
+/*     $("#btn_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");*/
+/*     var data = {*/
+/*         asignacion_id: $("#combo_asig_ver").val(),*/
+/*     };*/
+/*     $.ajax({*/
+/*         url: "{{ path('select_competencias') }}",*/
+/*         data: data,*/
+/*         method: 'POST',*/
+/*         dataType: "json",*/
+/*                 //Esto es cuando ya hay una respuesta*/
+/*                 success: function (data) {*/
+/*                     if (data["asignacion_id"] === "") {*/
+/*                         if(!$("#panel_tabla_notas").hasClass("hidden")){*/
+/*                             $("#panel_tabla_notas").addClass("hidden");*/
+/*                         }*/
+/*                     } else {     */
+/*                         $("#body_tabla_notas").empty();*/
+/*                         $("#head_row_notas").empty();*/
+/*                         $("#contenedor_convenciones").empty();*/
+/*                         $("#panel_tabla_notas").removeClass("hidden");*/
+/* */
+/*                     //Header de la Tabla*/
+/*                     espera(1);*/
+/*                     head_generica = "<th><strong>"+'ID'+"</strong></th><th><strong>"+'Estudiante'+"</strong></th>";*/
+/*                     $("#head_row_notas").append(head_generica);*/
+/*                     for(i = 1; i <= data.length; i++){*/
+/*                         header = "<th><strong>Comp "+i+"</strong></th>"*/
+/*                         $("#head_row_notas").append(header);*/
+/*                         convencion = "<br/><medium><strong>Comp "+ i +": </strong>"+ data[i-1]["contenido"] +*/
+/*                         "</medium>";*/
+/*                         $("#contenedor_convenciones").append(convencion);*/
+/*                         if(i == data.length){*/
+/*                             header = "<th><strong>Total</strong></th>";*/
+/*                             $("#head_row_notas").append(header);*/
+/*                         }*/
+/*                     } /* Fin For *//* */
+/*                     setearTablaNotas(data.length);*/
+/*                 }*/
+/*             },*/
+/*             error: function () {*/
+/*             }*/
+/*         });      */
 /* });*/
 /* */
+/* //Evento listener combo_periodo_ver*/
+/* $('#combo_periodo_ver').on('change',function(){*/
+/* });*/
 /* */
 /* //Resetear Campos Ver Notas*/
 /* */
@@ -1697,10 +1862,14 @@ function setearTablaNotas(num_competencias){
 /*             } else {*/
 /*             }/* Fin primer else *//* */
 /*             $("#div_espera_ver").empty();*/
-/*             $("#combo_asig_ver").prop('disabled', false);    */
+/*             $("#btn_buscar").prop("disabled",false);*/
+/*             $("#btn_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");*/
+/*             $("#btn_buscar").blur();*/
+/*             //$("#combo_asig_ver").prop('disabled', false);    */
 /*         }*/
 /*     });*/
 /* }*/
+/* */
 /* */
 /* //  --- Fin Módulo Ver Notas ---  //*/
 /* */
