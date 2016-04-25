@@ -52,8 +52,8 @@
                 <hr>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>
-                    <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Calificaciones</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Calificaciones</a></li>
                 </ul>
                 <hr>
                 <div id="contenedor_promedio" class="col-md-12 hidden">
@@ -96,7 +96,7 @@
                                 <div id="panel_escoger_est">
                                     <div id="div_lista_espera">
                                     </div>
-                                    <table id="tabla_mats" class="table">
+                                    <table id="tabla_mats" class="table table-hover">
                                         <thead id="head_tabla_mats" class="hidden">
                                             <tr>
                                                 <th>ID</th>
@@ -160,8 +160,8 @@
                         </div>
                         <div id="div_progreso" class="col-md-4">
                             <h5 id="subtitulo"><i class="glyphicon glyphicon-signal"></i>  Progreso Notas </h5>
-                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Total Año Lectivo: </strong></medium><br/>
-                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Periodo {{ periodo_actual.numero }} (Actual): </strong></medium>
+                            
+                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Periodo {{ periodo_actual.numero }} (Actual): </strong></medium><medium id="total_periodo"></medium>
                         </div>
                         <br/><br/>
                         <div id="panel_tabla_notas" class="col-md-12 hidden">

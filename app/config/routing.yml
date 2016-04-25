@@ -71,4 +71,4 @@ todas_notas:
     pattern:  /todas_notas
     defaults: { _controller: AdonaiUnicoBundle:Notas:devolverTodasNotas }
     options:
-        expose: true   
+        expose: true 

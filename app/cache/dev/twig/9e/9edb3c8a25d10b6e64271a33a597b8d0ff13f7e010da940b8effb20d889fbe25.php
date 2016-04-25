@@ -22,20 +22,20 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182 = $this->env->getExtension("native_profiler");
-        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182->enter($__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
+        $__internal_6eac10e4e14f71469ada5d15fd17e2144f98940c7a5a1ee2425a0689eaae46f5 = $this->env->getExtension("native_profiler");
+        $__internal_6eac10e4e14f71469ada5d15fd17e2144f98940c7a5a1ee2425a0689eaae46f5->enter($__internal_6eac10e4e14f71469ada5d15fd17e2144f98940c7a5a1ee2425a0689eaae46f5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182->leave($__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182_prof);
+        $__internal_6eac10e4e14f71469ada5d15fd17e2144f98940c7a5a1ee2425a0689eaae46f5->leave($__internal_6eac10e4e14f71469ada5d15fd17e2144f98940c7a5a1ee2425a0689eaae46f5_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1 = $this->env->getExtension("native_profiler");
-        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1->enter($__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_cff201bcdeac1049095f2757c5cce77eb2149da2e4dadf64f44f4b0468d95cbf = $this->env->getExtension("native_profiler");
+        $__internal_cff201bcdeac1049095f2757c5cce77eb2149da2e4dadf64f44f4b0468d95cbf->enter($__internal_cff201bcdeac1049095f2757c5cce77eb2149da2e4dadf64f44f4b0468d95cbf_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "
@@ -103,8 +103,8 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                 <hr>
 
                 <ul class=\"nav nav-pills nav-stacked\">
-                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_registrar\" href=\"#\"><i class=\"glyphicon glyphicon-plus\"></i>   Registrar Notas</a></li>
-                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_ver\" href=\"#\"><i class=\"glyphicon glyphicon-search\"></i>     Ver Notas</a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_registrar\" href=\"#\"><i class=\"glyphicon glyphicon-plus\"></i>   Registrar Calificaciones</a></li>
+                    <li class=\"nav-item\"><a class=\"nav-link active\" id=\"target_ver\" href=\"#\"><i class=\"glyphicon glyphicon-search\"></i>     Ver Calificaciones</a></li>
                 </ul>
                 <hr>
                 <div id=\"contenedor_promedio\" class=\"col-md-12 hidden\">
@@ -168,7 +168,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                                 <div id=\"panel_escoger_est\">
                                     <div id=\"div_lista_espera\">
                                     </div>
-                                    <table id=\"tabla_mats\" class=\"table\">
+                                    <table id=\"tabla_mats\" class=\"table table-hover\">
                                         <thead id=\"head_tabla_mats\" class=\"hidden\">
                                             <tr>
                                                 <th>ID</th>
@@ -255,11 +255,11 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                         </div>
                         <div id=\"div_progreso\" class=\"col-md-4\">
                             <h5 id=\"subtitulo\"><i class=\"glyphicon glyphicon-signal\"></i>  Progreso Notas </h5>
-                            <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-menu-right\"></span><strong>&nbsp;&nbsp;Total Año Lectivo: </strong></medium><br/>
+                            
                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-menu-right\"></span><strong>&nbsp;&nbsp;Periodo ";
         // line 164
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["periodo_actual"]) ? $context["periodo_actual"] : $this->getContext($context, "periodo_actual")), "numero", array()), "html", null, true);
-        echo " (Actual): </strong></medium>
+        echo " (Actual): </strong></medium><medium id=\"total_periodo\"></medium>
                         </div>
                         <br/><br/>
                         <div id=\"panel_tabla_notas\" class=\"col-md-12 hidden\">
@@ -307,15 +307,15 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         // line 209
         echo "    ";
         
-        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1->leave($__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1_prof);
+        $__internal_cff201bcdeac1049095f2757c5cce77eb2149da2e4dadf64f44f4b0468d95cbf->leave($__internal_cff201bcdeac1049095f2757c5cce77eb2149da2e4dadf64f44f4b0468d95cbf_prof);
 
     }
 
     // line 206
     public function block_scripts($context, array $blocks = array())
     {
-        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51 = $this->env->getExtension("native_profiler");
-        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51->enter($__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
+        $__internal_13445c8cf2707ebbf6ee407fe97f3423a4b44fd6c3ab0ebccdac08b595fc94df = $this->env->getExtension("native_profiler");
+        $__internal_13445c8cf2707ebbf6ee407fe97f3423a4b44fd6c3ab0ebccdac08b595fc94df->enter($__internal_13445c8cf2707ebbf6ee407fe97f3423a4b44fd6c3ab0ebccdac08b595fc94df_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
 
         // line 207
         echo "    <script src=\"";
@@ -323,7 +323,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         echo "\"></script>
     ";
         
-        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51->leave($__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51_prof);
+        $__internal_13445c8cf2707ebbf6ee407fe97f3423a4b44fd6c3ab0ebccdac08b595fc94df->leave($__internal_13445c8cf2707ebbf6ee407fe97f3423a4b44fd6c3ab0ebccdac08b595fc94df_prof);
 
     }
 
@@ -396,8 +396,8 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 /*                 <hr>*/
 /* */
 /*                 <ul class="nav nav-pills nav-stacked">*/
-/*                     <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Notas</a></li>*/
-/*                     <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Notas</a></li>*/
+/*                     <li class="nav-item"><a class="nav-link active" id="target_registrar" href="#"><i class="glyphicon glyphicon-plus"></i>   Registrar Calificaciones</a></li>*/
+/*                     <li class="nav-item"><a class="nav-link active" id="target_ver" href="#"><i class="glyphicon glyphicon-search"></i>     Ver Calificaciones</a></li>*/
 /*                 </ul>*/
 /*                 <hr>*/
 /*                 <div id="contenedor_promedio" class="col-md-12 hidden">*/
@@ -440,7 +440,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 /*                                 <div id="panel_escoger_est">*/
 /*                                     <div id="div_lista_espera">*/
 /*                                     </div>*/
-/*                                     <table id="tabla_mats" class="table">*/
+/*                                     <table id="tabla_mats" class="table table-hover">*/
 /*                                         <thead id="head_tabla_mats" class="hidden">*/
 /*                                             <tr>*/
 /*                                                 <th>ID</th>*/
@@ -504,8 +504,8 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 /*                         </div>*/
 /*                         <div id="div_progreso" class="col-md-4">*/
 /*                             <h5 id="subtitulo"><i class="glyphicon glyphicon-signal"></i>  Progreso Notas </h5>*/
-/*                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Total Año Lectivo: </strong></medium><br/>*/
-/*                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Periodo {{ periodo_actual.numero }} (Actual): </strong></medium>*/
+/*                             */
+/*                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right"></span><strong>&nbsp;&nbsp;Periodo {{ periodo_actual.numero }} (Actual): </strong></medium><medium id="total_periodo"></medium>*/
 /*                         </div>*/
 /*                         <br/><br/>*/
 /*                         <div id="panel_tabla_notas" class="col-md-12 hidden">*/

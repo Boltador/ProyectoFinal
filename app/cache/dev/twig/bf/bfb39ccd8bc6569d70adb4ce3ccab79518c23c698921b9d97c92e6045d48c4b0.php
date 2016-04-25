@@ -21,20 +21,20 @@ class __TwigTemplate_2e1afa844dfe90a0a088ac946ef0ce8ed1ac07bc28e59f021763576dd3c
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_c12f49b0723fe94fa599d022fe85fb9ed6398ddabed28e56b01e684f15b00547 = $this->env->getExtension("native_profiler");
-        $__internal_c12f49b0723fe94fa599d022fe85fb9ed6398ddabed28e56b01e684f15b00547->enter($__internal_c12f49b0723fe94fa599d022fe85fb9ed6398ddabed28e56b01e684f15b00547_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "docentes/index.html.twig"));
+        $__internal_050a9e39612c6fa51a5c304c8b0cd54602c1eb8b5a1b0091e92802007b3952f4 = $this->env->getExtension("native_profiler");
+        $__internal_050a9e39612c6fa51a5c304c8b0cd54602c1eb8b5a1b0091e92802007b3952f4->enter($__internal_050a9e39612c6fa51a5c304c8b0cd54602c1eb8b5a1b0091e92802007b3952f4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "docentes/index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_c12f49b0723fe94fa599d022fe85fb9ed6398ddabed28e56b01e684f15b00547->leave($__internal_c12f49b0723fe94fa599d022fe85fb9ed6398ddabed28e56b01e684f15b00547_prof);
+        $__internal_050a9e39612c6fa51a5c304c8b0cd54602c1eb8b5a1b0091e92802007b3952f4->leave($__internal_050a9e39612c6fa51a5c304c8b0cd54602c1eb8b5a1b0091e92802007b3952f4_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_fc7a2c6b918e96add1de0295d9bec4821df5dcd7e59bbd272080144416895d76 = $this->env->getExtension("native_profiler");
-        $__internal_fc7a2c6b918e96add1de0295d9bec4821df5dcd7e59bbd272080144416895d76->enter($__internal_fc7a2c6b918e96add1de0295d9bec4821df5dcd7e59bbd272080144416895d76_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_74f203e2f225fe619825872f17c831c6ce73d72baee647ca660fb2651b9a30fd = $this->env->getExtension("native_profiler");
+        $__internal_74f203e2f225fe619825872f17c831c6ce73d72baee647ca660fb2651b9a30fd->enter($__internal_74f203e2f225fe619825872f17c831c6ce73d72baee647ca660fb2651b9a30fd_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <h1>Docentes list</h1>
@@ -137,7 +137,7 @@ class __TwigTemplate_2e1afa844dfe90a0a088ac946ef0ce8ed1ac07bc28e59f021763576dd3c
     </ul>
 ";
         
-        $__internal_fc7a2c6b918e96add1de0295d9bec4821df5dcd7e59bbd272080144416895d76->leave($__internal_fc7a2c6b918e96add1de0295d9bec4821df5dcd7e59bbd272080144416895d76_prof);
+        $__internal_74f203e2f225fe619825872f17c831c6ce73d72baee647ca660fb2651b9a30fd->leave($__internal_74f203e2f225fe619825872f17c831c6ce73d72baee647ca660fb2651b9a30fd_prof);
 
     }
 

@@ -1,4 +1,5 @@
 var editadas;
+var notaActiva;
 
 /** Eventos Listener **/
 
@@ -108,6 +109,7 @@ $('#form_notas').submit(function (e) {
                 notificacionRegistrar(1); 
                 editadas = 1;
                 setearNotasExistentes();
+                confirmarNota($("#nota_matricula").val(), notaActiva);
             }
         });
     } else {
@@ -119,6 +121,7 @@ $('#form_notas').submit(function (e) {
             success: function (data) {
                 notificacionRegistrar(2);
                 setearNotasExistentes();
+                confirmarNota($("#nota_matricula").val(), notaActiva);
             }
         });
     }
@@ -194,6 +197,7 @@ function matriculaActiva(id_matricula, id_tabla) {
         filas[i].style.background = (filas[i].style.background === '') ? '#FFFFFF' : '';
     }
     filas[id_tabla].style.backgroundColor = "#D9EDF7";
+    notaActiva = id_tabla;
     restaurarPanelesCompetencias();
     setearNotasExistentes(); /* Aqui setea existentes */
     $(document).ready(function () {
@@ -522,8 +526,6 @@ function promedioFlotante(){
 
 //  --- Fin Módulo Registrar Notas ---  //
 
-
-
 /* --- 
 
 Javascript del Módulo Ver Notas
@@ -541,16 +543,49 @@ $('#combo_periodo_ver').val($('#combo_periodo_ver :nth-last-child(1)').val());
 $('#boton_buscar').on('click', function() {
     $('#div_error_ver').empty();
     if($("#combo_asig_ver").val() != "" && $("#combo_periodo_ver").val() != "0"){
+        $("#total_periodo").empty();
         $("#boton_buscar").attr('disabled',true);
         $("#boton_buscar").html("<span class='fa fa-spinner fa-pulse'></span> Buscando");
-        var data = {
-            asignacion_id: $("#combo_asig_ver").val(),
-        };
-        $.ajax({
-            url: Routing.generate('select_competencias'),
-            data: data,
-            method: 'POST',
-            dataType: "json",
+        crearCabeceraTablaNotas();
+    } else {
+        espera(6);
+        $("#div_info_ver").hide().fadeIn(300);
+    }
+});
+
+
+//Evento change combo ver asignaciones
+$('#combo_asig_ver').on('change', function() {
+    resetearVerNotas();
+});
+
+//Evento change combo ver periodos
+$('#combo_periodo_ver').on('change', function() {
+    resetearVerNotas();
+});
+
+
+//Resetear Campos Ver Notas
+function resetearVerNotas(){
+    $("#head_row_notas").empty();
+    $("#body_tabla_notas").empty();
+    $("#contenedor_convenciones").empty();
+    $("#panel_tabla_notas").addClass("hidden");
+    $("#div_info_ver").hide().fadeIn(0);
+    $("#total_periodo").empty();
+}
+
+
+//Crea la cabecera y los datos de la tabla notas
+function crearCabeceraTablaNotas(){
+    var data = {
+        asignacion_id: $("#combo_asig_ver").val(),
+    };
+    $.ajax({
+        url: Routing.generate('select_competencias'),
+        data: data,
+        method: 'POST',
+        dataType: "json",
                 //Esto es cuando ya hay una respuesta
                 success: function (data) {
                     if (data["asignacion_id"] === "") {
@@ -584,63 +619,7 @@ $('#boton_buscar').on('click', function() {
             },
             error: function () {
             }
-        });      
-} else {
-    espera(6);
-    $("#div_info_ver").hide().fadeIn(300);
-}
-});
-
-
-//Evento change combo ver asignaciones
-$('#combo_asig_ver').on('change', function() {
-    resetearVerNotas();
-});
-
-//Evento change combo ver periodos
-$('#combo_periodo_ver').on('change', function() {
-    resetearVerNotas();
-});
-
-
-//Resetear Campos Ver Notas
-function resetearVerNotas(){
-    $("#head_row_notas").empty();
-    $("#body_tabla_notas").empty();
-    $("#contenedor_convenciones").empty();
-    $("#panel_tabla_notas").addClass("hidden");
-    $("#div_info_ver").hide().fadeIn(0);
-}
-
-
-//Crea la cabecera y los datos de la tabla notas
-function crearCabeceraTablaNotas(){
-    var data = {
-        asignacion_id: $("#combo_asig_ver").val(),
-    };
-    $.ajax({
-        type: 'post',
-        url: Routing.generate('select_competencias'),
-        data: data,
-        success: function (data) {
-            //Header de la Tabla
-            espera(1);
-            head_generica = "<th><strong>"+'ID'+"</strong></th><th><strong>"+'Estudiante'+"</strong></th>";
-            $("#head_row_notas").append(head_generica);
-            for(i = 1; i <= data.length; i++){
-                header = "<th><strong>Comp "+i+"</strong></th>"
-                $("#head_row_notas").append(header);
-                convencion = "<br/><medium><strong>Comp "+ i +": </strong>"+ data[i-1]["contenido"] +
-                "</medium>";
-                $("#contenedor_convenciones").append(convencion);
-                if(i == data.length){
-                    header = "<th><strong>Total</strong></th>";
-                    $("#head_row_notas").append(header);
-                }
-            } /* Fin For */
-            setearTablaNotas(data.length);
-        }
-    });
+        }); 
 }
 
 //Setea las notas de los estudiantes de la asignacion elegida en la tabla (Depende del método crearTablaNotas)
@@ -654,6 +633,7 @@ function setearTablaNotas(num_competencias){
         url: Routing.generate('todas_notas'),
         data: data,
         success: function (data) {
+            var total_notas_periodo = 0;
             if(data.length > 0){
                 // Body de la Tabla
                 for(i = 0; i < data.length; i++){
@@ -662,7 +642,8 @@ function setearTablaNotas(num_competencias){
                     "<td>"+ data[i]["nombre"] +"</td>"+
                     "</tr>";
                     $("#body_tabla_notas").append(datos);
-                    if(data[i]["notas"][0]){  
+                    if(data[i]["notas"][0]){ 
+                        total_notas_periodo++;
                         for(j = 0; j < data[i]["notas"][0].length; j++){
                             notas = "<td class='success'>"+ data[i]["notas"][0][j]["nota"] +"</td>";
                             $("#estudiante_"+i+"").append(notas);
@@ -679,8 +660,8 @@ function setearTablaNotas(num_competencias){
                         $("#estudiante_"+i+"").append("<td class='danger' colspan='"+ (num_competencias+1) +"'><strong>"+'El estudiante no tiene notas registradas.'+"</strong></td>");
                     }/* Fin segundo else */
                 } /* Fin primer for */
-            } else {
-            }/* Fin primer else */
+                $("#total_periodo").append(total_notas_periodo + "/" + data.length);
+            } /* Fin primer if */
             $("#div_espera_ver").empty();
             $("#boton_buscar").prop("disabled",false);
             $("#boton_buscar").html("<span id='iconoBuscar' class='glyphicon glyphicon-search'></span> Buscar");
