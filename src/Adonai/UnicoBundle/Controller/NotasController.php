@@ -169,10 +169,12 @@ class NotasController extends Controller {
         }
     }
 
+
     /**
      * @Route("/nota_existente", name="nota_existente")
      */
     public function notasExistentesAction(Request $request) {
+
         $em = $this->getDoctrine()->getManager();
 
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->findByIdAsignacion($request->get("asignacion_id"));
@@ -214,6 +216,34 @@ class NotasController extends Controller {
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
+    }
+
+    /**
+     * @Route("/comprobar_registros", name="comprobar_registros")
+    */
+    public function comprobarRegistrosAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->findByIdAsignacion($request->get("asignacion_id"));
+        $periodo = $em->getRepository('AdonaiUnicoBundle:Periodos')->findByIdPeriodo($request->get("periodo_id"));
+        $matricula = $em->getRepository('AdonaiUnicoBundle:Matriculas')->findByIdMat($request->get("matricula_id"));
+
+        $query = $em->createQuery("SELECT nt FROM AdonaiUnicoBundle:Notas nt WHERE nt.asignacion = :asignacion 
+            AND nt.matricula = :matricula AND nt.periodo = :periodo");
+        $query->setParameter('asignacion', $asignacion);
+        $query->setParameter('matricula', $matricula);
+        $query->setParameter('periodo', $periodo);
+        $resultados = $query->getResult();
+
+        if(empty($resultados)){
+            $response = new Response(\json_encode(false));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+        $response = new Response(\json_encode(true));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
 

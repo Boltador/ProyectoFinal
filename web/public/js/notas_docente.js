@@ -317,7 +317,6 @@ function espera(ubicacion) {
     }
 } /* Fin Función Espera */
 
-
 // Devolver las Matriculas para Setearlas en la Tabla
 function crearTablaMatriculas(data) {
     var matriculasProcesar = new Array();
@@ -325,11 +324,38 @@ function crearTablaMatriculas(data) {
         fila = "<tr id='matricula_sele_" + data[i]["id"] + "'>" +
         "<td>" + data[i]["id"] + "</td>" +
         "<td>" + data[i]["nombre"] + "</td>" +
+        "<td id='check_nota_"+ i +"'>" + "<medium><span class='label label-default'>" + "Espere..." + "</span></medium>" + "</td>" +
         "<td>" + "<button id='" + data[i]["id"] + "' type='button' class='btn btn-info' onclick='matriculaActiva(this.id," + i + ")'>" + "<i class='glyphicon glyphicon-hand-up'>" + "</i>" + "</button>" + "</td>" +
         "</tr>";
+        confirmarNota(data[i]["id"], i);
         matriculasProcesar.push(fila);
     }
     return matriculasProcesar;
+}
+
+function confirmarNota(matricula_id, indice){
+    var celda;
+    var data = {
+        asignacion_id: $("#nota_asignacion").val(),
+        periodo_id: $("#nota_periodo").val(),
+        matricula_id: matricula_id
+    };
+    $.ajax({
+        type: 'post',
+        url: Routing.generate('comprobar_registros'),
+        data: data,
+        success: function (data) {
+            if(data == false){
+                celda = "<medium><span class='glyphicon glyphicon-remove'></span></medium>";
+                $("#check_nota_"+ indice +"").empty();
+                $("#check_nota_"+ indice +"").append(celda).hide().fadeIn(200);
+            } else {
+                celda = "<medium><span class='glyphicon glyphicon-ok'></span></medium>";
+                $("#check_nota_"+ indice +"").empty();
+                $("#check_nota_"+ indice +"").append(celda).hide().fadeIn(200);
+            }
+        }
+    });
 }
 
 //Instancia las matriculas en el combo y en la lista
@@ -343,11 +369,12 @@ function setearMatriculas(data) {
     $('#head_tabla_mats').removeClass("hidden");
     $('#body_tabla_mats').append(crearTablaMatriculas(data));
 
-    for (var i = 0, total = data.length; i < total; i++) {
+    for (var i = 0; i < data.length; i++) {
         $matricula_selector.append('<option value="' + data[i]["id"] + '">' + data[i]["id"] + ' - ' + data[i]["nombre"] + '</option>');
     }
     $('#panel_escoger_est').slideDown(400);
 }
+
 
 
 // Crear las competencias de la asignatura y sus campos de notas correspondientes
@@ -560,7 +587,7 @@ $('#boton_buscar').on('click', function() {
         });      
 } else {
     espera(6);
-    $("#div_info_ver").hide().fadeIn(500);
+    $("#div_info_ver").hide().fadeIn(300);
 }
 });
 

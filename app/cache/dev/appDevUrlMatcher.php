@@ -1070,6 +1070,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // comprobar_registros
+        if ($pathinfo === '/comprobar_registros') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::comprobarRegistrosAction',  '_route' => 'comprobar_registros',);
+        }
+
         // todas_notas
         if ($pathinfo === '/todas_notas') {
             return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotasAction',  '_route' => 'todas_notas',);

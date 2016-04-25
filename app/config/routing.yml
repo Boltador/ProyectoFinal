@@ -59,7 +59,13 @@ nota_existente:
     pattern:  /nota_existente
     defaults: { _controller: AdonaiUnicoBundle:Notas:notasExistentes }
     options:
-        expose: true 
+        expose: true
+
+comprobar_registros:
+    pattern:  /comprobar_registros
+    defaults: { _controller: AdonaiUnicoBundle:Notas:comprobarRegistros }
+    options:
+        expose: true
 
 todas_notas:
     pattern:  /todas_notas

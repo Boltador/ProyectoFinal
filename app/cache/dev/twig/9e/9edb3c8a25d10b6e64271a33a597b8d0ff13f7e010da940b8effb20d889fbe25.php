@@ -22,20 +22,20 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_150ddaa97387f0a9fa0fb39cb2a33c9114d6500712b3c4695251b9872cbee88f = $this->env->getExtension("native_profiler");
-        $__internal_150ddaa97387f0a9fa0fb39cb2a33c9114d6500712b3c4695251b9872cbee88f->enter($__internal_150ddaa97387f0a9fa0fb39cb2a33c9114d6500712b3c4695251b9872cbee88f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
+        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182 = $this->env->getExtension("native_profiler");
+        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182->enter($__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:notas_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_150ddaa97387f0a9fa0fb39cb2a33c9114d6500712b3c4695251b9872cbee88f->leave($__internal_150ddaa97387f0a9fa0fb39cb2a33c9114d6500712b3c4695251b9872cbee88f_prof);
+        $__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182->leave($__internal_480d2fe71baf0a9fb76433d37a15fd1b5619d961ea91fd732a9024f0f6665182_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_249908ecd4998e380a7d3390cda54ec530bc31dea1b5a1b4d27b1928bc52b70a = $this->env->getExtension("native_profiler");
-        $__internal_249908ecd4998e380a7d3390cda54ec530bc31dea1b5a1b4d27b1928bc52b70a->enter($__internal_249908ecd4998e380a7d3390cda54ec530bc31dea1b5a1b4d27b1928bc52b70a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1 = $this->env->getExtension("native_profiler");
+        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1->enter($__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "
@@ -173,6 +173,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nombre Estudiante</th>
+                                                <th>Estado</th>
                                                 <th>Seleccionar</th>
                                             </tr>
                                         </thead>
@@ -193,12 +194,12 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                             </div>
 
                             ";
-        // line 123
+        // line 124
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "periodo", array()), 'widget', array("attr" => array("class" => "hidden")));
         echo "
 
                             ";
-        // line 125
+        // line 126
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "matricula", array()), 'widget', array("attr" => array("class" => "hidden")));
         echo "
 
@@ -210,7 +211,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                                 <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Guardar
                             </button>  
                             ";
-        // line 134
+        // line 135
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'rest');
         echo "
                         </form>
@@ -233,11 +234,11 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                             <select id=\"combo_periodo_ver\" class=\"form-control\">
                                 <option value=\"0\">-- Seleccione un Periodo --</option>
                                 ";
-        // line 154
+        // line 155
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["periodos"]) ? $context["periodos"] : $this->getContext($context, "periodos")));
         foreach ($context['_seq'] as $context["_key"] => $context["periodo"]) {
-            // line 155
+            // line 156
             echo "                                <option value=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["periodo"], "idPeriodo", array()), "html", null, true);
             echo "\">";
@@ -248,7 +249,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['periodo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 157
+        // line 158
         echo "                            </select>
 
                         </div>
@@ -256,7 +257,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
                             <h5 id=\"subtitulo\"><i class=\"glyphicon glyphicon-signal\"></i>  Progreso Notas </h5>
                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-menu-right\"></span><strong>&nbsp;&nbsp;Total Año Lectivo: </strong></medium><br/>
                             <medium>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-menu-right\"></span><strong>&nbsp;&nbsp;Periodo ";
-        // line 163
+        // line 164
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["periodo_actual"]) ? $context["periodo_actual"] : $this->getContext($context, "periodo_actual")), "numero", array()), "html", null, true);
         echo " (Actual): </strong></medium>
                         </div>
@@ -301,28 +302,28 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     <!-- script references -->
     ";
-        // line 205
+        // line 206
         $this->displayBlock('scripts', $context, $blocks);
-        // line 208
+        // line 209
         echo "    ";
         
-        $__internal_249908ecd4998e380a7d3390cda54ec530bc31dea1b5a1b4d27b1928bc52b70a->leave($__internal_249908ecd4998e380a7d3390cda54ec530bc31dea1b5a1b4d27b1928bc52b70a_prof);
+        $__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1->leave($__internal_ba92e74286658b03f102e814fe4eaf1de53b6dafe70c91f02a7c3d1b7b5631c1_prof);
 
     }
 
-    // line 205
+    // line 206
     public function block_scripts($context, array $blocks = array())
     {
-        $__internal_f49f63ac5bb78775d78be5b7abb8589a22f68dc22f85afb054ee3377cebc52cc = $this->env->getExtension("native_profiler");
-        $__internal_f49f63ac5bb78775d78be5b7abb8589a22f68dc22f85afb054ee3377cebc52cc->enter($__internal_f49f63ac5bb78775d78be5b7abb8589a22f68dc22f85afb054ee3377cebc52cc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
+        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51 = $this->env->getExtension("native_profiler");
+        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51->enter($__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 206
+        // line 207
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/notas_docente.js"), "html", null, true);
         echo "\"></script>
     ";
         
-        $__internal_f49f63ac5bb78775d78be5b7abb8589a22f68dc22f85afb054ee3377cebc52cc->leave($__internal_f49f63ac5bb78775d78be5b7abb8589a22f68dc22f85afb054ee3377cebc52cc_prof);
+        $__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51->leave($__internal_f00eff98226b59890a810ff8a87985d670a45aa9e736bcd34f18d82899927d51_prof);
 
     }
 
@@ -338,7 +339,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 
     public function getDebugInfo()
     {
-        return array (  320 => 206,  314 => 205,  307 => 208,  305 => 205,  260 => 163,  252 => 157,  241 => 155,  237 => 154,  214 => 134,  202 => 125,  197 => 123,  160 => 89,  156 => 88,  145 => 84,  137 => 81,  132 => 79,  97 => 47,  91 => 44,  68 => 24,  63 => 21,  59 => 20,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  321 => 207,  315 => 206,  308 => 209,  306 => 206,  261 => 164,  253 => 158,  242 => 156,  238 => 155,  215 => 135,  203 => 126,  198 => 124,  160 => 89,  156 => 88,  145 => 84,  137 => 81,  132 => 79,  97 => 47,  91 => 44,  68 => 24,  63 => 21,  59 => 20,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -444,6 +445,7 @@ class __TwigTemplate_75f39d0004ac510ca7a0ac069b1e50098076027ba236f8b7ab1f2067a33
 /*                                             <tr>*/
 /*                                                 <th>ID</th>*/
 /*                                                 <th>Nombre Estudiante</th>*/
+/*                                                 <th>Estado</th>*/
 /*                                                 <th>Seleccionar</th>*/
 /*                                             </tr>*/
 /*                                         </thead>*/
