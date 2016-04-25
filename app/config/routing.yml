@@ -33,3 +33,36 @@ login_check:
 
 logout:
     path: /logout
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+select_matriculas:
+    pattern:  /matriculas_select
+    defaults: { _controller: AdonaiUnicoBundle:Matriculas:matriculasSelect }
+    options:
+        expose: true   
+
+select_competencias:
+    pattern:  /competencias_select
+    defaults: { _controller: AdonaiUnicoBundle:Competencias:competenciasSelect }
+    options:
+        expose: true
+
+notas_edit:
+    pattern:  /notas/edit
+    defaults: { _controller: AdonaiUnicoBundle:Notas:edit }
+    options:
+        expose: true
+
+nota_existente:
+    pattern:  /nota_existente
+    defaults: { _controller: AdonaiUnicoBundle:Notas:notasExistentes }
+    options:
+        expose: true 
+
+todas_notas:
+    pattern:  /todas_notas
+    defaults: { _controller: AdonaiUnicoBundle:Notas:devolverTodasNotas }
+    options:
+        expose: true   

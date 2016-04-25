@@ -430,11 +430,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
                 not_competencias_delete:
 
-                // select_competencias
-                if ($pathinfo === '/competencias/competencias_select') {
-                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\CompetenciasController::competenciasSelectAction',  '_route' => 'select_competencias',);
-                }
-
             }
 
             if (0 === strpos($pathinfo, '/coordinadores')) {
@@ -837,11 +832,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\MatriculasController::buscarListaMatriculas',  '_route' => 'buscarListaMats',);
             }
 
-            // select_matriculas
-            if ($pathinfo === '/matriculas/matriculas_select') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\MatriculasController::matriculasSelectAction',  '_route' => 'select_matriculas',);
-            }
-
         }
 
         if (0 === strpos($pathinfo, '/notas')) {
@@ -882,17 +872,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_notas_show:
 
-            // notas_edit
-            if ($pathinfo === '/notas/edit') {
-                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
-                    goto not_notas_edit;
-                }
-
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::editAction',  '_route' => 'notas_edit',);
-            }
-            not_notas_edit:
-
             // notas_delete
             if (preg_match('#^/notas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 if ($this->context->getMethod() != 'DELETE') {
@@ -903,16 +882,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'notas_delete')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::deleteAction',));
             }
             not_notas_delete:
-
-            // nota_existente
-            if ($pathinfo === '/notas/nota_existente') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::notasExistentes',  '_route' => 'nota_existente',);
-            }
-
-            // todas_notas
-            if ($pathinfo === '/notas/todas_notas') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotas',  '_route' => 'todas_notas',);
-            }
 
         }
 
@@ -982,9 +951,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::periodoActualAction',  '_route' => 'select_periodo_actual',);
                 }
 
-                // periodos_al
-                if ($pathinfo === '/periodos/periodos_al') {
-                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::getPeriodosAl',  '_route' => 'periodos_al',);
+                // periodos_actuales
+                if ($pathinfo === '/periodos/periodos_actuales') {
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::getPeriodosActuales',  '_route' => 'periodos_actuales',);
                 }
 
             }
@@ -1071,6 +1040,39 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array('_route' => 'logout');
             }
 
+        }
+
+        // fos_js_routing_js
+        if (0 === strpos($pathinfo, '/js/routing') && preg_match('#^/js/routing(?:\\.(?P<_format>js|json))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_js_routing_js')), array (  '_controller' => 'fos_js_routing.controller:indexAction',  '_format' => 'js',));
+        }
+
+        // select_matriculas
+        if ($pathinfo === '/matriculas_select') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\MatriculasController::matriculasSelectAction',  '_route' => 'select_matriculas',);
+        }
+
+        // select_competencias
+        if ($pathinfo === '/competencias_select') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\CompetenciasController::competenciasSelectAction',  '_route' => 'select_competencias',);
+        }
+
+        if (0 === strpos($pathinfo, '/nota')) {
+            // notas_edit
+            if ($pathinfo === '/notas/edit') {
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::editAction',  '_route' => 'notas_edit',);
+            }
+
+            // nota_existente
+            if ($pathinfo === '/nota_existente') {
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::notasExistentesAction',  '_route' => 'nota_existente',);
+            }
+
+        }
+
+        // todas_notas
+        if ($pathinfo === '/todas_notas') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotasAction',  '_route' => 'todas_notas',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

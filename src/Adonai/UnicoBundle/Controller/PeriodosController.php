@@ -159,9 +159,9 @@ class PeriodosController extends Controller
 
 
     /**
-     * @Route("/periodos_al", name="periodos_al")
+     * @Route("/periodos_actuales", name="periodos_actuales")
      */
-    public function getPeriodosAl($al_actual){
+    public function getPeriodosActuales($al_actual){
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT p FROM AdonaiUnicoBundle:Periodos p WHERE p.a_lectivo = :a_lectivo AND :fecha >= p.fechaInPer");
         $query->setParameter('a_lectivo', $al_actual);

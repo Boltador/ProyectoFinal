@@ -63,7 +63,6 @@ class NotasController extends Controller {
                 $em->persist($nota_persist);
             }
             $em->flush();
-            //return $this->redirectToRoute('notas_show', array('id' => $nota->getIdNota()));
             //throw new \Exception($nota->getMatricula()." - "."Si o que?");
         }
 
@@ -173,7 +172,7 @@ class NotasController extends Controller {
     /**
      * @Route("/nota_existente", name="nota_existente")
      */
-    public function notasExistentes(Request $request) {
+    public function notasExistentesAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->findByIdAsignacion($request->get("asignacion_id"));
@@ -221,7 +220,7 @@ class NotasController extends Controller {
     /**
      * @Route("/todas_notas", name="todas_notas")
      */
-    public function devolverTodasNotas(Request $request){
+    public function devolverTodasNotasAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->find($request->get("asignacion_id"));
 
@@ -234,7 +233,7 @@ class NotasController extends Controller {
         $request->attributes->set("devolver_todas", 1);
         foreach($matriculas as $matricula){
             $request->attributes->set("matricula_id", $matricula->getIdMat());
-            $notas_estudiante = $this->notasExistentes($request);
+            $notas_estudiante = $this->notasExistentesAction($request);
             $nota = array("id" => $matricula->getIdMat(), 
                 "nombre" => $matricula->getEstudiante()->getNomEst(),
                 "notas" => $notas_estudiante);
