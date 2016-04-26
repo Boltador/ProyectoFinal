@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Temas" table="temas">
-    <indexes>
-      <index name="fk_tema_periodo" columns="id_periodo"/>
-      <index name="fk_tema_asignacion" columns="id_asignacion"/>
-    </indexes>
     <id name="idTema" type="integer" column="id_tema">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="nomTema" type="string" column="nom_tema" length="70" nullable="false"/>
     <field name="fechaInTema" type="date" column="fecha_in_tema" nullable="false"/>
     <field name="fechaFinTema" type="date" column="fecha_fin_tema" nullable="false"/>
-    <many-to-one field="idPeriodo" target-entity="Periodos">
-      <join-columns>
-        <join-column name="id_periodo" referenced-column-name="id_periodo"/>
-      </join-columns>
-    </many-to-one>
-    <many-to-one field="idAsignacion" target-entity="Asignaciones">
-      <join-columns>
-        <join-column name="id_asignacion" referenced-column-name="id_asignacion"/>
-      </join-columns>
-    </many-to-one>
   </entity>
 </doctrine-mapping>

@@ -78,36 +78,6 @@ class DefaultController extends Controller
     }
 
 
-    public function notasDocenteAction(){
-        $docente = $this->comprobarUsuarioAction();
-        if (!$docente) {
-            throw $this->createNotFoundException(
-                'No se encontró el docente con ID: ' . $docente->getIdDoc()
-                );
-        }
-        $lista_asignaciones = new Asignaciones();
-        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente);
-        $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual();
-        $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual();
-        $periodos = $periodo_actual->getPeriodosActuales($al_actual);
-        $grupo_dir = new Grupos();
-        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
-
-        $nota = new Notas();
-        $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
-
-        return $this->render('AdonaiUnicoBundle:Default:notas_docente.html.twig', array('docente' => $docente,
-            'lista_asignaciones' => $lista_asignaciones,
-            'al_actual' => $al_actual, 'periodo_actual' => $periodo_actual,
-            'periodos' => $periodos,
-            'grupo_dir' => $grupo_dir,
-            'nota' => $nota,
-            'form' => $form->createView()));
-    }
-
-
     public function comprobarUsuarioAction()
     {
         $coordinador = null;

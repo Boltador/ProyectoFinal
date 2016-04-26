@@ -8,7 +8,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("base.html.twig", "AdonaiUnicoBundle:Default:docente.html.twig", 1);
+        $this->parent = $this->loadTemplate("docente-base.html.twig", "AdonaiUnicoBundle:Default:docente.html.twig", 1);
         $this->blocks = array(
             'body' => array($this, 'block_body'),
             'scripts' => array($this, 'block_scripts'),
@@ -17,63 +17,28 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
     protected function doGetParent(array $context)
     {
-        return "base.html.twig";
+        return "docente-base.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_1e3bf1b278a328cb27803df4d1e790d3b6720b5d0083f285c681d534cebc3788 = $this->env->getExtension("native_profiler");
-        $__internal_1e3bf1b278a328cb27803df4d1e790d3b6720b5d0083f285c681d534cebc3788->enter($__internal_1e3bf1b278a328cb27803df4d1e790d3b6720b5d0083f285c681d534cebc3788_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:docente.html.twig"));
+        $__internal_1ca148bcf3717f5d3d1e26cad3c4921ed95d844ed3bd91d09df161b4aa94b2a6 = $this->env->getExtension("native_profiler");
+        $__internal_1ca148bcf3717f5d3d1e26cad3c4921ed95d844ed3bd91d09df161b4aa94b2a6->enter($__internal_1ca148bcf3717f5d3d1e26cad3c4921ed95d844ed3bd91d09df161b4aa94b2a6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "AdonaiUnicoBundle:Default:docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_1e3bf1b278a328cb27803df4d1e790d3b6720b5d0083f285c681d534cebc3788->leave($__internal_1e3bf1b278a328cb27803df4d1e790d3b6720b5d0083f285c681d534cebc3788_prof);
+        $__internal_1ca148bcf3717f5d3d1e26cad3c4921ed95d844ed3bd91d09df161b4aa94b2a6->leave($__internal_1ca148bcf3717f5d3d1e26cad3c4921ed95d844ed3bd91d09df161b4aa94b2a6_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_6c27e1b2684a38b5f7edc77a0aca00e7154c1c7a75a5ae4df7c023db20fdc6c3 = $this->env->getExtension("native_profiler");
-        $__internal_6c27e1b2684a38b5f7edc77a0aca00e7154c1c7a75a5ae4df7c023db20fdc6c3->enter($__internal_6c27e1b2684a38b5f7edc77a0aca00e7154c1c7a75a5ae4df7c023db20fdc6c3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_564a0c9955368ea61960ce2898ac03211ebf986b650c1a5d2d4dc6863b979a25 = $this->env->getExtension("native_profiler");
+        $__internal_564a0c9955368ea61960ce2898ac03211ebf986b650c1a5d2d4dc6863b979a25->enter($__internal_564a0c9955368ea61960ce2898ac03211ebf986b650c1a5d2d4dc6863b979a25_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "<!-- Header -->
-<div id=\"top-nav\" class=\"navbar navbar-inverse navbar-static-top\">
-  <div class=\"container\">
-    <div class=\"navbar-header\">
-      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">
-        <span class=\"icon-toggle\"></span>
-      </button>
-
-      <a style=\"color: white;\" class=\"navbar-brand\" href=\"#\">Sistema de Gestión Académica - ADONAI</a>
-    </div>
-
-    <div class=\"navbar-collapse collapse\">
-      <ul class=\"nav navbar-nav navbar-right\">
-        <li class=\"dropdown\">
-          <a style=\"color: white;\"  class=\"dropdown-toggle\" role=\"button\" data-toggle=\"dropdown\" href=\"#\">
-            <i class=\"glyphicon glyphicon-user\"></i>  ";
-        // line 19
-        if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array())) {
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
-        }
-        // line 20
-        echo "            <span class=\"caret\"></span></a>
-            <ul id=\"g-account-menu\" class=\"dropdown-menu\" role=\"menu\">
-              <li><a href=\"#\"><i class=\"glyphicon glyphicon-home\"></i>  Ir al Inicio</a></li>
-              <li><a href=\"";
-        // line 23
-        echo $this->env->getExtension('routing')->getPath("logout");
-        echo "\"><i class=\"glyphicon glyphicon-lock\"></i> Desconectarse</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div><!-- /container -->
-  </div>
-  <!-- /Header -->
-
+        echo "
   <!-- Main -->
   <div class=\"container\">
 
@@ -86,14 +51,17 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
         <ul class=\"nav nav-pills nav-stacked\">
           <li class=\"nav-item\"><a href=\"";
-        // line 43
+        // line 16
         echo $this->env->getExtension('routing')->getPath("AdonaiUsuarios_docente");
         echo "\"><i class=\"glyphicon glyphicon-home\"></i>   Inicio</a></li>
           <li class=\"nav-item\"><a href=\"#\"><i class=\"glyphicon glyphicon-education\"></i>   Competencias</a></li>
-          <li class=\"nav-item\"><a href=\"http://www.bootply.com/85861\"><i class=\"glyphicon glyphicon-th-list\"></i>   Planeadores</a></li>
           <li class=\"nav-item\"><a href=\"";
-        // line 46
-        echo $this->env->getExtension('routing')->getPath("AdonaiUsuarios_docente_notas");
+        // line 18
+        echo $this->env->getExtension('routing')->getPath("planeadores_index");
+        echo "\"><i class=\"glyphicon glyphicon-th-list\"></i>   Planeadores</a></li>
+          <li class=\"nav-item\"><a href=\"";
+        // line 19
+        echo $this->env->getExtension('routing')->getPath("notas_index");
         echo "\"><i class=\"glyphicon glyphicon-pencil\"></i>   Notas Estudiantes</a></li>
           <li class=\"nav-item\"><a href=\"#\"><i class=\"glyphicon glyphicon-folder-open\"></i>     Observador Grupo</a></li>
         </ul>
@@ -105,7 +73,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
         <!-- column 2 --> 
         <h3></i>Bienvenido al Panel de Gestión Docente: ";
-        // line 56
+        // line 29
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["docente"]) ? $context["docente"] : $this->getContext($context, "docente")), "nomDoc", array()), "html", null, true);
         echo " </h3>  
 
@@ -119,14 +87,14 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
               <div class=\"panel-body\">
 
                 <h4 id=\"subtitulo\"><i class=\"glyphicon glyphicon-calendar\"></i>  Año Lectivo Actual: </h4><medium>";
-        // line 67
+        // line 40
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["al_actual"]) ? $context["al_actual"] : $this->getContext($context, "al_actual")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
         echo " - ";
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["al_actual"]) ? $context["al_actual"] : $this->getContext($context, "al_actual")), "fechaFinal", array()), "d/m/Y"), "html", null, true);
         echo "</medium>
 
                 <h4 id=\"subtitulo\"><i class=\"glyphicon glyphicon-calendar\"></i>  Periodo Actual: </h4><medium>";
-        // line 69
+        // line 42
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["periodo_actual"]) ? $context["periodo_actual"] : $this->getContext($context, "periodo_actual")), "fechaInPer", array()), "d/m/Y"), "html", null, true);
         echo " - ";
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["periodo_actual"]) ? $context["periodo_actual"] : $this->getContext($context, "periodo_actual")), "fechaFinPer", array()), "d/m/Y"), "html", null, true);
@@ -140,9 +108,9 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
               <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-eye-open\"></i>  Dirección de Grupo</h4></div>
               <div class=\"panel-body\">
                 ";
-        // line 76
+        // line 49
         if (((isset($context["grupo_dir"]) ? $context["grupo_dir"] : $this->getContext($context, "grupo_dir")) != null)) {
-            // line 77
+            // line 50
             echo "                <medium>Actualmente eres el director de grupo de: <strong>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["grupo_dir"]) ? $context["grupo_dir"] : $this->getContext($context, "grupo_dir")), "grado", array()), "html", null, true);
             echo "-";
@@ -151,7 +119,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
                 <strong><medium><a href=\"#\">Ver lista de estudiantes</a></medium></strong>
                 ";
         }
-        // line 80
+        // line 53
         echo "              </div><!--/panel-body-->
             </div><!--/panel-->                     
 
@@ -160,7 +128,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
           <!--center-right-->
           <div class=\"col-md-5\">
             <img style=\"margin: 0 auto;\" class=\"img-responsive\" src=\"";
-        // line 87
+        // line 60
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/img/logo2.png"), "html", null, true);
         echo "\">
 
@@ -198,41 +166,41 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
             </thead>
             <tbody id=\"body_asignaciones\">
               ";
-        // line 122
+        // line 95
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["lista_asignaciones"]) ? $context["lista_asignaciones"] : $this->getContext($context, "lista_asignaciones")));
         foreach ($context['_seq'] as $context["_key"] => $context["asignacion"]) {
-            // line 123
+            // line 96
             echo "              <tr id=\"asignacion_activa_";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "idGrupo", array()), "html", null, true);
             echo "\">
                 <td>";
-            // line 124
+            // line 97
             echo twig_escape_filter($this->env, $this->getAttribute($context["asignacion"], "idAsignacion", array()), "html", null, true);
             echo "</td>
                 <td>";
-            // line 125
+            // line 98
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "asignatura", array()), "nomAsig", array()), "html", null, true);
             echo "</td>
                 <td>";
-            // line 126
+            // line 99
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "docente", array()), "nomDoc", array()), "html", null, true);
             echo "</td>
                 <td>";
-            // line 127
+            // line 100
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "grado", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "nomenclatura", array()), "html", null, true);
             echo "</td>
                 <td>";
-            // line 128
+            // line 101
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "aLectivo", array()), "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "aLectivo", array()), "fechaFinal", array()), "d/m/Y"), "html", null, true);
             echo "</td>
                 <td>
                   <button id=\"grupo";
-            // line 130
+            // line 103
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "idGrupo", array()), "html", null, true);
             echo "\" onclick=\"verListaMats(";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "idGrupo", array()), "html", null, true);
@@ -244,7 +212,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['asignacion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 134
+        // line 107
         echo "            </tbody>
           </table>
         </div> 
@@ -282,22 +250,22 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
   <!-- script references -->
   ";
-        // line 170
+        // line 143
         $this->displayBlock('scripts', $context, $blocks);
-        // line 219
+        // line 192
         echo "  ";
         
-        $__internal_6c27e1b2684a38b5f7edc77a0aca00e7154c1c7a75a5ae4df7c023db20fdc6c3->leave($__internal_6c27e1b2684a38b5f7edc77a0aca00e7154c1c7a75a5ae4df7c023db20fdc6c3_prof);
+        $__internal_564a0c9955368ea61960ce2898ac03211ebf986b650c1a5d2d4dc6863b979a25->leave($__internal_564a0c9955368ea61960ce2898ac03211ebf986b650c1a5d2d4dc6863b979a25_prof);
 
     }
 
-    // line 170
+    // line 143
     public function block_scripts($context, array $blocks = array())
     {
-        $__internal_2630ba814d8852890c5da6dbdee70181b650d73bf87a0bf80f18a95c8d23172a = $this->env->getExtension("native_profiler");
-        $__internal_2630ba814d8852890c5da6dbdee70181b650d73bf87a0bf80f18a95c8d23172a->enter($__internal_2630ba814d8852890c5da6dbdee70181b650d73bf87a0bf80f18a95c8d23172a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
+        $__internal_2b2a25626198b65a9512dcda9576c8a6eb2349fd81b6f5633d7534c813494df0 = $this->env->getExtension("native_profiler");
+        $__internal_2b2a25626198b65a9512dcda9576c8a6eb2349fd81b6f5633d7534c813494df0->enter($__internal_2b2a25626198b65a9512dcda9576c8a6eb2349fd81b6f5633d7534c813494df0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 171
+        // line 144
         echo "  <script>
 
   \$('#body_tabla_mats').append(\"<h4>\"+\"<span class='label label-info'>\"+\"Selecciona alguna lista de la tabla asignaciones\"+\"</span>\"+\"</h4>\");
@@ -305,7 +273,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
   function verListaMats(id_grupo){
     \$.ajax({
       url: \"";
-        // line 177
+        // line 150
         echo $this->env->getExtension('routing')->getPath("buscarListaMats");
         echo "\",
       data: ({'id': id_grupo }),
@@ -320,16 +288,16 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
           \$('#body_tabla_mats').append(rowEntity(data));
 
           ";
-        // line 189
+        // line 162
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["lista_asignaciones"]) ? $context["lista_asignaciones"] : $this->getContext($context, "lista_asignaciones")));
         foreach ($context['_seq'] as $context["_key"] => $context["asignacion"]) {
-            // line 190
+            // line 163
             echo "          if(\$('#asignacion_activa_";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "idGrupo", array()), "html", null, true);
             echo "').hasClass(\"info\")){
             \$('#asignacion_activa_";
-            // line 191
+            // line 164
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["asignacion"], "grupo", array()), "idGrupo", array()), "html", null, true);
             echo "').removeClass(\"info\");
           }
@@ -338,7 +306,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['asignacion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 194
+        // line 167
         echo "          \$('#asignacion_activa_' + id_grupo).addClass(\"info\");
           
         }
@@ -365,7 +333,7 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
   </script>
   ";
         
-        $__internal_2630ba814d8852890c5da6dbdee70181b650d73bf87a0bf80f18a95c8d23172a->leave($__internal_2630ba814d8852890c5da6dbdee70181b650d73bf87a0bf80f18a95c8d23172a_prof);
+        $__internal_2b2a25626198b65a9512dcda9576c8a6eb2349fd81b6f5633d7534c813494df0->leave($__internal_2b2a25626198b65a9512dcda9576c8a6eb2349fd81b6f5633d7534c813494df0_prof);
 
     }
 
@@ -381,39 +349,12 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 
     public function getDebugInfo()
     {
-        return array (  342 => 194,  333 => 191,  328 => 190,  324 => 189,  309 => 177,  301 => 171,  295 => 170,  288 => 219,  286 => 170,  248 => 134,  236 => 130,  229 => 128,  223 => 127,  219 => 126,  215 => 125,  211 => 124,  206 => 123,  202 => 122,  164 => 87,  155 => 80,  146 => 77,  144 => 76,  130 => 69,  123 => 67,  109 => 56,  96 => 46,  90 => 43,  67 => 23,  62 => 20,  58 => 19,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  310 => 167,  301 => 164,  296 => 163,  292 => 162,  277 => 150,  269 => 144,  263 => 143,  256 => 192,  254 => 143,  216 => 107,  204 => 103,  197 => 101,  191 => 100,  187 => 99,  183 => 98,  179 => 97,  174 => 96,  170 => 95,  132 => 60,  123 => 53,  114 => 50,  112 => 49,  98 => 42,  91 => 40,  77 => 29,  64 => 19,  60 => 18,  55 => 16,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
-/* {% extends 'base.html.twig' %}*/
+/* {% extends 'docente-base.html.twig' %}*/
 /* */
 /* {% block body %}*/
-/* <!-- Header -->*/
-/* <div id="top-nav" class="navbar navbar-inverse navbar-static-top">*/
-/*   <div class="container">*/
-/*     <div class="navbar-header">*/
-/*       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">*/
-/*         <span class="icon-toggle"></span>*/
-/*       </button>*/
-/* */
-/*       <a style="color: white;" class="navbar-brand" href="#">Sistema de Gestión Académica - ADONAI</a>*/
-/*     </div>*/
-/* */
-/*     <div class="navbar-collapse collapse">*/
-/*       <ul class="nav navbar-nav navbar-right">*/
-/*         <li class="dropdown">*/
-/*           <a style="color: white;"  class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">*/
-/*             <i class="glyphicon glyphicon-user"></i>  {% if app.user %}{{ app.user.username }}{% endif %}*/
-/*             <span class="caret"></span></a>*/
-/*             <ul id="g-account-menu" class="dropdown-menu" role="menu">*/
-/*               <li><a href="#"><i class="glyphicon glyphicon-home"></i>  Ir al Inicio</a></li>*/
-/*               <li><a href="{{ path('logout') }}"><i class="glyphicon glyphicon-lock"></i> Desconectarse</a></li>*/
-/*             </ul>*/
-/*           </li>*/
-/*         </ul>*/
-/*       </div>*/
-/*     </div><!-- /container -->*/
-/*   </div>*/
-/*   <!-- /Header -->*/
 /* */
 /*   <!-- Main -->*/
 /*   <div class="container">*/
@@ -428,8 +369,8 @@ class __TwigTemplate_730fe9ec9115dfb07c5e4bac60c7f822585cf2a0fe2e2b8c902f86113fa
 /*         <ul class="nav nav-pills nav-stacked">*/
 /*           <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>*/
 /*           <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-education"></i>   Competencias</a></li>*/
-/*           <li class="nav-item"><a href="http://www.bootply.com/85861"><i class="glyphicon glyphicon-th-list"></i>   Planeadores</a></li>*/
-/*           <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente_notas') }}"><i class="glyphicon glyphicon-pencil"></i>   Notas Estudiantes</a></li>*/
+/*           <li class="nav-item"><a href="{{ path('planeadores_index') }}"><i class="glyphicon glyphicon-th-list"></i>   Planeadores</a></li>*/
+/*           <li class="nav-item"><a href="{{ path('notas_index') }}"><i class="glyphicon glyphicon-pencil"></i>   Notas Estudiantes</a></li>*/
 /*           <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-folder-open"></i>     Observador Grupo</a></li>*/
 /*         </ul>*/
 /*         */

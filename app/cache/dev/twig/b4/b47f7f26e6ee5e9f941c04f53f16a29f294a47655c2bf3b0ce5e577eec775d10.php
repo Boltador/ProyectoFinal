@@ -21,20 +21,20 @@ class __TwigTemplate_e83b28f3ca5ce8048fbfc30da4c14ae0c8dfec50ae261c0234e3753ad7f
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_eb7d4d9c634a468f990a57d7c0119a12d08305e0489b57ccafc59add0224f71a = $this->env->getExtension("native_profiler");
-        $__internal_eb7d4d9c634a468f990a57d7c0119a12d08305e0489b57ccafc59add0224f71a->enter($__internal_eb7d4d9c634a468f990a57d7c0119a12d08305e0489b57ccafc59add0224f71a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "grupos/index.html.twig"));
+        $__internal_3b184a570e93157d3a51e707836a1666f8282f39ab80fdf13c10642367bc90a1 = $this->env->getExtension("native_profiler");
+        $__internal_3b184a570e93157d3a51e707836a1666f8282f39ab80fdf13c10642367bc90a1->enter($__internal_3b184a570e93157d3a51e707836a1666f8282f39ab80fdf13c10642367bc90a1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "grupos/index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_eb7d4d9c634a468f990a57d7c0119a12d08305e0489b57ccafc59add0224f71a->leave($__internal_eb7d4d9c634a468f990a57d7c0119a12d08305e0489b57ccafc59add0224f71a_prof);
+        $__internal_3b184a570e93157d3a51e707836a1666f8282f39ab80fdf13c10642367bc90a1->leave($__internal_3b184a570e93157d3a51e707836a1666f8282f39ab80fdf13c10642367bc90a1_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_eb0fccd5ef55ebcbfd42a18a810ebd9bd7698f8b3f1a8d614a3d9bb405d7c74d = $this->env->getExtension("native_profiler");
-        $__internal_eb0fccd5ef55ebcbfd42a18a810ebd9bd7698f8b3f1a8d614a3d9bb405d7c74d->enter($__internal_eb0fccd5ef55ebcbfd42a18a810ebd9bd7698f8b3f1a8d614a3d9bb405d7c74d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_5096c24ae8b498f11b34bd38be6a98c56d5964cdae491190a6841c9a152f0b63 = $this->env->getExtension("native_profiler");
+        $__internal_5096c24ae8b498f11b34bd38be6a98c56d5964cdae491190a6841c9a152f0b63->enter($__internal_5096c24ae8b498f11b34bd38be6a98c56d5964cdae491190a6841c9a152f0b63_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <h1>Grupos list</h1>
@@ -101,7 +101,7 @@ class __TwigTemplate_e83b28f3ca5ce8048fbfc30da4c14ae0c8dfec50ae261c0234e3753ad7f
     </ul>
 ";
         
-        $__internal_eb0fccd5ef55ebcbfd42a18a810ebd9bd7698f8b3f1a8d614a3d9bb405d7c74d->leave($__internal_eb0fccd5ef55ebcbfd42a18a810ebd9bd7698f8b3f1a8d614a3d9bb405d7c74d_prof);
+        $__internal_5096c24ae8b498f11b34bd38be6a98c56d5964cdae491190a6841c9a152f0b63->leave($__internal_5096c24ae8b498f11b34bd38be6a98c56d5964cdae491190a6841c9a152f0b63_prof);
 
     }
 

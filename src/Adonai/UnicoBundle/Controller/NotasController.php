@@ -2,15 +2,18 @@
 
 namespace Adonai\UnicoBundle\Controller;
 
+use Adonai\UnicoBundle\Entity\Asignaciones;
 use Adonai\UnicoBundle\Entity\ALectivos;
+use Adonai\UnicoBundle\Entity\Periodos;
+use Adonai\UnicoBundle\Entity\Grupos;
+use Adonai\UnicoBundle\Entity\Notas;
+use Adonai\UnicoBundle\Entity\Matriculas;
+use Adonai\UnicoBundle\Entity\Competencias;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Adonai\UnicoBundle\Entity\Notas;
 use Adonai\UnicoBundle\Form\NotasType;
-use Adonai\UnicoBundle\Entity\Periodos;
-use Adonai\UnicoBundle\Entity\Competencias;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -27,12 +30,32 @@ class NotasController extends Controller {
      * @Method("GET")
      */
     public function indexAction() {
-        $em = $this->getDoctrine()->getManager();
-        $notas = $em->getRepository('AdonaiUnicoBundle:Notas')->findAll();
+        $docente = $this->comprobarUsuarioAction();
+        if (!$docente) {
+            throw $this->createNotFoundException(
+                'No se encontró el docente con ID: ' . $docente->getIdDoc()
+                );
+        }
+        $lista_asignaciones = new Asignaciones();
+        $lista_asignaciones = $lista_asignaciones->getListaAsignacionesActual($docente);
+        $al_actual = new ALectivos();
+        $al_actual = $al_actual->getAñoLectivoActual();
+        $periodo_actual = new Periodos();
+        $periodo_actual = $periodo_actual->getPeriodoActual();
+        $periodos = $periodo_actual->getPeriodosActuales($al_actual);
+        $grupo_dir = new Grupos();
+        $grupo_dir = $grupo_dir->comprobarDirectorDocente($docente);
 
-        return $this->render('notas/index.html.twig', array(
-            'notas' => $notas,
-            ));
+        $nota = new Notas();
+        $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
+
+        return $this->render('AdonaiUnicoBundle:Notas:notas_docente.html.twig', array('docente' => $docente,
+            'lista_asignaciones' => $lista_asignaciones,
+            'al_actual' => $al_actual, 'periodo_actual' => $periodo_actual,
+            'periodos' => $periodos,
+            'grupo_dir' => $grupo_dir,
+            'nota' => $nota,
+            'form' => $form->createView()));
     }
 
     /**
@@ -43,11 +66,11 @@ class NotasController extends Controller {
         $notas = $request->get("notas");
         $em = $this->getDoctrine()->getManager();
         $al_actual = new ALectivos();
-        $al_actual = $al_actual->getAñoLectivoActual($em);
+        $al_actual = $al_actual->getAñoLectivoActual();
         $docente = $this->comprobarUsuarioAction();
         $nota = new Notas();
         $periodo_actual = new Periodos();
-        $periodo_actual = $periodo_actual->getPeriodoActual($em);
+        $periodo_actual = $periodo_actual->getPeriodoActual();
         $form = $this->createForm(new NotasType($docente, $al_actual, $periodo_actual->getFechaInPer()), $nota);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

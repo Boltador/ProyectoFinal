@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Planeadores list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idplan</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planeadore in planeadores %}
+            <tr>
+                <td><a href="{{ path('planeadores_show', { 'id': planeadore.idPlan }) }}">{{ planeadore.idPlan }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('planeadores_show', { 'id': planeadore.idPlan }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('planeadores_edit', { 'id': planeadore.idPlan }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('planeadores_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

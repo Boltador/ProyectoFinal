@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Temas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idtema</th>
+                <th>Nomtema</th>
+                <th>Fechaintema</th>
+                <th>Fechafintema</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tema in temas %}
+            <tr>
+                <td><a href="{{ path('temas_show', { 'id': tema.idTema }) }}">{{ tema.idTema }}</a></td>
+                <td>{{ tema.nomTema }}</td>
+                <td>{% if tema.fechaInTema %}{{ tema.fechaInTema|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if tema.fechaFinTema %}{{ tema.fechaFinTema|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('temas_show', { 'id': tema.idTema }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('temas_edit', { 'id': tema.idTema }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('temas_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

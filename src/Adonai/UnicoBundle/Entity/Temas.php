@@ -42,26 +42,6 @@ class Temas
      */
     private $fechaFinTema;
 
-    /**
-     * @var \Asignaciones
-     *
-     * @ORM\ManyToOne(targetEntity="Asignaciones")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_asignacion", referencedColumnName="id_asignacion")
-     * })
-     */
-    private $asignacion;
-
-    /**
-     * @var \Periodos
-     *
-     * @ORM\ManyToOne(targetEntity="Periodos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_periodo", referencedColumnName="id_periodo")
-     * })
-     */
-    private $periodo;
-
 
     /**
      * Get idTema
@@ -140,51 +120,5 @@ class Temas
     public function getFechaFinTema()
     {
         return $this->fechaFinTema;
-    }
-
-    /**
-     * Set asignacion
-     *
-     * @param \Adonai\UnicoBundle\Entity\Asignaciones $asignacion
-     * @return Temas
-     */
-    public function setAsignacion(\Adonai\UnicoBundle\Entity\Asignaciones $asignacion = null)
-    {
-        $this->asignacion = $asignacion;
-
-        return $this;
-    }
-
-    /**
-     * Get asignacion
-     *
-     * @return \Adonai\UnicoBundle\Entity\Asignaciones 
-     */
-    public function getAsignacion()
-    {
-        return $this->asignacion;
-    }
-
-    /**
-     * Set periodo
-     *
-     * @param \Adonai\UnicoBundle\Entity\Periodos $periodo
-     * @return Temas
-     */
-    public function setPeriodo(\Adonai\UnicoBundle\Entity\Periodos $periodo = null)
-    {
-        $this->periodo = $periodo;
-
-        return $this;
-    }
-
-    /**
-     * Get periodo
-     *
-     * @return \Adonai\UnicoBundle\Entity\Periodos 
-     */
-    public function getPeriodo()
-    {
-        return $this->periodo;
     }
 }

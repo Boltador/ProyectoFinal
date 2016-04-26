@@ -15,10 +15,6 @@ AdonaiUsuarios_docente:
     path:  /docente_panel
     defaults: { _controller: AdonaiUnicoBundle:Default:docente }
 
-AdonaiUsuarios_docente_notas:
-    path:  /docente_notas
-    defaults: { _controller: AdonaiUnicoBundle:Default:notasDocente }
-
 AdonaiUsuarios_inicio:
     path:  /index
     defaults: { _controller: AdonaiUnicoBundle:Default:index }
