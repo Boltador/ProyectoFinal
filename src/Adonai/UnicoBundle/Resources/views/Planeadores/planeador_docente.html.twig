@@ -32,8 +32,11 @@
             <!-- column 2 -->
             <h3></i>Panel Planeadores Académicos</h3>
             <hr>
+
             <!-- center left-->
             <div id="contenedor_gestionar_busqueda" class="col-md-12">
+               <form id="form_plan" action="{{ path('planeadores_new') }}" method="POST" novalidate role="form">
+                {{ form_row(form._token) }}
                 <div class="panel panel-primary">
                     <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Crear Planeadores</h4></div>
                     <div id="panel_ver_notas" class="panel-body">
@@ -45,6 +48,7 @@
                             <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/>
                             <medium><< Planeador para el periodo: </medium>
                             <medium id="periodo_numero"><strong>{{ periodo_actual.numero }} </strong> >></medium>
+                            {{ form_widget(form.periodo, {'attr': {'class':'hidden'}})}}
                         </div>
                         <div class="col-xs-4">
                             <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
@@ -72,20 +76,22 @@
                             </div>
                             <hr><button id="add" type='button' class='btn btn-info' onclick="agregar();">
                             <span class="glyphicon glyphicon-plus"></span>   Añadir Tema</button>
+                            <button id="enviar_form" type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-floppy-saved"></span>       Crear Planeador
+                            </button> 
                             <br/>
-                        </div><!--/panel-body-->
-                    </div><!-- Panel-Primary -->
-                </div><!-- contenedor-registrar -->
-            </div><!-- row Gestionar -->
+                        </div><!--/col-xs-12-->
+                    </div><!-- Panel-ver-notas -->
+                </form>
+            </div><!-- contenedor-gestionar-busqueda -->
+        </div><!-- contenedor-central -->
 
+        <div id="contenedor_registrar_planeador" class="col-sm-12">
+        </div><!-- contenedor-registrar -->
 
-            <div id="contenedor_registrar_planeador" class="col-sm-12">
-            </div><!-- contenedor-registrar -->
-
-        </div><!-- /Contenedor-Central -->
-    </div><!-- row primera -->
+    </div><!-- /row-primera -->
+</div><!-- row primera -->
 </div><!--/container-->
-
 
 <!-- /Main -->
 <footer id="footer"class="text-center">Copyright &copy; 2016 | Colegio Bautista Ebenezer - <a href="http://google.com"><strong>Creador: Carlos Caicedo</strong></a></footer>

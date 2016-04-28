@@ -65,17 +65,17 @@ class PlaneadoresController extends Controller
      */
     public function newAction(Request $request)
     {
-     $al_actual = new ALectivos();
-     $al_actual = $al_actual->getAñoLectivoActual();
-     $docente = $this->comprobarUsuarioAction();
-     $periodo_actual = new Periodos();
-     $periodo_actual = $periodo_actual->getPeriodoActual();
+       $al_actual = new ALectivos();
+       $al_actual = $al_actual->getAñoLectivoActual();
+       $docente = $this->comprobarUsuarioAction();
+       $periodo_actual = new Periodos();
+       $periodo_actual = $periodo_actual->getPeriodoActual();
 
-     $planeador = new Planeadores();
-     $form = $this->createForm(new PlaneadoresType($docente, $al_actual, $periodo_actual->getFechaInPer()), $planeador);
-     $form->handleRequest($request);
+       $planeador = new Planeadores();
+       $form = $this->createForm(new PlaneadoresType($docente, $al_actual, $periodo_actual->getFechaInPer()), $planeador);
+       $form->handleRequest($request);
 
-     if ($form->isSubmitted() && $form->isValid()) {
+       if ($form->isSubmitted() && $form->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($planeador);
         $em->flush();

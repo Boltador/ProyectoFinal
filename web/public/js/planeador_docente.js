@@ -62,3 +62,17 @@ function reasignarTemas(){
         
     });
 }
+
+
+//Enviar formulario por AJAX
+$('#form_plan').submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        success: function (data) {
+        }
+    });
+    return false;
+});

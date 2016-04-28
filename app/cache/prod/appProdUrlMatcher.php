@@ -807,78 +807,205 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
         }
 
-        if (0 === strpos($pathinfo, '/periodos')) {
-            // periodos_index
-            if (rtrim($pathinfo, '/') === '/periodos') {
+        if (0 === strpos($pathinfo, '/p')) {
+            if (0 === strpos($pathinfo, '/periodos')) {
+                // periodos_index
+                if (rtrim($pathinfo, '/') === '/periodos') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_periodos_index;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'periodos_index');
+                    }
+
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::indexAction',  '_route' => 'periodos_index',);
+                }
+                not_periodos_index:
+
+                // periodos_new
+                if ($pathinfo === '/periodos/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_periodos_new;
+                    }
+
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::newAction',  '_route' => 'periodos_new',);
+                }
+                not_periodos_new:
+
+                // periodos_show
+                if (preg_match('#^/periodos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_periodos_show;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_show')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::showAction',));
+                }
+                not_periodos_show:
+
+                // periodos_edit
+                if (preg_match('#^/periodos/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_periodos_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_edit')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::editAction',));
+                }
+                not_periodos_edit:
+
+                // periodos_delete
+                if (preg_match('#^/periodos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'DELETE') {
+                        $allow[] = 'DELETE';
+                        goto not_periodos_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_delete')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::deleteAction',));
+                }
+                not_periodos_delete:
+
+                if (0 === strpos($pathinfo, '/periodos/periodo')) {
+                    // select_periodo_actual
+                    if ($pathinfo === '/periodos/periodo_actual') {
+                        return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::periodoActualAction',  '_route' => 'select_periodo_actual',);
+                    }
+
+                    // periodos_actuales
+                    if ($pathinfo === '/periodos/periodos_actuales') {
+                        return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::getPeriodosActuales',  '_route' => 'periodos_actuales',);
+                    }
+
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/planeadores')) {
+                // planeadores_index
+                if (rtrim($pathinfo, '/') === '/planeadores') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_planeadores_index;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'planeadores_index');
+                    }
+
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::indexAction',  '_route' => 'planeadores_index',);
+                }
+                not_planeadores_index:
+
+                // planeadores_new
+                if ($pathinfo === '/planeadores/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_planeadores_new;
+                    }
+
+                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::newAction',  '_route' => 'planeadores_new',);
+                }
+                not_planeadores_new:
+
+                // planeadores_show
+                if (preg_match('#^/planeadores/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_planeadores_show;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'planeadores_show')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::showAction',));
+                }
+                not_planeadores_show:
+
+                // planeadores_edit
+                if (preg_match('#^/planeadores/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_planeadores_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'planeadores_edit')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::editAction',));
+                }
+                not_planeadores_edit:
+
+                // planeadores_delete
+                if (preg_match('#^/planeadores/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'DELETE') {
+                        $allow[] = 'DELETE';
+                        goto not_planeadores_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'planeadores_delete')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::deleteAction',));
+                }
+                not_planeadores_delete:
+
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/temas')) {
+            // temas_index
+            if (rtrim($pathinfo, '/') === '/temas') {
                 if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_periodos_index;
+                    goto not_temas_index;
                 }
 
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'periodos_index');
+                    return $this->redirect($pathinfo.'/', 'temas_index');
                 }
 
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::indexAction',  '_route' => 'periodos_index',);
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\TemasController::indexAction',  '_route' => 'temas_index',);
             }
-            not_periodos_index:
+            not_temas_index:
 
-            // periodos_new
-            if ($pathinfo === '/periodos/new') {
+            // temas_new
+            if ($pathinfo === '/temas/new') {
                 if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
-                    goto not_periodos_new;
+                    goto not_temas_new;
                 }
 
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::newAction',  '_route' => 'periodos_new',);
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\TemasController::newAction',  '_route' => 'temas_new',);
             }
-            not_periodos_new:
+            not_temas_new:
 
-            // periodos_show
-            if (preg_match('#^/periodos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            // temas_show
+            if (preg_match('#^/temas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_periodos_show;
+                    goto not_temas_show;
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_show')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::showAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'temas_show')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\TemasController::showAction',));
             }
-            not_periodos_show:
+            not_temas_show:
 
-            // periodos_edit
-            if (preg_match('#^/periodos/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+            // temas_edit
+            if (preg_match('#^/temas/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                 if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
-                    goto not_periodos_edit;
+                    goto not_temas_edit;
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_edit')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::editAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'temas_edit')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\TemasController::editAction',));
             }
-            not_periodos_edit:
+            not_temas_edit:
 
-            // periodos_delete
-            if (preg_match('#^/periodos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            // temas_delete
+            if (preg_match('#^/temas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 if ($this->context->getMethod() != 'DELETE') {
                     $allow[] = 'DELETE';
-                    goto not_periodos_delete;
+                    goto not_temas_delete;
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'periodos_delete')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::deleteAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'temas_delete')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\TemasController::deleteAction',));
             }
-            not_periodos_delete:
-
-            if (0 === strpos($pathinfo, '/periodos/periodo')) {
-                // select_periodo_actual
-                if ($pathinfo === '/periodos/periodo_actual') {
-                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::periodoActualAction',  '_route' => 'select_periodo_actual',);
-                }
-
-                // periodos_actuales
-                if ($pathinfo === '/periodos/periodos_actuales') {
-                    return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PeriodosController::getPeriodosActuales',  '_route' => 'periodos_actuales',);
-                }
-
-            }
+            not_temas_delete:
 
         }
 
@@ -925,17 +1052,9 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\DefaultController::adminAction',  '_route' => 'AdonaiUsuarios_admin',);
         }
 
-        if (0 === strpos($pathinfo, '/docente_')) {
-            // AdonaiUsuarios_docente
-            if ($pathinfo === '/docente_panel') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\DefaultController::docenteAction',  '_route' => 'AdonaiUsuarios_docente',);
-            }
-
-            // AdonaiUsuarios_docente_notas
-            if ($pathinfo === '/docente_notas') {
-                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\DefaultController::notasDocenteAction',  '_route' => 'AdonaiUsuarios_docente_notas',);
-            }
-
+        // AdonaiUsuarios_docente
+        if ($pathinfo === '/docente_panel') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\DefaultController::docenteAction',  '_route' => 'AdonaiUsuarios_docente',);
         }
 
         // AdonaiUsuarios_inicio

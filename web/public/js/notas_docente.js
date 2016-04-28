@@ -73,7 +73,6 @@ $(function () {
                                 data: data,
                                 success: function (data) {
                                     $('#div_registrar_espera').empty();
-                                    eliminarInputsNota();
                                     $('#panel_competencias').empty();
                                     setearCompetencias(data);
                                     comprobarCompetencias();
@@ -92,7 +91,6 @@ $(function () {
 //Enviar formulario por AJAX
 $('#form_notas').submit(function (e) {
     e.preventDefault();
-    setearInputsNota();
     $('#div_registrar_espera').empty();
     $('#div_lista_espera').empty();
     if ($("#confirmacion")) {
@@ -400,16 +398,13 @@ function setearCompetencias(data) {
         "<br/>" +
         "<label for='lbl_nota_" + i + "'>" + "Nota: " + "</label>" +
         "<div id='div_nota_" + i + "'>" +
-        "<input type='text' id='input_nota_" + i + "' class='form-control' onkeypress='numeros(event)' placeholder='Escriba la nota Ej: 5.0' />" +
+        "<input type='text' id='input_nota_" + i + "' class='form-control' onkeypress='numeros(event)' placeholder='Escriba la nota Ej: 5.0' name='notas[]' />" +
         "</div>" +
         "</div>" +
         "</div>" +
         "</div>" +
         "</div>";
         $('#panel_competencias').append(competencia);
-        $("<input id='input_hide_" + i + "' class='hidden' type='number' name='notas[]' />").appendTo($('#form_notas'));
-        $('#input_hide_' + i).mask("9.9");
-
         $('#input_nota_' + i).attr('disabled', true);
         $.mask.definitions['#']='[12345]';
         $('#input_nota_' + i).mask("#.9");
@@ -432,15 +427,14 @@ function limpiarInputsNota() {
     $("#panel_competencias input").each(function (index)
     {
         $(this).val("");
-        $('#input_hide_' + index).val("");
     });
 }
 
-// Notas: Eliminar los Inputs Ocultos de las notas
+// Notas: Eliminar los Inputs de las notas
 function eliminarInputsNota() {
-    $("#panel_asignaciones input").each(function (index)
+    $("#panel_competencias input").each(function (index)
     {
-        if ($(this).attr('id') === ("input_hide_" + index)) {
+        if ($(this).attr('id') === ("input_nota_" + index)) {
             $(this).remove();
         }
     });
