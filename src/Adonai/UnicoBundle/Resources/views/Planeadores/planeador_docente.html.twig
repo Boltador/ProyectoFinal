@@ -1,6 +1,13 @@
 {% extends 'docente-base.html.twig' %}
 
+{% block stylescustom %}
+<link href="{{ asset('public/css/datepicker/bootstrap-datepicker.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
+
+<div id="fecha_inicio_per" data-path="{{ periodo_actual.fechaInPer|date("d/m/Y") }}" class="hidden"></div>
+<div id="fecha_final_per" data-path="{{ periodo_actual.fechaFinPer|date("d/m/Y") }}" class="hidden"></div>
 
 <!-- Main -->
 <div class="container">
@@ -11,7 +18,6 @@
             <!-- left -->
             <h3><i class="glyphicon glyphicon-menu-hamburger"></i>    Menú</h3>
             <hr>
-
             <ul class="nav nav-pills nav-stacked">
                 <li class="nav-item"><a href="{{ path('AdonaiUsuarios_docente') }}"><i class="glyphicon glyphicon-home"></i>   Inicio</a></li>
                 <li class="nav-item"><a href="#"><i class="glyphicon glyphicon-education"></i>   Competencias</a></li>
@@ -31,18 +37,53 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Crear Planeadores</h4></div>
                     <div id="panel_ver_notas" class="panel-body">
+                        <div class="col-xs-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-list-alt"></i>  Escoger Asignación: </h5>
+                            {{ form_widget(form.asignacion, {'attr': {'class':'form-control'}})}}
+                        </div>
+                        <div class="col-xs-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Periodo Actual: </h5><medium id="periodo_fechas">{{ periodo_actual.fechaInPer|date("d/m/Y") }} - {{ periodo_actual.fechaFinPer|date("d/m/Y") }}</medium><br/>
+                            <medium><< Planeador para el periodo: </medium>
+                            <medium id="periodo_numero"><strong>{{ periodo_actual.numero }} </strong> >></medium>
+                        </div>
+                        <div class="col-xs-4">
+                            <h5 id="subtitulo"><i class="glyphicon glyphicon-calendar"></i>  Año Lectivo Actual: </h5><medium>{{ al_actual.fechaInicio|date("d/m/Y") }} - {{ al_actual.fechaFinal|date("d/m/Y") }}</medium>
+                        </div> 
+                        <br/><br/><br/>
+                        <div class="col-xs-12">
+                            <hr>
+                            <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Agregar Temas </h4>
+                            <br/>
+                            <table id="tabla_plan" class="table table-hover hidden">
+                                <thead id="head_tabla_plan">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tema</th>
+                                        <th>Fechas</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body_tabla_plan">
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div id="temas_vacio">
+                                <p><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>
+                            </div>
+                            <hr><button id="add" type='button' class='btn btn-info' onclick="agregar();">
+                            <span class="glyphicon glyphicon-plus"></span>   Añadir Tema</button>
+                            <br/>
+                        </div><!--/panel-body-->
+                    </div><!-- Panel-Primary -->
+                </div><!-- contenedor-registrar -->
+            </div><!-- row Gestionar -->
 
-                    </div><!--/panel-body-->
-                </div><!-- Panel-Primary -->
+
+            <div id="contenedor_registrar_planeador" class="col-sm-12">
             </div><!-- contenedor-registrar -->
-        </div><!-- row Gestionar -->
 
-
-        <div id="contenedor_registrar_planeador" class="col-sm-12">
-        </div><!-- contenedor-registrar -->
-
-    </div><!-- /Contenedor-Central -->
-</div><!-- row primera -->
+        </div><!-- /Contenedor-Central -->
+    </div><!-- row primera -->
 </div><!--/container-->
 
 
@@ -51,5 +92,9 @@
 
 <!-- script references -->
 {% block scripts %}
+<script src="{{ asset('public/js/datepicker/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('public/js/planeador_docente.js') }}"></script>
+
 {% endblock %}
+
 {% endblock %}

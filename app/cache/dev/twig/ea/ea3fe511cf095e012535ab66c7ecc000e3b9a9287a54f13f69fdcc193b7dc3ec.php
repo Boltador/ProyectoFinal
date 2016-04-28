@@ -12,6 +12,7 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'stylescustom' => array($this, 'block_stylescustom'),
             'javascripts' => array($this, 'block_javascripts'),
             'body' => array($this, 'block_body'),
         );
@@ -19,8 +20,8 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_2482da9280254e1f48db904d5887b94cb899b82be5f70cec402259c410caf0ba = $this->env->getExtension("native_profiler");
-        $__internal_2482da9280254e1f48db904d5887b94cb899b82be5f70cec402259c410caf0ba->enter($__internal_2482da9280254e1f48db904d5887b94cb899b82be5f70cec402259c410caf0ba_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "docente-base.html.twig"));
+        $__internal_6ecd949cd3c3228958f36f151dda0b6e81916261e3430c3ea4c372b18c5eaee4 = $this->env->getExtension("native_profiler");
+        $__internal_6ecd949cd3c3228958f36f151dda0b6e81916261e3430c3ea4c372b18c5eaee4->enter($__internal_6ecd949cd3c3228958f36f151dda0b6e81916261e3430c3ea4c372b18c5eaee4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "docente-base.html.twig"));
 
         // line 1
         echo "<!DOCTYPE html>
@@ -38,9 +39,16 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
         // line 9
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 14
-        echo "  ";
+        echo "  
+  ";
+        // line 15
+        $this->displayBlock('stylescustom', $context, $blocks);
+        // line 17
+        echo "
+  ";
+        // line 18
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 21
+        // line 25
         echo "  <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/img/icono.ico"), "html", null, true);
         echo "\" />
@@ -62,16 +70,16 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
           <li class=\"dropdown\">
             <a style=\"color: white;\"  class=\"dropdown-toggle\" role=\"button\" data-toggle=\"dropdown\" href=\"#\">
               <i class=\"glyphicon glyphicon-user\"></i>  ";
-        // line 39
+        // line 43
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array())) {
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
         }
-        // line 40
+        // line 44
         echo "              <span class=\"caret\"></span></a>
               <ul id=\"g-account-menu\" class=\"dropdown-menu\" role=\"menu\">
                 <li><a href=\"#\"><i class=\"glyphicon glyphicon-home\"></i>  Ir al Inicio</a></li>
                 <li><a href=\"";
-        // line 43
+        // line 47
         echo $this->env->getExtension('routing')->getPath("logout");
         echo "\"><i class=\"glyphicon glyphicon-lock\"></i> Desconectarse</a></li>
               </ul>
@@ -82,34 +90,34 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
     </div>
     <!-- /Header -->
     ";
-        // line 51
+        // line 55
         $this->displayBlock('body', $context, $blocks);
-        // line 54
+        // line 58
         echo "  </body>
   </html>
 ";
         
-        $__internal_2482da9280254e1f48db904d5887b94cb899b82be5f70cec402259c410caf0ba->leave($__internal_2482da9280254e1f48db904d5887b94cb899b82be5f70cec402259c410caf0ba_prof);
+        $__internal_6ecd949cd3c3228958f36f151dda0b6e81916261e3430c3ea4c372b18c5eaee4->leave($__internal_6ecd949cd3c3228958f36f151dda0b6e81916261e3430c3ea4c372b18c5eaee4_prof);
 
     }
 
     // line 7
     public function block_title($context, array $blocks = array())
     {
-        $__internal_0197616e2c54c4bfeb430ec32f696aa1228415c966a682704f172d1afdc58b98 = $this->env->getExtension("native_profiler");
-        $__internal_0197616e2c54c4bfeb430ec32f696aa1228415c966a682704f172d1afdc58b98->enter($__internal_0197616e2c54c4bfeb430ec32f696aa1228415c966a682704f172d1afdc58b98_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_b3d4b9c3110b7ba6ab40a36ea29886e863a46726c78068229b5ab916f2dbe7ca = $this->env->getExtension("native_profiler");
+        $__internal_b3d4b9c3110b7ba6ab40a36ea29886e863a46726c78068229b5ab916f2dbe7ca->enter($__internal_b3d4b9c3110b7ba6ab40a36ea29886e863a46726c78068229b5ab916f2dbe7ca_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "Sistema de Gestión Académica";
         
-        $__internal_0197616e2c54c4bfeb430ec32f696aa1228415c966a682704f172d1afdc58b98->leave($__internal_0197616e2c54c4bfeb430ec32f696aa1228415c966a682704f172d1afdc58b98_prof);
+        $__internal_b3d4b9c3110b7ba6ab40a36ea29886e863a46726c78068229b5ab916f2dbe7ca->leave($__internal_b3d4b9c3110b7ba6ab40a36ea29886e863a46726c78068229b5ab916f2dbe7ca_prof);
 
     }
 
     // line 9
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_00d4d6bf295f1acfbcafc680fcd7dbdcda14323b20238e07c30b79684f0d2379 = $this->env->getExtension("native_profiler");
-        $__internal_00d4d6bf295f1acfbcafc680fcd7dbdcda14323b20238e07c30b79684f0d2379->enter($__internal_00d4d6bf295f1acfbcafc680fcd7dbdcda14323b20238e07c30b79684f0d2379_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_316e9d3351f309d99c5d569e2159f32574cc50dc91a8f05accee9536b6131c73 = $this->env->getExtension("native_profiler");
+        $__internal_316e9d3351f309d99c5d569e2159f32574cc50dc91a8f05accee9536b6131c73->enter($__internal_316e9d3351f309d99c5d569e2159f32574cc50dc91a8f05accee9536b6131c73_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 10
         echo "  <link href=\"";
@@ -125,53 +133,66 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
         echo "\" rel=\"stylesheet\" />
   ";
         
-        $__internal_00d4d6bf295f1acfbcafc680fcd7dbdcda14323b20238e07c30b79684f0d2379->leave($__internal_00d4d6bf295f1acfbcafc680fcd7dbdcda14323b20238e07c30b79684f0d2379_prof);
+        $__internal_316e9d3351f309d99c5d569e2159f32574cc50dc91a8f05accee9536b6131c73->leave($__internal_316e9d3351f309d99c5d569e2159f32574cc50dc91a8f05accee9536b6131c73_prof);
 
     }
 
-    // line 14
+    // line 15
+    public function block_stylescustom($context, array $blocks = array())
+    {
+        $__internal_cbeaa157258531c139ae2d71eb293747314d0a42a4aee08558ff144938707247 = $this->env->getExtension("native_profiler");
+        $__internal_cbeaa157258531c139ae2d71eb293747314d0a42a4aee08558ff144938707247->enter($__internal_cbeaa157258531c139ae2d71eb293747314d0a42a4aee08558ff144938707247_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylescustom"));
+
+        // line 16
+        echo "  ";
+        
+        $__internal_cbeaa157258531c139ae2d71eb293747314d0a42a4aee08558ff144938707247->leave($__internal_cbeaa157258531c139ae2d71eb293747314d0a42a4aee08558ff144938707247_prof);
+
+    }
+
+    // line 18
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_637d1def2de555ae3b388eef1764e7c6f5bfa67f27291c15bd7212ef29e68af3 = $this->env->getExtension("native_profiler");
-        $__internal_637d1def2de555ae3b388eef1764e7c6f5bfa67f27291c15bd7212ef29e68af3->enter($__internal_637d1def2de555ae3b388eef1764e7c6f5bfa67f27291c15bd7212ef29e68af3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_12457b23c598ad087502b00f67b5641905d4a1f3c8133d976afbb1cf8d31ddb5 = $this->env->getExtension("native_profiler");
+        $__internal_12457b23c598ad087502b00f67b5641905d4a1f3c8133d976afbb1cf8d31ddb5->enter($__internal_12457b23c598ad087502b00f67b5641905d4a1f3c8133d976afbb1cf8d31ddb5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 15
+        // line 19
         echo "  <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
-        // line 16
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.maskedinput.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
-        // line 17
+        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
-        // line 18
+        // line 22
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
-        // line 19
+        // line 23
         echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
         echo "\"></script>
   ";
         
-        $__internal_637d1def2de555ae3b388eef1764e7c6f5bfa67f27291c15bd7212ef29e68af3->leave($__internal_637d1def2de555ae3b388eef1764e7c6f5bfa67f27291c15bd7212ef29e68af3_prof);
+        $__internal_12457b23c598ad087502b00f67b5641905d4a1f3c8133d976afbb1cf8d31ddb5->leave($__internal_12457b23c598ad087502b00f67b5641905d4a1f3c8133d976afbb1cf8d31ddb5_prof);
 
     }
 
-    // line 51
+    // line 55
     public function block_body($context, array $blocks = array())
     {
-        $__internal_4f08bc78d250b32707fd70736499f32873f8361c650d0750817c8c79bf32a18b = $this->env->getExtension("native_profiler");
-        $__internal_4f08bc78d250b32707fd70736499f32873f8361c650d0750817c8c79bf32a18b->enter($__internal_4f08bc78d250b32707fd70736499f32873f8361c650d0750817c8c79bf32a18b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_61063c2745f99727050265f069e74e9e2aef6466f036e69c13a4354917abf613 = $this->env->getExtension("native_profiler");
+        $__internal_61063c2745f99727050265f069e74e9e2aef6466f036e69c13a4354917abf613->enter($__internal_61063c2745f99727050265f069e74e9e2aef6466f036e69c13a4354917abf613_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 52
+        // line 56
         echo "
     ";
         
-        $__internal_4f08bc78d250b32707fd70736499f32873f8361c650d0750817c8c79bf32a18b->leave($__internal_4f08bc78d250b32707fd70736499f32873f8361c650d0750817c8c79bf32a18b_prof);
+        $__internal_61063c2745f99727050265f069e74e9e2aef6466f036e69c13a4354917abf613->leave($__internal_61063c2745f99727050265f069e74e9e2aef6466f036e69c13a4354917abf613_prof);
 
     }
 
@@ -187,7 +208,7 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
 
     public function getDebugInfo()
     {
-        return array (  171 => 52,  165 => 51,  156 => 19,  152 => 18,  148 => 17,  144 => 16,  139 => 15,  133 => 14,  124 => 12,  120 => 11,  115 => 10,  109 => 9,  97 => 7,  88 => 54,  86 => 51,  75 => 43,  70 => 40,  66 => 39,  44 => 21,  41 => 14,  39 => 9,  34 => 7,  26 => 1,);
+        return array (  192 => 56,  186 => 55,  177 => 23,  173 => 22,  169 => 21,  165 => 20,  160 => 19,  154 => 18,  147 => 16,  141 => 15,  132 => 12,  128 => 11,  123 => 10,  117 => 9,  105 => 7,  96 => 58,  94 => 55,  83 => 47,  78 => 44,  74 => 43,  52 => 25,  50 => 18,  47 => 17,  45 => 15,  42 => 14,  40 => 9,  35 => 7,  27 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -203,6 +224,10 @@ class __TwigTemplate_2532e34f116d56b522c34113f5b7d6528b320a05695fef56c713e3606f3
 /*   <link href="{{ asset('public/css/panel/styles.css') }}" rel="stylesheet" />*/
 /*   <link href="{{ asset('public/css/font-awesome.css') }}" rel="stylesheet" />*/
 /*   {% endblock %}*/
+/*   */
+/*   {% block stylescustom %}*/
+/*   {% endblock %}*/
+/* */
 /*   {% block javascripts %}*/
 /*   <script src="{{ asset('public/js/jquery.js') }}"></script>*/
 /*   <script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>*/

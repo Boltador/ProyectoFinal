@@ -81,3 +81,10 @@ border-top:1px solid #dadada;
 .active2 {
   border-right:4px solid #428bca;
 }
+
+.special span {
+  color: red !important; /* should only apply to may 6 and 8 */
+}
+.not-special span {
+  color: green !important; 
+}

@@ -15,14 +15,14 @@ class __TwigTemplate_171a517b33a47f035be53ef2d6102346e0f34f0cb9c513df7cfe0f686b5
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_eb372311f3f13df269b4f8e80df1dadaceb310a44bd356c8a08181cd12e2c066 = $this->env->getExtension("native_profiler");
-        $__internal_eb372311f3f13df269b4f8e80df1dadaceb310a44bd356c8a08181cd12e2c066->enter($__internal_eb372311f3f13df269b4f8e80df1dadaceb310a44bd356c8a08181cd12e2c066_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/email_widget.html.php"));
+        $__internal_5f51636b7da4acafb146d47f0cdb38eefee5cfcd3be0c137d7d8dcf2e09cedd1 = $this->env->getExtension("native_profiler");
+        $__internal_5f51636b7da4acafb146d47f0cdb38eefee5cfcd3be0c137d7d8dcf2e09cedd1->enter($__internal_5f51636b7da4acafb146d47f0cdb38eefee5cfcd3be0c137d7d8dcf2e09cedd1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/email_widget.html.php"));
 
         // line 1
         echo "<?php echo \$view['form']->block(\$form, 'form_widget_simple', array('type' => isset(\$type) ? \$type : 'email')) ?>
 ";
         
-        $__internal_eb372311f3f13df269b4f8e80df1dadaceb310a44bd356c8a08181cd12e2c066->leave($__internal_eb372311f3f13df269b4f8e80df1dadaceb310a44bd356c8a08181cd12e2c066_prof);
+        $__internal_5f51636b7da4acafb146d47f0cdb38eefee5cfcd3be0c137d7d8dcf2e09cedd1->leave($__internal_5f51636b7da4acafb146d47f0cdb38eefee5cfcd3be0c137d7d8dcf2e09cedd1_prof);
 
     }
 

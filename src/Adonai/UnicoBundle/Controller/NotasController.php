@@ -192,7 +192,6 @@ class NotasController extends Controller {
         }
     }
 
-
     /**
      * @Route("/nota_existente", name="nota_existente")
      */
@@ -292,8 +291,6 @@ class NotasController extends Controller {
                 "notas" => $notas_estudiante);
             $lista_notas_response[] = $nota;
         }
-
-        //throw new \Exception($lista_notas_response[0]["notas"][0][0]["nota"]);
 
         if(!empty($lista_notas_response)){
             $response = new Response(\json_encode($lista_notas_response));
