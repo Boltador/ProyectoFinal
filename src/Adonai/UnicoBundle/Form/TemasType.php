@@ -18,6 +18,7 @@ class TemasType extends AbstractType
             ->add('nomTema')
             ->add('fechaInTema', 'date')
             ->add('fechaFinTema', 'date')
+            ->add('planeador')
         ;
     }
     

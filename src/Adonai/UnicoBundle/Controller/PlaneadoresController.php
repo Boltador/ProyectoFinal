@@ -8,6 +8,7 @@ use Adonai\UnicoBundle\Entity\ALectivos;
 use Adonai\UnicoBundle\Entity\Periodos;
 use Adonai\UnicoBundle\Entity\Grupos;
 use Adonai\UnicoBundle\Entity\Planeadores;
+use Adonai\UnicoBundle\Entity\Temas;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -63,31 +64,46 @@ class PlaneadoresController extends Controller
      * @Route("/new", name="planeadores_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
-       $al_actual = new ALectivos();
-       $al_actual = $al_actual->getAñoLectivoActual();
-       $docente = $this->comprobarUsuarioAction();
-       $periodo_actual = new Periodos();
-       $periodo_actual = $periodo_actual->getPeriodoActual();
+    public function newAction(Request $request){
+        $al_actual = new ALectivos();
+        $al_actual = $al_actual->getAñoLectivoActual();
+        $docente = $this->comprobarUsuarioAction();
+        $periodo_actual = new Periodos();
+        $periodo_actual = $periodo_actual->getPeriodoActual();
 
-       $planeador = new Planeadores();
-       $form = $this->createForm(new PlaneadoresType($docente, $al_actual, $periodo_actual->getFechaInPer()), $planeador);
-       $form->handleRequest($request);
+        $planeador = new Planeadores();
+        $form = $this->createForm(new PlaneadoresType($docente, $al_actual, $periodo_actual->getFechaInPer()), $planeador);
+        $form->handleRequest($request);
 
-       if ($form->isSubmitted() && $form->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($planeador);
-        $em->flush();
+        if($form->isSubmitted() && $form->isValid()){
+            $nomTemas = $request->get("nomTema");
+            $fechasIn = $request->get("fechaIn");
+            $fechasFin = $request->get("fechaFin");
 
-        return $this->redirectToRoute('planeadores_show', array('id' => $planeador->getIdPlan()));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($planeador);
+            $em->flush();
+            $query = $em->createQuery("SELECT plan FROM AdonaiUnicoBundle:Planeadores plan WHERE plan.asignacion = :asignacion AND plan.periodo = :periodo");
+            $query->setParameter('asignacion', $planeador->getAsignacion());
+            $query->setParameter('periodo', $planeador->getPeriodo());
+            $planeador_get = $query->getSingleResult();
+            for($i = 0; $i < sizeof($nomTemas); $i++){
+                $tema = new Temas();
+                $tema->setPlaneador($planeador_get);
+                $tema->setNomTema($nomTemas[$i]);
+                $date_in = new \DateTime("$fechasIn[$i]");
+                $tema->setFechaInTema($date_in->format('Y-m-d'));
+                $date_fin = new \DateTime("$fechasFin[$i]");
+                $tema->setFechaFinTema($date_fin->format('Y-m-d'));
+                $em->persist($tema);
+                $em->flush();
+            }
+        }
+        return $this->render('planeadores/new.html.twig', array(
+            'planeador' => $planeador,
+            'form' => $form->createView(),
+            ));
     }
-
-    return $this->render('planeadores/new.html.twig', array(
-        'planeador' => $planeador,
-        'form' => $form->createView(),
-        ));
-}
 
     /**
      * Finds and displays a Planeadores entity.

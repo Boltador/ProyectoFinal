@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Temas
  *
- * @ORM\Table(name="temas", indexes={@ORM\Index(name="fk_tema_periodo", columns={"id_periodo"}), @ORM\Index(name="fk_tema_asignacion", columns={"id_asignacion"})})
+ * @ORM\Table(name="temas", indexes={@ORM\Index(name="fk_tema_planeador", columns={"id_plan"})})
  * @ORM\Entity
  */
 class Temas
@@ -29,19 +29,28 @@ class Temas
     private $nomTema;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha_in_tema", type="date", nullable=false)
+     * @ORM\Column(name="fecha_in_tema", type="string", nullable=false)
      */
     private $fechaInTema;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha_fin_tema", type="date", nullable=false)
+     * @ORM\Column(name="fecha_fin_tema", type="string", nullable=false)
      */
     private $fechaFinTema;
 
+    /**
+     * @var \Planeadores
+     *
+     * @ORM\ManyToOne(targetEntity="Planeadores")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_plan", referencedColumnName="id_plan")
+     * })
+     */
+    private $planeador;
 
     /**
      * Get idTema
@@ -79,7 +88,7 @@ class Temas
     /**
      * Set fechaInTema
      *
-     * @param \DateTime $fechaInTema
+     * @param string $fechaInTema
      * @return Temas
      */
     public function setFechaInTema($fechaInTema)
@@ -92,7 +101,7 @@ class Temas
     /**
      * Get fechaInTema
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getFechaInTema()
     {
@@ -102,7 +111,7 @@ class Temas
     /**
      * Set fechaFinTema
      *
-     * @param \DateTime $fechaFinTema
+     * @param string $fechaFinTema
      * @return Temas
      */
     public function setFechaFinTema($fechaFinTema)
@@ -115,10 +124,33 @@ class Temas
     /**
      * Get fechaFinTema
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getFechaFinTema()
     {
         return $this->fechaFinTema;
+    }
+
+    /**
+     * Set planeador
+     *
+     * @param \Adonai\UnicoBundle\Entity\Planeadores $planeador
+     * @return Temas
+     */
+    public function setPlaneador(\Adonai\UnicoBundle\Entity\Planeadores $planeador = null)
+    {
+        $this->planeador = $planeador;
+
+        return $this;
+    }
+
+    /**
+     * Get planeador
+     *
+     * @return \Adonai\UnicoBundle\Entity\Planeadores 
+     */
+    public function getPlaneador()
+    {
+        return $this->planeador;
     }
 }

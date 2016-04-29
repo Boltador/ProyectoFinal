@@ -30,7 +30,7 @@ class TemasController extends Controller
 
         return $this->render('temas/index.html.twig', array(
             'temas' => $temas,
-        ));
+            ));
     }
 
     /**
@@ -50,13 +50,13 @@ class TemasController extends Controller
             $em->persist($tema);
             $em->flush();
 
-            return $this->redirectToRoute('temas_show', array('id' => $tema->getIdTema()));
+            return $this->redirectToRoute('temas_show', array('id' => $tema->getId()));
         }
 
         return $this->render('temas/new.html.twig', array(
             'tema' => $tema,
             'form' => $form->createView(),
-        ));
+            ));
     }
 
     /**
@@ -72,7 +72,7 @@ class TemasController extends Controller
         return $this->render('temas/show.html.twig', array(
             'tema' => $tema,
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -99,7 +99,7 @@ class TemasController extends Controller
             'tema' => $tema,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -132,9 +132,9 @@ class TemasController extends Controller
     private function createDeleteForm(Temas $tema)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('temas_delete', array('id' => $tema->getIdTema())))
-            ->setMethod('DELETE')
-            ->getForm()
+        ->setAction($this->generateUrl('temas_delete', array('id' => $tema->getId())))
+        ->setMethod('DELETE')
+        ->getForm()
         ;
     }
 }

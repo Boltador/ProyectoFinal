@@ -64,10 +64,10 @@ class Temas extends \Adonai\UnicoBundle\Entity\Temas implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'idTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'nomTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaInTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaFinTema');
+            return array('__isInitialized__', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'idTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'nomTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaInTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaFinTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'planeador');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'idTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'nomTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaInTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaFinTema');
+        return array('__isInitialized__', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'idTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'nomTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaInTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'fechaFinTema', '' . "\0" . 'Adonai\\UnicoBundle\\Entity\\Temas' . "\0" . 'planeador');
     }
 
     /**
@@ -252,6 +252,28 @@ class Temas extends \Adonai\UnicoBundle\Entity\Temas implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFechaFinTema', array());
 
         return parent::getFechaFinTema();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPlaneador(\Adonai\UnicoBundle\Entity\Planeadores $planeador = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPlaneador', array($planeador));
+
+        return parent::setPlaneador($planeador);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPlaneador()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlaneador', array());
+
+        return parent::getPlaneador();
     }
 
 }

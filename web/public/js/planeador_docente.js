@@ -23,7 +23,7 @@ $("#add").click(function() {
     var fecha_fin = $("#fecha_final_per").data("path");
 
     $('.input-daterange').datepicker({
-      format: "dd/mm/yyyy",
+      format: "mm/dd/yyyy",
       startDate: fecha_in,
       endDate: fecha_fin,
       daysOfWeekDisabled: "0,6"
