@@ -45,7 +45,7 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
   ";
         // line 18
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 25
+        // line 26
         echo "  <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/img/icono.ico"), "html", null, true);
         echo "\" />
@@ -67,16 +67,16 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
           <li class=\"dropdown\">
             <a style=\"color: white;\"  class=\"dropdown-toggle\" role=\"button\" data-toggle=\"dropdown\" href=\"#\">
               <i class=\"glyphicon glyphicon-user\"></i>  ";
-        // line 43
+        // line 44
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "user", array())) {
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "user", array()), "username", array()), "html", null, true);
         }
-        // line 44
+        // line 45
         echo "              <span class=\"caret\"></span></a>
               <ul id=\"g-account-menu\" class=\"dropdown-menu\" role=\"menu\">
                 <li><a href=\"#\"><i class=\"glyphicon glyphicon-home\"></i>  Ir al Inicio</a></li>
                 <li><a href=\"";
-        // line 47
+        // line 48
         echo $this->env->getExtension('routing')->getPath("logout");
         echo "\"><i class=\"glyphicon glyphicon-lock\"></i> Desconectarse</a></li>
               </ul>
@@ -87,9 +87,9 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
     </div>
     <!-- /Header -->
     ";
-        // line 55
+        // line 56
         $this->displayBlock('body', $context, $blocks);
-        // line 58
+        // line 59
         echo "  </body>
   </html>
 ";
@@ -135,27 +135,31 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
         echo "\"></script>
   <script src=\"";
         // line 20
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.maskedinput.js"), "html", null, true);
-        echo "\"></script>
-  <script src=\"";
-        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
+        // line 21
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/jquery.validate.min.js"), "html", null, true);
+        echo "\"></script>
+  <script src=\"";
         // line 22
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/mensajes_es.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
         // line 23
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
+        echo "\"></script>
+  <script src=\"";
+        // line 24
         echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
         echo "\"></script>
   ";
     }
 
-    // line 55
+    // line 56
     public function block_body($context, array $blocks = array())
     {
-        // line 56
+        // line 57
         echo "
     ";
     }
@@ -172,7 +176,7 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
 
     public function getDebugInfo()
     {
-        return array (  159 => 56,  156 => 55,  150 => 23,  146 => 22,  142 => 21,  138 => 20,  133 => 19,  130 => 18,  126 => 16,  123 => 15,  117 => 12,  113 => 11,  108 => 10,  105 => 9,  99 => 7,  93 => 58,  91 => 55,  80 => 47,  75 => 44,  71 => 43,  49 => 25,  47 => 18,  44 => 17,  42 => 15,  39 => 14,  37 => 9,  32 => 7,  24 => 1,);
+        return array (  163 => 57,  160 => 56,  154 => 24,  150 => 23,  146 => 22,  142 => 21,  138 => 20,  133 => 19,  130 => 18,  126 => 16,  123 => 15,  117 => 12,  113 => 11,  108 => 10,  105 => 9,  99 => 7,  93 => 59,  91 => 56,  80 => 48,  75 => 45,  71 => 44,  49 => 26,  47 => 18,  44 => 17,  42 => 15,  39 => 14,  37 => 9,  32 => 7,  24 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -194,8 +198,9 @@ class __TwigTemplate_0a43885756d37d3678c0c4246447afe54b8d4b8a41055d9d57b21359dc6
 /* */
 /*   {% block javascripts %}*/
 /*   <script src="{{ asset('public/js/jquery.js') }}"></script>*/
-/*   <script src="{{ asset('public/js/jquery.maskedinput.js') }}"></script>*/
 /*   <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>*/
+/*   <script src="{{ asset('public/js/jquery.validate.min.js') }}"></script>*/
+/*   <script src="{{ asset('public/js/mensajes_es.js') }}"></script>*/
 /*   <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>*/
 /*   <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>*/
 /*   {% endblock %}*/

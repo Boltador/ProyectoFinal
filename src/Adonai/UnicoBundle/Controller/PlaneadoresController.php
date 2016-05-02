@@ -116,7 +116,7 @@ class PlaneadoresController extends Controller
         $deleteForm = $this->createDeleteForm($planeador);
 
         return $this->render('planeadores/show.html.twig', array(
-            'planeadore' => $planeador,
+            'planeador' => $planeador,
             'delete_form' => $deleteForm->createView(),
             ));
     }
@@ -142,7 +142,7 @@ class PlaneadoresController extends Controller
         }
 
         return $this->render('planeadores/edit.html.twig', array(
-            'planeadore' => $planeador,
+            'planeador' => $planeador,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             ));

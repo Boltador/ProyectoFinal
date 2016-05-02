@@ -21,20 +21,20 @@ class __TwigTemplate_523b3e69b3bb9fac08fefec8281abf126a52d51c273b572fd1d723ed962
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d75db8d7c7deff050d8cf7418b910297054ca6216dee9e37cc259e2049a7669b = $this->env->getExtension("native_profiler");
-        $__internal_d75db8d7c7deff050d8cf7418b910297054ca6216dee9e37cc259e2049a7669b->enter($__internal_d75db8d7c7deff050d8cf7418b910297054ca6216dee9e37cc259e2049a7669b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "alectivos/edit.html.twig"));
+        $__internal_c7d06179fee11c3dcc6dd40ade443b7dee6b7557d22d734f416e7333a4f7de55 = $this->env->getExtension("native_profiler");
+        $__internal_c7d06179fee11c3dcc6dd40ade443b7dee6b7557d22d734f416e7333a4f7de55->enter($__internal_c7d06179fee11c3dcc6dd40ade443b7dee6b7557d22d734f416e7333a4f7de55_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "alectivos/edit.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d75db8d7c7deff050d8cf7418b910297054ca6216dee9e37cc259e2049a7669b->leave($__internal_d75db8d7c7deff050d8cf7418b910297054ca6216dee9e37cc259e2049a7669b_prof);
+        $__internal_c7d06179fee11c3dcc6dd40ade443b7dee6b7557d22d734f416e7333a4f7de55->leave($__internal_c7d06179fee11c3dcc6dd40ade443b7dee6b7557d22d734f416e7333a4f7de55_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_bd36c3346fd6315c56a7b93ce9cfb91a137890944c54237a6f48c32bd745d841 = $this->env->getExtension("native_profiler");
-        $__internal_bd36c3346fd6315c56a7b93ce9cfb91a137890944c54237a6f48c32bd745d841->enter($__internal_bd36c3346fd6315c56a7b93ce9cfb91a137890944c54237a6f48c32bd745d841_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_1afba4e6dd48911f6a1c27fa982d0185ef8e307fac1d0e76bfa56979f43f21f2 = $this->env->getExtension("native_profiler");
+        $__internal_1afba4e6dd48911f6a1c27fa982d0185ef8e307fac1d0e76bfa56979f43f21f2->enter($__internal_1afba4e6dd48911f6a1c27fa982d0185ef8e307fac1d0e76bfa56979f43f21f2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <h1>ALectivos edit</h1>
@@ -74,7 +74,7 @@ class __TwigTemplate_523b3e69b3bb9fac08fefec8281abf126a52d51c273b572fd1d723ed962
     </ul>
 ";
         
-        $__internal_bd36c3346fd6315c56a7b93ce9cfb91a137890944c54237a6f48c32bd745d841->leave($__internal_bd36c3346fd6315c56a7b93ce9cfb91a137890944c54237a6f48c32bd745d841_prof);
+        $__internal_1afba4e6dd48911f6a1c27fa982d0185ef8e307fac1d0e76bfa56979f43f21f2->leave($__internal_1afba4e6dd48911f6a1c27fa982d0185ef8e307fac1d0e76bfa56979f43f21f2_prof);
 
     }
 
