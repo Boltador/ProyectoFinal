@@ -133,6 +133,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'nota_existente' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::notasExistentesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/nota_existente',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
         'comprobar_registros' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::comprobarRegistrosAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/comprobar_registros',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
         'todas_notas' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotasAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/todas_notas',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
+        'planeador_existente' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::planeadorExistenteAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/planeador_existente',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
     );
         }
     }

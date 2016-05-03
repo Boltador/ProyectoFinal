@@ -184,6 +184,39 @@ class PlaneadoresController extends Controller
         ;
     }
 
+    /**
+     * @Route("/planeador_existente", name="planeador_existente")
+     */
+    public function planeadorExistenteAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $asignacion = $em->getRepository('AdonaiUnicoBundle:Asignaciones')->findByIdAsignacion($request->get("asignacion_id"));
+        $periodo = $em->getRepository('AdonaiUnicoBundle:Periodos')->findByIdPeriodo($request->get("periodo_id"));
+
+        $query = $em->createQuery("SELECT plan FROM AdonaiUnicoBundle:Planeadores plan WHERE plan.asignacion = :asignacion AND plan.periodo = :periodo");
+        $query->setParameter('asignacion', $asignacion);
+        $query->setParameter('periodo', $periodo);
+        $resultado = $query->getResult();
+
+        $planeador_response = array();
+
+        foreach($resultado as $planeador){
+            $plan = array("id" => $planeador->getIdPlan());
+            $planeador_response[] = $plan;
+        }
+
+        if(!empty($planeador_response)){
+            $response = new Response(\json_encode($planeador_response));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } else {
+            $response = new Response(\json_encode(false));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+    }
+
     public function comprobarUsuarioAction() {
         $coordinador = null;
         $docente = null;

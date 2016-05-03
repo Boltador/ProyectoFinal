@@ -23,20 +23,20 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_33b73a022c24cbba65db4107a3b244481e06f7ddc623f3f2da2bd3ca4712a17f = $this->env->getExtension("native_profiler");
-        $__internal_33b73a022c24cbba65db4107a3b244481e06f7ddc623f3f2da2bd3ca4712a17f->enter($__internal_33b73a022c24cbba65db4107a3b244481e06f7ddc623f3f2da2bd3ca4712a17f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@AdonaiUnico/Planeadores/planeador_docente.html.twig"));
+        $__internal_0cd5c8ed9d3bb4ccdc3b8b9670b96152b72a8b3c7dc332d5aefdf4a6b2bb15ce = $this->env->getExtension("native_profiler");
+        $__internal_0cd5c8ed9d3bb4ccdc3b8b9670b96152b72a8b3c7dc332d5aefdf4a6b2bb15ce->enter($__internal_0cd5c8ed9d3bb4ccdc3b8b9670b96152b72a8b3c7dc332d5aefdf4a6b2bb15ce_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@AdonaiUnico/Planeadores/planeador_docente.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_33b73a022c24cbba65db4107a3b244481e06f7ddc623f3f2da2bd3ca4712a17f->leave($__internal_33b73a022c24cbba65db4107a3b244481e06f7ddc623f3f2da2bd3ca4712a17f_prof);
+        $__internal_0cd5c8ed9d3bb4ccdc3b8b9670b96152b72a8b3c7dc332d5aefdf4a6b2bb15ce->leave($__internal_0cd5c8ed9d3bb4ccdc3b8b9670b96152b72a8b3c7dc332d5aefdf4a6b2bb15ce_prof);
 
     }
 
     // line 3
     public function block_stylescustom($context, array $blocks = array())
     {
-        $__internal_777ed9ced4ec6ef44aa8a3c1ee232301d9ff8fc49ee11a7aac8385924d07cbfe = $this->env->getExtension("native_profiler");
-        $__internal_777ed9ced4ec6ef44aa8a3c1ee232301d9ff8fc49ee11a7aac8385924d07cbfe->enter($__internal_777ed9ced4ec6ef44aa8a3c1ee232301d9ff8fc49ee11a7aac8385924d07cbfe_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylescustom"));
+        $__internal_89af4f552a1526b5ce7d13c47b71e61932e4e0b3249f261a52071937f10130a2 = $this->env->getExtension("native_profiler");
+        $__internal_89af4f552a1526b5ce7d13c47b71e61932e4e0b3249f261a52071937f10130a2->enter($__internal_89af4f552a1526b5ce7d13c47b71e61932e4e0b3249f261a52071937f10130a2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylescustom"));
 
         // line 4
         echo "<link href=\"";
@@ -44,15 +44,15 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
         echo "\" rel=\"stylesheet\" />
 ";
         
-        $__internal_777ed9ced4ec6ef44aa8a3c1ee232301d9ff8fc49ee11a7aac8385924d07cbfe->leave($__internal_777ed9ced4ec6ef44aa8a3c1ee232301d9ff8fc49ee11a7aac8385924d07cbfe_prof);
+        $__internal_89af4f552a1526b5ce7d13c47b71e61932e4e0b3249f261a52071937f10130a2->leave($__internal_89af4f552a1526b5ce7d13c47b71e61932e4e0b3249f261a52071937f10130a2_prof);
 
     }
 
     // line 7
     public function block_body($context, array $blocks = array())
     {
-        $__internal_c11ff8c673d3b53ecd88fe9dff03720bfea7902b7fb66fc90ea7e1d022e2798d = $this->env->getExtension("native_profiler");
-        $__internal_c11ff8c673d3b53ecd88fe9dff03720bfea7902b7fb66fc90ea7e1d022e2798d->enter($__internal_c11ff8c673d3b53ecd88fe9dff03720bfea7902b7fb66fc90ea7e1d022e2798d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_9fda79aa79578b46c8563e497c7cda7e0aa80974aab6b8e65e65bb814bc98476 = $this->env->getExtension("native_profiler");
+        $__internal_9fda79aa79578b46c8563e497c7cda7e0aa80974aab6b8e65e65bb814bc98476->enter($__internal_9fda79aa79578b46c8563e497c7cda7e0aa80974aab6b8e65e65bb814bc98476_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 8
         echo "
@@ -109,7 +109,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'row');
         echo "
                     <div class=\"panel panel-primary\">
-                        <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-edit\"></i>  Crear Planeadores</h4></div>
+                        <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-edit\"></i>  Gestionar Planeadores</h4></div>
                         <div id=\"panel_ver_notas\" class=\"panel-body\">
                             <div class=\"col-xs-4\">
                                 <div class=\"form-group\">
@@ -148,7 +148,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
                             <br/><br/><br/>
                             <div id=\"contenedor-registrar-planeador\"class=\"col-xs-12\">
                                 <hr>
-                                <h4 id=\"subtitulo\"><span class=\"glyphicon glyphicon-file\"></span>  Agregar Temas </h4>
+                                <h4 id=\"subtitulo\"><span class=\"glyphicon glyphicon-file\"></span>  Asignar Temas </h4>
                                 <br/>
                                 <table id=\"tabla_plan\" class=\"table table-hover hidden\">
                                     <thead id=\"head_tabla_plan\">
@@ -163,14 +163,17 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
                                     </tbody>
                                 </table>
                                 <hr>
-                                <div id=\"temas_vacio\">
-                                    <p><strong>NOTA: </strong> Haz Click en el botón \"Añadir Tema\" para comenzar a llenar el planeador.</p>
+                                <div id=\"espera_planeador\">
+                                    <div id=\"espera_tema_error\">
+                                    </div>
+                                    <p id=\"espera_añadir\" class=\"hidden\"><strong>NOTA: </strong> Haz Click en el botón \"Añadir Tema\" para comenzar a llenar el planeador.</p>
+                                    <p id=\"espera_escoger\"><strong>NOTA: </strong> Escoge una asignación para gestionar el planeador.</p>
                                 </div>
                                 <!--<input id=\"64\" type=\"text\" name=\"hola\" class=\"form-control\" />-->
-                                <hr><button id=\"add\" type='button' class='btn btn-info' onclick=\"agregar();\">
+                                <hr><button id=\"add\" type='button' class='btn btn-info hidden' onclick=\"agregar();\">
                                 <span class=\"glyphicon glyphicon-plus\"></span>   Añadir Tema</button>
-                                <button id=\"enviar_form\" type=\"submit\" class=\"btn btn-success\">
-                                    <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Crear Planeador
+                                <button id=\"enviar_form\" type=\"submit\" class=\"btn btn-success hidden\">
+                                    <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Guardar Planeador
                                 </button> 
                                 <br/>
                             </div><!--/col-xs-12-->
@@ -191,23 +194,23 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 
 <!-- script references -->
 ";
-        // line 103
+        // line 106
         $this->displayBlock('scripts', $context, $blocks);
-        // line 124
+        // line 127
         echo "
 ";
         
-        $__internal_c11ff8c673d3b53ecd88fe9dff03720bfea7902b7fb66fc90ea7e1d022e2798d->leave($__internal_c11ff8c673d3b53ecd88fe9dff03720bfea7902b7fb66fc90ea7e1d022e2798d_prof);
+        $__internal_9fda79aa79578b46c8563e497c7cda7e0aa80974aab6b8e65e65bb814bc98476->leave($__internal_9fda79aa79578b46c8563e497c7cda7e0aa80974aab6b8e65e65bb814bc98476_prof);
 
     }
 
-    // line 103
+    // line 106
     public function block_scripts($context, array $blocks = array())
     {
-        $__internal_f2b84e6016653a50892460d3916a178d4281d2cf57d94df970e90900d35df29d = $this->env->getExtension("native_profiler");
-        $__internal_f2b84e6016653a50892460d3916a178d4281d2cf57d94df970e90900d35df29d->enter($__internal_f2b84e6016653a50892460d3916a178d4281d2cf57d94df970e90900d35df29d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
+        $__internal_bcb07bf11bcbfcbb7e860def67487e046e1e012fc2aad157f727491f3b0fcb90 = $this->env->getExtension("native_profiler");
+        $__internal_bcb07bf11bcbfcbb7e860def67487e046e1e012fc2aad157f727491f3b0fcb90->enter($__internal_bcb07bf11bcbfcbb7e860def67487e046e1e012fc2aad157f727491f3b0fcb90_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 104
+        // line 107
         echo "<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/underscore.js"), "html", null, true);
         echo "\"></script>
@@ -217,7 +220,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 <td><div id=\"group_tema_<%= element.i %>\" class=\"form-group\">
 <input id=\"nomTema_<%= element.i %>\" type=\"text\" class=\"form-control nom_temas\" placeholder=\"Escriba el Tema\" name=\"nomTema[<%= element.i - 1 %>]\" /></div></td>
 <td>
-<div style=\"width: 300px\" class=\"input-daterange input-group\" id=\"datepicker\">
+<div style=\"width: 300px\" class=\"input-daterange input-group\" id=\"datepicker_<%= element.i %>\">
 <div id=\"group_fechain_<%= element.i %>\" class=\"col-xs-6 form-group\">
 <input id=\"fechain_tema_<%= element.i %>\" type=\"text\" name=\"fechaIn[<%= element.i - 1 %>]\" class=\"form-control input_fechain\" placeholder=\"Fecha Inicio\" /></div>
 <div id=\"group_fechafin_<%= element.i %>\" class=\"col-xs-6 form-group\">
@@ -228,16 +231,16 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 </tr>
 </script>
 <script src=\"";
-        // line 121
+        // line 124
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/datepicker/bootstrap-datepicker.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 122
+        // line 125
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/planeador_docente.js"), "html", null, true);
         echo "\"></script>
 ";
         
-        $__internal_f2b84e6016653a50892460d3916a178d4281d2cf57d94df970e90900d35df29d->leave($__internal_f2b84e6016653a50892460d3916a178d4281d2cf57d94df970e90900d35df29d_prof);
+        $__internal_bcb07bf11bcbfcbb7e860def67487e046e1e012fc2aad157f727491f3b0fcb90->leave($__internal_bcb07bf11bcbfcbb7e860def67487e046e1e012fc2aad157f727491f3b0fcb90_prof);
 
     }
 
@@ -253,7 +256,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 
     public function getDebugInfo()
     {
-        return array (  236 => 122,  232 => 121,  211 => 104,  205 => 103,  197 => 124,  195 => 103,  143 => 56,  137 => 53,  133 => 52,  126 => 50,  119 => 46,  109 => 39,  105 => 38,  89 => 25,  85 => 24,  80 => 22,  65 => 10,  61 => 9,  58 => 8,  52 => 7,  42 => 4,  36 => 3,  11 => 1,);
+        return array (  239 => 125,  235 => 124,  214 => 107,  208 => 106,  200 => 127,  198 => 106,  143 => 56,  137 => 53,  133 => 52,  126 => 50,  119 => 46,  109 => 39,  105 => 38,  89 => 25,  85 => 24,  80 => 22,  65 => 10,  61 => 9,  58 => 8,  52 => 7,  42 => 4,  36 => 3,  11 => 1,);
     }
 }
 /* {% extends 'docente-base.html.twig' %}*/
@@ -296,7 +299,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 /*                 <form enctype="multipart/form-data" id="form_plan" action="{{ path('planeadores_new') }}" enctype="multipart/form-data" method="POST" role="form">*/
 /*                     {{ form_row(form._token) }}*/
 /*                     <div class="panel panel-primary">*/
-/*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Crear Planeadores</h4></div>*/
+/*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Gestionar Planeadores</h4></div>*/
 /*                         <div id="panel_ver_notas" class="panel-body">*/
 /*                             <div class="col-xs-4">*/
 /*                                 <div class="form-group">*/
@@ -316,7 +319,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 /*                             <br/><br/><br/>*/
 /*                             <div id="contenedor-registrar-planeador"class="col-xs-12">*/
 /*                                 <hr>*/
-/*                                 <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Agregar Temas </h4>*/
+/*                                 <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Asignar Temas </h4>*/
 /*                                 <br/>*/
 /*                                 <table id="tabla_plan" class="table table-hover hidden">*/
 /*                                     <thead id="head_tabla_plan">*/
@@ -331,14 +334,17 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 /*                                     </tbody>*/
 /*                                 </table>*/
 /*                                 <hr>*/
-/*                                 <div id="temas_vacio">*/
-/*                                     <p><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>*/
+/*                                 <div id="espera_planeador">*/
+/*                                     <div id="espera_tema_error">*/
+/*                                     </div>*/
+/*                                     <p id="espera_añadir" class="hidden"><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>*/
+/*                                     <p id="espera_escoger"><strong>NOTA: </strong> Escoge una asignación para gestionar el planeador.</p>*/
 /*                                 </div>*/
 /*                                 <!--<input id="64" type="text" name="hola" class="form-control" />-->*/
-/*                                 <hr><button id="add" type='button' class='btn btn-info' onclick="agregar();">*/
+/*                                 <hr><button id="add" type='button' class='btn btn-info hidden' onclick="agregar();">*/
 /*                                 <span class="glyphicon glyphicon-plus"></span>   Añadir Tema</button>*/
-/*                                 <button id="enviar_form" type="submit" class="btn btn-success">*/
-/*                                     <span class="glyphicon glyphicon-floppy-saved"></span>       Crear Planeador*/
+/*                                 <button id="enviar_form" type="submit" class="btn btn-success hidden">*/
+/*                                     <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar Planeador*/
 /*                                 </button> */
 /*                                 <br/>*/
 /*                             </div><!--/col-xs-12-->*/
@@ -366,7 +372,7 @@ class __TwigTemplate_bb409bab5d30ce9bb55a36bc8814d11dda47ce718eb93b8d296a46e0b57
 /* <td><div id="group_tema_<%= element.i %>" class="form-group">*/
 /* <input id="nomTema_<%= element.i %>" type="text" class="form-control nom_temas" placeholder="Escriba el Tema" name="nomTema[<%= element.i - 1 %>]" /></div></td>*/
 /* <td>*/
-/* <div style="width: 300px" class="input-daterange input-group" id="datepicker">*/
+/* <div style="width: 300px" class="input-daterange input-group" id="datepicker_<%= element.i %>">*/
 /* <div id="group_fechain_<%= element.i %>" class="col-xs-6 form-group">*/
 /* <input id="fechain_tema_<%= element.i %>" type="text" name="fechaIn[<%= element.i - 1 %>]" class="form-control input_fechain" placeholder="Fecha Inicio" /></div>*/
 /* <div id="group_fechafin_<%= element.i %>" class="col-xs-6 form-group">*/

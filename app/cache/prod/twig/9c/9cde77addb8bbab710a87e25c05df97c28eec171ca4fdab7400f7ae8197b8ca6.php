@@ -94,7 +94,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "_token", array()), 'row');
         echo "
                     <div class=\"panel panel-primary\">
-                        <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-edit\"></i>  Crear Planeadores</h4></div>
+                        <div class=\"panel-heading\"><h4><i class=\"glyphicon glyphicon-edit\"></i>  Gestionar Planeadores</h4></div>
                         <div id=\"panel_ver_notas\" class=\"panel-body\">
                             <div class=\"col-xs-4\">
                                 <div class=\"form-group\">
@@ -133,7 +133,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
                             <br/><br/><br/>
                             <div id=\"contenedor-registrar-planeador\"class=\"col-xs-12\">
                                 <hr>
-                                <h4 id=\"subtitulo\"><span class=\"glyphicon glyphicon-file\"></span>  Agregar Temas </h4>
+                                <h4 id=\"subtitulo\"><span class=\"glyphicon glyphicon-file\"></span>  Asignar Temas </h4>
                                 <br/>
                                 <table id=\"tabla_plan\" class=\"table table-hover hidden\">
                                     <thead id=\"head_tabla_plan\">
@@ -148,14 +148,17 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
                                     </tbody>
                                 </table>
                                 <hr>
-                                <div id=\"temas_vacio\">
-                                    <p><strong>NOTA: </strong> Haz Click en el botón \"Añadir Tema\" para comenzar a llenar el planeador.</p>
+                                <div id=\"espera_planeador\">
+                                    <div id=\"espera_tema_error\">
+                                    </div>
+                                    <p id=\"espera_añadir\" class=\"hidden\"><strong>NOTA: </strong> Haz Click en el botón \"Añadir Tema\" para comenzar a llenar el planeador.</p>
+                                    <p id=\"espera_escoger\"><strong>NOTA: </strong> Escoge una asignación para gestionar el planeador.</p>
                                 </div>
                                 <!--<input id=\"64\" type=\"text\" name=\"hola\" class=\"form-control\" />-->
-                                <hr><button id=\"add\" type='button' class='btn btn-info' onclick=\"agregar();\">
+                                <hr><button id=\"add\" type='button' class='btn btn-info hidden' onclick=\"agregar();\">
                                 <span class=\"glyphicon glyphicon-plus\"></span>   Añadir Tema</button>
-                                <button id=\"enviar_form\" type=\"submit\" class=\"btn btn-success\">
-                                    <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Crear Planeador
+                                <button id=\"enviar_form\" type=\"submit\" class=\"btn btn-success hidden\">
+                                    <span class=\"glyphicon glyphicon-floppy-saved\"></span>       Guardar Planeador
                                 </button> 
                                 <br/>
                             </div><!--/col-xs-12-->
@@ -176,17 +179,17 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 
 <!-- script references -->
 ";
-        // line 103
+        // line 106
         $this->displayBlock('scripts', $context, $blocks);
-        // line 124
+        // line 127
         echo "
 ";
     }
 
-    // line 103
+    // line 106
     public function block_scripts($context, array $blocks = array())
     {
-        // line 104
+        // line 107
         echo "<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/underscore.js"), "html", null, true);
         echo "\"></script>
@@ -196,7 +199,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 <td><div id=\"group_tema_<%= element.i %>\" class=\"form-group\">
 <input id=\"nomTema_<%= element.i %>\" type=\"text\" class=\"form-control nom_temas\" placeholder=\"Escriba el Tema\" name=\"nomTema[<%= element.i - 1 %>]\" /></div></td>
 <td>
-<div style=\"width: 300px\" class=\"input-daterange input-group\" id=\"datepicker\">
+<div style=\"width: 300px\" class=\"input-daterange input-group\" id=\"datepicker_<%= element.i %>\">
 <div id=\"group_fechain_<%= element.i %>\" class=\"col-xs-6 form-group\">
 <input id=\"fechain_tema_<%= element.i %>\" type=\"text\" name=\"fechaIn[<%= element.i - 1 %>]\" class=\"form-control input_fechain\" placeholder=\"Fecha Inicio\" /></div>
 <div id=\"group_fechafin_<%= element.i %>\" class=\"col-xs-6 form-group\">
@@ -207,11 +210,11 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 </tr>
 </script>
 <script src=\"";
-        // line 121
+        // line 124
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/datepicker/bootstrap-datepicker.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 122
+        // line 125
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("public/js/planeador_docente.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -229,7 +232,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 
     public function getDebugInfo()
     {
-        return array (  215 => 122,  211 => 121,  190 => 104,  187 => 103,  182 => 124,  180 => 103,  128 => 56,  122 => 53,  118 => 52,  111 => 50,  104 => 46,  94 => 39,  90 => 38,  74 => 25,  70 => 24,  65 => 22,  50 => 10,  46 => 9,  43 => 8,  40 => 7,  33 => 4,  30 => 3,  11 => 1,);
+        return array (  218 => 125,  214 => 124,  193 => 107,  190 => 106,  185 => 127,  183 => 106,  128 => 56,  122 => 53,  118 => 52,  111 => 50,  104 => 46,  94 => 39,  90 => 38,  74 => 25,  70 => 24,  65 => 22,  50 => 10,  46 => 9,  43 => 8,  40 => 7,  33 => 4,  30 => 3,  11 => 1,);
     }
 }
 /* {% extends 'docente-base.html.twig' %}*/
@@ -272,7 +275,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 /*                 <form enctype="multipart/form-data" id="form_plan" action="{{ path('planeadores_new') }}" enctype="multipart/form-data" method="POST" role="form">*/
 /*                     {{ form_row(form._token) }}*/
 /*                     <div class="panel panel-primary">*/
-/*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Crear Planeadores</h4></div>*/
+/*                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Gestionar Planeadores</h4></div>*/
 /*                         <div id="panel_ver_notas" class="panel-body">*/
 /*                             <div class="col-xs-4">*/
 /*                                 <div class="form-group">*/
@@ -292,7 +295,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 /*                             <br/><br/><br/>*/
 /*                             <div id="contenedor-registrar-planeador"class="col-xs-12">*/
 /*                                 <hr>*/
-/*                                 <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Agregar Temas </h4>*/
+/*                                 <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Asignar Temas </h4>*/
 /*                                 <br/>*/
 /*                                 <table id="tabla_plan" class="table table-hover hidden">*/
 /*                                     <thead id="head_tabla_plan">*/
@@ -307,14 +310,17 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 /*                                     </tbody>*/
 /*                                 </table>*/
 /*                                 <hr>*/
-/*                                 <div id="temas_vacio">*/
-/*                                     <p><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>*/
+/*                                 <div id="espera_planeador">*/
+/*                                     <div id="espera_tema_error">*/
+/*                                     </div>*/
+/*                                     <p id="espera_añadir" class="hidden"><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>*/
+/*                                     <p id="espera_escoger"><strong>NOTA: </strong> Escoge una asignación para gestionar el planeador.</p>*/
 /*                                 </div>*/
 /*                                 <!--<input id="64" type="text" name="hola" class="form-control" />-->*/
-/*                                 <hr><button id="add" type='button' class='btn btn-info' onclick="agregar();">*/
+/*                                 <hr><button id="add" type='button' class='btn btn-info hidden' onclick="agregar();">*/
 /*                                 <span class="glyphicon glyphicon-plus"></span>   Añadir Tema</button>*/
-/*                                 <button id="enviar_form" type="submit" class="btn btn-success">*/
-/*                                     <span class="glyphicon glyphicon-floppy-saved"></span>       Crear Planeador*/
+/*                                 <button id="enviar_form" type="submit" class="btn btn-success hidden">*/
+/*                                     <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar Planeador*/
 /*                                 </button> */
 /*                                 <br/>*/
 /*                             </div><!--/col-xs-12-->*/
@@ -342,7 +348,7 @@ class __TwigTemplate_442bc80ca168e91fa9d145d8dc1c099f22517479e554b7ff4853f680d5a
 /* <td><div id="group_tema_<%= element.i %>" class="form-group">*/
 /* <input id="nomTema_<%= element.i %>" type="text" class="form-control nom_temas" placeholder="Escriba el Tema" name="nomTema[<%= element.i - 1 %>]" /></div></td>*/
 /* <td>*/
-/* <div style="width: 300px" class="input-daterange input-group" id="datepicker">*/
+/* <div style="width: 300px" class="input-daterange input-group" id="datepicker_<%= element.i %>">*/
 /* <div id="group_fechain_<%= element.i %>" class="col-xs-6 form-group">*/
 /* <input id="fechain_tema_<%= element.i %>" type="text" name="fechaIn[<%= element.i - 1 %>]" class="form-control input_fechain" placeholder="Fecha Inicio" /></div>*/
 /* <div id="group_fechafin_<%= element.i %>" class="col-xs-6 form-group">*/

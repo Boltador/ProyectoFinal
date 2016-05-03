@@ -38,7 +38,7 @@
                 <form enctype="multipart/form-data" id="form_plan" action="{{ path('planeadores_new') }}" enctype="multipart/form-data" method="POST" role="form">
                     {{ form_row(form._token) }}
                     <div class="panel panel-primary">
-                        <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Crear Planeadores</h4></div>
+                        <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Gestionar Planeadores</h4></div>
                         <div id="panel_ver_notas" class="panel-body">
                             <div class="col-xs-4">
                                 <div class="form-group">
@@ -58,7 +58,7 @@
                             <br/><br/><br/>
                             <div id="contenedor-registrar-planeador"class="col-xs-12">
                                 <hr>
-                                <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Agregar Temas </h4>
+                                <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Asignar Temas </h4>
                                 <br/>
                                 <table id="tabla_plan" class="table table-hover hidden">
                                     <thead id="head_tabla_plan">
@@ -73,14 +73,17 @@
                                     </tbody>
                                 </table>
                                 <hr>
-                                <div id="temas_vacio">
-                                    <p><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>
+                                <div id="espera_planeador">
+                                    <div id="espera_tema_error">
+                                    </div>
+                                    <p id="espera_añadir" class="hidden"><strong>NOTA: </strong> Haz Click en el botón "Añadir Tema" para comenzar a llenar el planeador.</p>
+                                    <p id="espera_escoger"><strong>NOTA: </strong> Escoge una asignación para gestionar el planeador.</p>
                                 </div>
                                 <!--<input id="64" type="text" name="hola" class="form-control" />-->
-                                <hr><button id="add" type='button' class='btn btn-info' onclick="agregar();">
+                                <hr><button id="add" type='button' class='btn btn-info hidden' onclick="agregar();">
                                 <span class="glyphicon glyphicon-plus"></span>   Añadir Tema</button>
-                                <button id="enviar_form" type="submit" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-floppy-saved"></span>       Crear Planeador
+                                <button id="enviar_form" type="submit" class="btn btn-success hidden">
+                                    <span class="glyphicon glyphicon-floppy-saved"></span>       Guardar Planeador
                                 </button> 
                                 <br/>
                             </div><!--/col-xs-12-->
@@ -108,7 +111,7 @@
 <td><div id="group_tema_<%= element.i %>" class="form-group">
 <input id="nomTema_<%= element.i %>" type="text" class="form-control nom_temas" placeholder="Escriba el Tema" name="nomTema[<%= element.i - 1 %>]" /></div></td>
 <td>
-<div style="width: 300px" class="input-daterange input-group" id="datepicker">
+<div style="width: 300px" class="input-daterange input-group" id="datepicker_<%= element.i %>">
 <div id="group_fechain_<%= element.i %>" class="col-xs-6 form-group">
 <input id="fechain_tema_<%= element.i %>" type="text" name="fechaIn[<%= element.i - 1 %>]" class="form-control input_fechain" placeholder="Fecha Inicio" /></div>
 <div id="group_fechafin_<%= element.i %>" class="col-xs-6 form-group">

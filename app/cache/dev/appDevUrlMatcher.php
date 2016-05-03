@@ -1199,6 +1199,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotasAction',  '_route' => 'todas_notas',);
         }
 
+        // planeador_existente
+        if ($pathinfo === '/planeador_existente') {
+            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::planeadorExistenteAction',  '_route' => 'planeador_existente',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

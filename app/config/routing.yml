@@ -68,3 +68,9 @@ todas_notas:
     defaults: { _controller: AdonaiUnicoBundle:Notas:devolverTodasNotas }
     options:
         expose: true 
+
+planeador_existente:
+    pattern:  /planeador_existente
+    defaults: { _controller: AdonaiUnicoBundle:Planeadores:planeadorExistente }
+    options:
+        expose: true
