@@ -999,17 +999,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
                 not_planeadores_show:
 
-                // planeadores_edit
-                if (preg_match('#^/planeadores/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
-                        goto not_planeadores_edit;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'planeadores_edit')), array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::editAction',));
-                }
-                not_planeadores_edit:
-
                 // planeadores_delete
                 if (preg_match('#^/planeadores/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     if ($this->context->getMethod() != 'DELETE') {
@@ -1199,9 +1188,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\NotasController::devolverTodasNotasAction',  '_route' => 'todas_notas',);
         }
 
-        // planeador_existente
-        if ($pathinfo === '/planeador_existente') {
-            return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::planeadorExistenteAction',  '_route' => 'planeador_existente',);
+        if (0 === strpos($pathinfo, '/planeador')) {
+            // planeador_existente
+            if ($pathinfo === '/planeador_existente') {
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::planeadorExistenteAction',  '_route' => 'planeador_existente',);
+            }
+
+            // planeadores_edit
+            if ($pathinfo === '/planeadores/edit') {
+                return array (  '_controller' => 'Adonai\\UnicoBundle\\Controller\\PlaneadoresController::editAction',  '_route' => 'planeadores_edit',);
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

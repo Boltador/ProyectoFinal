@@ -124,28 +124,46 @@ class PlaneadoresController extends Controller
     /**
      * Displays a form to edit an existing Planeadores entity.
      *
-     * @Route("/{id}/edit", name="planeadores_edit")
+     * @Route("/edit", name="planeadores_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Planeadores $planeador)
+    public function editAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($planeador);
-        $editForm = $this->createForm('Adonai\UnicoBundle\Form\PlaneadoresType', $planeador);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $planeador = $request->get("idPlaneador");
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($planeador);
+        $query = $em->createQuery("SELECT plan FROM AdonaiUnicoBundle:Planeadores plan WHERE plan.idPlan = :id_planeador");
+        $query->setParameter('id_planeador', $planeador);
+        $planeador = $query->getSingleResult();
+
+        $query = $em->createQuery("SELECT tema FROM AdonaiUnicoBundle:Temas tema WHERE tema.planeador = :planeador");
+        $query->setParameter('planeador', $planeador);
+        $temas = $query->getResult();
+
+        for ($i = 0; $i < sizeof($temas); $i++) {
+            $em->remove($temas[$i]);
             $em->flush();
-
-            return $this->redirectToRoute('planeadores_edit', array('id' => $planeador->getIdPlan()));
         }
 
-        return $this->render('planeadores/edit.html.twig', array(
-            'planeador' => $planeador,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            ));
+
+        $nomTemas = $request->get("nomTema");
+        $fechasIn = $request->get("fechaIn");
+        $fechasFin = $request->get("fechaFin");
+        for($i = 0; $i < sizeof($nomTemas); $i++){
+            $tema = new Temas();
+            $tema->setPlaneador($planeador);
+            $tema->setNomTema($nomTemas[$i]);
+            $date_in = new \DateTime("$fechasIn[$i]");
+            $tema->setFechaInTema($date_in->format('Y-m-d'));
+            $date_fin = new \DateTime("$fechasFin[$i]");
+            $tema->setFechaFinTema($date_fin->format('Y-m-d'));
+            $em->persist($tema);
+            $em->flush();
+        }
+
+        $response = new Response(\json_encode(false));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
@@ -199,15 +217,21 @@ class PlaneadoresController extends Controller
         $query->setParameter('periodo', $periodo);
         $resultado = $query->getResult();
 
-        $planeador_response = array();
 
-        foreach($resultado as $planeador){
-            $plan = array("id" => $planeador->getIdPlan());
-            $planeador_response[] = $plan;
-        }
+        if(!empty($resultado)){
 
-        if(!empty($planeador_response)){
-            $response = new Response(\json_encode($planeador_response));
+            $query = $em->createQuery("SELECT tema FROM AdonaiUnicoBundle:Temas tema WHERE tema.planeador = :planeador");
+            $query->setParameter('planeador', $resultado[0]);
+            $resultado = $query->getResult();
+
+            $temas_response = array();
+
+            foreach($resultado as $tema){
+                $tema_add = array("id" => $tema->getIdTema(), "nombre" => $tema->getNomTema(), "fecha_inicio" => $tema->getFechaInTema(), "fecha_final" => $tema->getFechaFinTema(), "id_planeador" => $tema->getPlaneador()->getIdPlan());
+                $temas_response[] = $tema_add;
+            }
+
+            $response = new Response(\json_encode($temas_response));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } else {

@@ -98,4 +98,13 @@ class Planeadores
     {
         return $this->periodo;
     }
+
+    public function __toString()
+    {
+        $id = $this->getIdPlan();
+        $asignacion = $this->getAsignacion();
+        $periodo = $this->getPeriodo();
+        return "ID Plan: ".$id." Periodo: ".$periodo." Asignacion: ".$asignacion;
+    }
+
 }

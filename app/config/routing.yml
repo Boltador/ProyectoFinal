@@ -74,3 +74,9 @@ planeador_existente:
     defaults: { _controller: AdonaiUnicoBundle:Planeadores:planeadorExistente }
     options:
         expose: true
+
+planeadores_edit:
+    pattern:  /planeadores/edit
+    defaults: { _controller: AdonaiUnicoBundle:Planeadores:edit }
+    options:
+        expose: true

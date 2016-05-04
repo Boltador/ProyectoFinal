@@ -3,7 +3,7 @@ _.templateSettings.variable = "element";
 var tpl = _.template($("#añadir_tema").html());
 
 var numero_tema = 1;
-
+var editadas = 0;
 
 //Evento cuando cambia de asignacion
 $("#planeador_asignacion").change(function () {
@@ -12,6 +12,10 @@ $("#planeador_asignacion").change(function () {
         asignacion_id: $(this).val(),
         periodo_id: $("#planeador_periodo").val()
     };
+    editadas = 0;
+    if ($("#confirmacion")) {
+        $("#confirmacion").remove();
+    }
     if (data["asignacion_id"] === "") {
         $("#planeador_asignacion").prop("disabled", false);
         resetearFormulario();
@@ -23,13 +27,20 @@ $("#planeador_asignacion").change(function () {
             success: function (data) {
                 if(data == false){
                     numero_tema = 1;
-                    espera(1);        
+                    espera(1);  
+                    $("#plan_actual").val("");      
                     $("#body_tabla_plan").empty().hide().fadeIn(200);
                     $("#tabla_plan").addClass("hidden");
+                    $("#enviar_form").addClass("hidden").hide().fadeIn(200);
+                    $("#add").removeClass("hidden").hide().fadeIn(200);
+                } else {
+                    editadas = 1;
+                    $("#plan_actual").val(data[0]["id_planeador"]);
+                    $("#body_tabla_plan").empty();
+                    setearTemasExistentes(data);
+                    $("#tabla_plan").removeClass("hidden");
                     $("#add").removeClass("hidden").hide().fadeIn(200);
                     $("#enviar_form").removeClass("hidden").hide().fadeIn(200);
-                } else {
-                    alert(data[0]["id"]);
                 }
                 $("#planeador_asignacion").prop("disabled", false);
             }
@@ -37,10 +48,9 @@ $("#planeador_asignacion").change(function () {
     }
 });
 
+// Crea un tema
 
-// --- Evento Agregar Tema -- //
-$("#form_plan").on("click", "#add", function (e) {
-    e.preventDefault();
+function crearTema(){
     var tplData = {
         i: numero_tema
     };
@@ -69,6 +79,7 @@ $("#form_plan").on("click", "#add", function (e) {
         }
     });
 
+
     var fecha_in =  $("#fecha_inicio_per").data("path");
     var fecha_fin = $("#fecha_final_per").data("path");
 
@@ -79,10 +90,16 @@ $("#form_plan").on("click", "#add", function (e) {
       daysOfWeekDisabled: "0,6",
       autoclose: false
   });
+}
 
+
+// --- Evento Agregar Tema -- //
+$("#form_plan").on("click", "#add", function (e) {
+    e.preventDefault();
+    crearTema();
     numero_tema += 1;
-
     if($("#tabla_plan").hasClass("hidden")){
+        $("#enviar_form").removeClass("hidden").hide().fadeIn(200);
         $("#tabla_plan").removeClass("hidden");
         $("#espera_temas").addClass("hidden");
     }
@@ -153,20 +170,37 @@ $('#form_plan').validate({
 
     },
     submitHandler: function(form){
+        if ($("#confirmacion")) {
+            $("#confirmacion").remove();
+        }
         if($("#body_tabla_plan").children().length == 0){
             espera(2);
             return false;
         }
-        $.ajax({
-            type: "POST",
-            url: $('#form_plan').attr('action'),
-            data: $('#form_plan').serialize(),
-            success: function (data) {
-            }
-        });
+        if(editadas == 0){
+            espera(3);
+            $.ajax({
+                type: "POST",
+                url: $('#form_plan').attr('action'),
+                data: $('#form_plan').serialize(),
+                success: function (data) {
+                    notificacionRegistrar(1); 
+                    editadas = 1;
+                }
+            });
+        } else {
+            espera(4);
+            $.ajax({
+                type: "POST",
+                url: Routing.generate('planeadores_edit'),
+                data: $('#form_plan').serialize(),
+                success: function (data) {
+                    notificacionRegistrar(2); 
+                }
+            });
+        }
     }
 });
-
 
 //Muestra mensaje de predefinido en la ubicacion indicada
 function espera(ubicacion) {
@@ -189,6 +223,24 @@ function espera(ubicacion) {
             }, 2500);
         });
         break;
+        case 3:
+        $('#notificacion_submit').append("<h4 id='tag_espera_1'>" + "<span class='label label-info'>" + "Registrando Planeador.." + "</span>" + "</h4>" + "<br/>");
+        $('#tag_espera_1').hide().fadeIn(200);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#tag_espera_1").fadeOut(350);
+            }, 950);
+        });
+        break;
+        case 4:
+        $('#notificacion_submit').append("<h4 id='tag_espera_2'>" + "<span class='label label-info'>" + "Editando Planeador.." + "</span>" + "</h4>" + "<br/>");
+        $('#tag_espera_2').hide().fadeIn(200);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#tag_espera_2").fadeOut(350);
+            }, 950);
+        });
+        break;
         default:
         alert("Error de Notificación");
         break;
@@ -196,9 +248,43 @@ function espera(ubicacion) {
 } /* Fin Función Espera */
 
 
+//Muestra el mensaje de los temas registrados
+function notificacionRegistrar(ubicacion) {
+    if(ubicacion === 1){
+        confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
+        "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
+        'Planeador Registrado con Éxito.' +
+        "</div>";
+        $('#confirmacion').hide().fadeIn(300);
+        $('#notificacion_submit').empty();
+        $('#notificacion_submit').append(confirmacion);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#confirmacion").fadeOut(2000);
+            }, 3000);
+        });
+    }
+    if(ubicacion === 2){
+        confirmacion = "<div id='confirmacion' class='alert alert-success'>" +
+        "<button type='button' class='close' data-dismiss='alert'>" + '×' + "</button>" +
+        'Planeador Editado con Éxito.' +
+        "</div>";
+        $('#confirmacion').hide().fadeIn(300);
+        $('#notificacion_submit').empty();
+        $('#notificacion_submit').append(confirmacion);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#confirmacion").fadeOut(2000);
+            }, 3000);
+        });
+    }
+}/* Fin Función notificacionRegistrar */
+
+
 //Limpia el formulario
 function resetearFormulario() {
     numero_tema = 1;
+    $("#plan_actual").val("");
     $("#espera_añadir").addClass("hidden");
     $("#espera_escoger").removeClass("hidden");
     $("#add").addClass("hidden");
@@ -208,14 +294,18 @@ function resetearFormulario() {
 }
 
 
-    /*$(".input-daterange").each(function (index)
-    {
-        $(this).datepicker().on('changeDate', function (ev) {
-            if($("#datepicker_"+ index +"").length){
-                alert("hola");
-            }
-        });
-});
+// Crea los campos para setear los temas existentes, recibe los temas
+function setearTemasExistentes(data){
+    for(var i = 0; i < data.length; i++){
+        crearTema();
+        $("#nomTema_"+ numero_tema +"").val(data[i]["nombre"]);
+        $("#fechain_tema_"+ numero_tema +"").datepicker().datepicker('setDate', $.formatDateTime('mm/dd/yy', new Date(data[i]["fecha_inicio"])));
+        $("#fechafin_tema_"+ numero_tema +"").datepicker().datepicker('setDate', $.formatDateTime('mm/dd/yy', new Date(data[i]["fecha_final"])));
+        numero_tema += 1;
+    }
+}
+
+/*
 
 function verificarFechasInicio(){
     $("#body_tabla_plan .fecha_inicio").each(function (index)
@@ -236,7 +326,6 @@ function verificarFechasInicio(){
                 alert("Escoja una fecha diferente al rango anterior");
             }
         }
-
     });
 }*/
 

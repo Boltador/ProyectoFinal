@@ -21,20 +21,20 @@ class __TwigTemplate_7fa5f8950f9c6efddb64af3e17cb251ff18bd480036c63ddb86cbaf5cb9
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_43fddef48f59da33b39e1fb67507b504b81b1b37fc8b09aaf2d6b9a22ce854ba = $this->env->getExtension("native_profiler");
-        $__internal_43fddef48f59da33b39e1fb67507b504b81b1b37fc8b09aaf2d6b9a22ce854ba->enter($__internal_43fddef48f59da33b39e1fb67507b504b81b1b37fc8b09aaf2d6b9a22ce854ba_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":grados:show.html.twig"));
+        $__internal_9771992cff67695499669cef703d13629d3070b15d5ab495dbe249e5ba2a3dc3 = $this->env->getExtension("native_profiler");
+        $__internal_9771992cff67695499669cef703d13629d3070b15d5ab495dbe249e5ba2a3dc3->enter($__internal_9771992cff67695499669cef703d13629d3070b15d5ab495dbe249e5ba2a3dc3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":grados:show.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_43fddef48f59da33b39e1fb67507b504b81b1b37fc8b09aaf2d6b9a22ce854ba->leave($__internal_43fddef48f59da33b39e1fb67507b504b81b1b37fc8b09aaf2d6b9a22ce854ba_prof);
+        $__internal_9771992cff67695499669cef703d13629d3070b15d5ab495dbe249e5ba2a3dc3->leave($__internal_9771992cff67695499669cef703d13629d3070b15d5ab495dbe249e5ba2a3dc3_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_1c6d00f88024fadf47d46e600c3b075aa16b9f57428ff451a441298851ee17ec = $this->env->getExtension("native_profiler");
-        $__internal_1c6d00f88024fadf47d46e600c3b075aa16b9f57428ff451a441298851ee17ec->enter($__internal_1c6d00f88024fadf47d46e600c3b075aa16b9f57428ff451a441298851ee17ec_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_cf60fd96c5b23b496965effd044dbfed6115b5d23703aed29d43686ae777dec7 = $this->env->getExtension("native_profiler");
+        $__internal_cf60fd96c5b23b496965effd044dbfed6115b5d23703aed29d43686ae777dec7->enter($__internal_cf60fd96c5b23b496965effd044dbfed6115b5d23703aed29d43686ae777dec7_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <h1>Grados</h1>
@@ -85,7 +85,7 @@ class __TwigTemplate_7fa5f8950f9c6efddb64af3e17cb251ff18bd480036c63ddb86cbaf5cb9
     </ul>
 ";
         
-        $__internal_1c6d00f88024fadf47d46e600c3b075aa16b9f57428ff451a441298851ee17ec->leave($__internal_1c6d00f88024fadf47d46e600c3b075aa16b9f57428ff451a441298851ee17ec_prof);
+        $__internal_cf60fd96c5b23b496965effd044dbfed6115b5d23703aed29d43686ae777dec7->leave($__internal_cf60fd96c5b23b496965effd044dbfed6115b5d23703aed29d43686ae777dec7_prof);
 
     }
 

@@ -37,6 +37,7 @@
             <div id="contenedor_gestionar_busqueda" class="col-md-12">
                 <form enctype="multipart/form-data" id="form_plan" action="{{ path('planeadores_new') }}" enctype="multipart/form-data" method="POST" role="form">
                     {{ form_row(form._token) }}
+                    <input id="plan_actual" type="text" name="idPlaneador" class="hidden" />
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i>  Gestionar Planeadores</h4></div>
                         <div id="panel_ver_notas" class="panel-body">
@@ -59,6 +60,9 @@
                             <div id="contenedor-registrar-planeador"class="col-xs-12">
                                 <hr>
                                 <h4 id="subtitulo"><span class="glyphicon glyphicon-file"></span>  Asignar Temas </h4>
+                                <br/>
+                                <div id="notificacion_submit">
+                                </div>
                                 <br/>
                                 <table id="tabla_plan" class="table table-hover hidden">
                                     <thead id="head_tabla_plan">
@@ -92,9 +96,6 @@
                 </div><!-- contenedor-gestionar-busqueda -->
             </div><!-- contenedor-central -->
 
-            <div id="contenedor_registrar_planeador" class="col-sm-12">
-            </div><!-- contenedor-registrar -->
-
         </div><!-- /row-primera -->
     </div><!-- row primera -->
 </div><!--/container-->
@@ -106,23 +107,24 @@
 {% block scripts %}
 <script src="{{ asset('public/js/underscore.js') }}"></script>
 <script type="text/html" id="añadir_tema">
-<tr id="tema_<%= element.i %>"> 
-<td id="id_tema_<%= element.i %>"><%= element.i %></td>
-<td><div id="group_tema_<%= element.i %>" class="form-group">
-<input id="nomTema_<%= element.i %>" type="text" class="form-control nom_temas" placeholder="Escriba el Tema" name="nomTema[<%= element.i - 1 %>]" /></div></td>
-<td>
-<div style="width: 300px" class="input-daterange input-group" id="datepicker_<%= element.i %>">
-<div id="group_fechain_<%= element.i %>" class="col-xs-6 form-group">
-<input id="fechain_tema_<%= element.i %>" type="text" name="fechaIn[<%= element.i - 1 %>]" class="form-control input_fechain" placeholder="Fecha Inicio" /></div>
-<div id="group_fechafin_<%= element.i %>" class="col-xs-6 form-group">
-<input id="fechafin_tema_<%= element.i %>" type="text" name="fechaFin[<%= element.i - 1 %>]" class="form-control input_fechafin" placeholder="Fecha Final" /></div>
-</div>
-</td>
-<td><button id="btn_remove_<%= element.i %>" type="button" class="btn btn-danger" onclick="eliminarTema(this.id)"><small><span class="glyphicon glyphicon-remove"></span></small></button></td>
-</tr>
-</script>
-<script src="{{ asset('public/js/datepicker/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('public/js/planeador_docente.js') }}"></script>
-{% endblock %}
+    <tr id="tema_<%= element.i %>"> 
+        <td id="id_tema_<%= element.i %>"><%= element.i %></td>
+        <td><div id="group_tema_<%= element.i %>" class="form-group">
+            <input id="nomTema_<%= element.i %>" type="text" class="form-control nom_temas" placeholder="Escriba el Tema" name="nomTema[<%= element.i - 1 %>]" /></div></td>
+            <td>
+                <div style="width: 300px" class="input-daterange input-group" id="datepicker_<%= element.i %>">
+                    <div id="group_fechain_<%= element.i %>" class="col-xs-6 form-group">
+                        <input id="fechain_tema_<%= element.i %>" type="text" name="fechaIn[<%= element.i - 1 %>]" class="form-control input_fechain" placeholder="Fecha Inicio" /></div>
+                        <div id="group_fechafin_<%= element.i %>" class="col-xs-6 form-group">
+                            <input id="fechafin_tema_<%= element.i %>" type="text" name="fechaFin[<%= element.i - 1 %>]" class="form-control input_fechafin" placeholder="Fecha Final" /></div>
+                        </div>
+                    </td>
+                    <td><button id="btn_remove_<%= element.i %>" type="button" class="btn btn-danger" onclick="eliminarTema(this.id)"><small><span class="glyphicon glyphicon-remove"></span></small></button></td>
+                </tr>
+            </script>
+            <script src="{{ asset('public/js/datepicker/bootstrap-datepicker.js') }}"></script>
+            <script src="{{ asset('public/js/jquery.formatDateTime.min.js') }}"></script>
+            <script src="{{ asset('public/js/planeador_docente.js') }}"></script>
+            {% endblock %}
 
-{% endblock %}
+            {% endblock %}
